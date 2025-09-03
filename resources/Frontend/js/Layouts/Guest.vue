@@ -1,8 +1,8 @@
 <template>
     <div>
-        <Header />
+        <!-- <Header /> -->
         <slot />
-        <Footer />
+        <!-- <Footer /> -->
         <JamBackToTop />
         <PopupCartSuccess :open="isShowPopup" />
         <SocialFixed />
