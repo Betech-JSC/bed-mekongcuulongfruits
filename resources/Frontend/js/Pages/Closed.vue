@@ -24,9 +24,6 @@
                 </div>
 
                 <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Website đang cập nhật</h2>
-                <p class="mt-2 text-gray-600">
-                    Chúng tôi đang cải thiện trải nghiệm. Nếu cần hỗ trợ ngay, vui lòng liên hệ:
-                </p>
             </div>
         </section>
     </main>
