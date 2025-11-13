@@ -20,7 +20,7 @@
                             />
                         </svg>
                     </div>
-                    <h1 class="text-xl md:text-2xl font-semibold text-gray-900">Công ty TNHH Mekongcuulongfruits</h1>
+                    <h1 class="text-xl md:text-2xl font-semibold text-gray-900">Công ty TNHH Vietnamfarmer</h1>
                 </div>
 
                 <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Website đang cập nhật</h2>
