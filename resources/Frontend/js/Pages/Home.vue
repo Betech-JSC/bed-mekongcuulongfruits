@@ -1,7 +1,7 @@
 <template>
-    <main class="bg-primary-25">
-        <SectionHeroSlider :items="sliders" />
-        <section v-if="services && services.length > 0" class="py-12 md:py-16 xl:py-20">
+    <main>
+        <!-- <SectionHeroSlider :items="sliders" /> -->
+        <!-- <section v-if="services && services.length > 0" class="py-12 md:py-16 xl:py-20">
             <div class="container md:space-y-6 space-y-4 xl:space-y-8">
                 <h2 class="display-2 text-primary uppercase">{{ tt('Dịch vụ của chúng tôi') }}</h2>
                 <div class="grid md:grid-cols-3 gap-x-4 xl:gap-x-6 md:gap-y-6 gap-y-4 xl:gap-y-8">
@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
     </main>
 </template>
 <script>
@@ -139,56 +139,10 @@ export default {
     props: ['posts', 'services', 'sliders'],
     data() {
         return {
-            partners: [
-                {
-                    image: '/assets/images/home/image-partner-1.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-2.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-3.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-4.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-5.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-6.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-7.webp',
-                    title: 'image partner',
-                },
-                {
-                    image: '/assets/images/home/image-partner-8.webp',
-                    title: 'image partner',
-                },
-            ],
+
         }
-    },
-    methods: {
-        formatYMD(ymd, locale = 'en-US') {
-            if (!ymd) return ''
-            const [y, m, d] = ymd.split('-').map(Number)
-            // Dựng Date ở UTC để không bị lệch ngày theo múi giờ
-            const dt = new Date(Date.UTC(y, m - 1, d))
-            return new Intl.DateTimeFormat(locale, {
-                month: 'long', // "December"
-                day: '2-digit', // "09"
-                year: 'numeric', // "2024"
-                timeZone: 'UTC', // khóa theo UTC cho ổn định
-            }).format(dt)
-        },
     },
 }
 </script>
-<style scoped></style>
+
+<style lang="scss" scoped></style>

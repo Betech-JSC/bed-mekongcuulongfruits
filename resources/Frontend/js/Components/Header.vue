@@ -2,110 +2,36 @@
     <header class="sticky inset-x-0 top-0 z-[1000]" @mouseleave="menuSelected = null">
         <div class="relative h-full bg-primary-25">
             <div
-                class="flex items-center justify-between lg:justify-center py-2 border-b border-primary-100 lg:px-0 px-4"
-            >
+                class="container flex items-center justify-between py-2 border-b border-primary-100">
                 <Logo />
 
-                <div class="flex items-center gap-5 md:gap-8 lg:hidden">
-                    <a
-                        href="tel:0987654321"
-                        class="border border-navy-600 text-navy-600 flex items-center gap-1 rounded-full title-4 !font-display py-1.5 px-3 lg:hover:bg-navy-600 lg:hover:text-primary-100 duration-300 ease-in-out"
-                    >
-                        <Phone />
-                        <span class="mt-0.5">0987 654 321</span>
-                    </a>
-                    <button @click="onToggleMenu()">
+                <ul class="flex items-center xl:space-x-8 md:space-x-5">
+                    <template v-for="(menu, index) in menus" :key="index">
+                        <li v-if="menu && menu.title !== ''" @mouseover="setMenuSelected(menu)"
+                            @mouseenter="setFirstSubMenu">
+                            <Link :href="menu.slug" class="flex items-center space-x-2 relative" :class="fullPath.includes(menu.slug) ? 'text-primary-800' : 'text-primary-900'
+                                " @click="menuSelected = null">
+                            <div class="">{{ menu.title }}</div>
+                            </Link>
+                        </li>
+                    </template>
+                </ul>
+
+                <div>
+                    <button class="btn btn-primary">Get in touch</button>
+                    <button @click="onToggleMenu()" class="lg:hidden">
                         <Hamburger :isToggleMenu="isToggleMenu" />
                     </button>
                 </div>
             </div>
-            <div class="h-full container">
-                <div class="z-10 h-full">
-                    <div class="max-lg:hidden space-y-[12px] w-full">
-                        <div class="relative flex items-center justify-between py-3 w-full">
-                            <a
-                                href="tel:0987654321"
-                                class="border border-navy-600 text-navy-600 flex items-center gap-1 rounded-full title-4 !font-display py-1.5 px-3 lg:hover:bg-navy-600 lg:hover:text-primary-100 duration-300 ease-in-out"
-                            >
-                                <Phone />
-                                <span class="mt-0.5">0987 654 321</span>
-                            </a>
-                            <ul class="flex items-center xl:space-x-8 md:space-x-5">
-                                <template v-for="(menu, index) in menus" :key="index">
-                                    <li
-                                        v-if="menu && menu.title !== ''"
-                                        @mouseover="setMenuSelected(menu)"
-                                        @mouseenter="setFirstSubMenu"
-                                    >
-                                        <Link
-                                            :href="menu.slug"
-                                            class="flex items-center space-x-2 relative"
-                                            :class="
-                                                fullPath.includes(menu.slug) ? 'text-primary-800' : 'text-primary-900'
-                                            "
-                                            @click="menuSelected = null"
-                                        >
-                                            <div class="">{{ menu.title }}</div>
-                                        </Link>
-                                    </li>
-                                </template>
-                            </ul>
-                            <div class="flex items-center gap-6">
-                                <Link
-                                    :href="route('checkout.cart.index')"
-                                    class="flex items-center gap-1 text-primary-900 relative"
-                                >
-                                    <Cart />
-                                    <span class="button-1 !font-normal">Giỏ hàng</span>
-                                    <div
-                                        class="absolute min-w-[16px] h-[16px] rounded-full overflow-hidden text-center text-[12px] font-semibold bg-primary-800 text-white top-[5px] right-0 translate-x-1/2 -translate-y-2/3 flex justify-center items-center"
-                                    >
-                                        {{ cartData?.total_quantity || 0 }}
-                                    </div>
-                                </Link>
-
-                                <div class="flex items-center gap-1 text-primary-900 notranslate">
-                                    <Global />
-
-                                    <div class="flex items-center gap-0.5">
-                                        <button
-                                            :class="$page.props.locale.current == 'vi' ? '' : 'opacity-40'"
-                                            type="button"
-                                            @click="switchLang('vi')"
-                                        >
-                                            VI
-                                        </button>
-                                        <span class="opacity-20">/</span>
-                                        <button
-                                            :class="$page.props.locale.current == 'en' ? '' : 'opacity-40'"
-                                            type="button"
-                                            @click="switchLang('en')"
-                                        >
-                                            EN
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="fixed md:top-[var(--header-height-md)] top-[var(--header-height-sm)] w-full h-full z-[1000] lg:hidden"
-                :class="isToggleMenu ? 'right-0' : '-right-full'"
-                style="transition: right 0.5s"
-            >
-                <div
-                    class="w-full md:w-[50vw] h-full bg-primary-25 absolute z-30 duration-300 px-6 py-10 space-y-4"
-                    :class="isToggleMenu ? 'right-0' : '-right-full'"
-                    style="transition: right 0.5s"
-                >
+            <div class="fixed md:top-[var(--header-height-md)] top-[var(--header-height-sm)] w-full h-full z-[1000] lg:hidden"
+                :class="isToggleMenu ? 'right-0' : '-right-full'" style="transition: right 0.5s">
+                <div class="w-full md:w-[50vw] h-full bg-primary-25 absolute z-30 duration-300 px-6 py-10 space-y-4"
+                    :class="isToggleMenu ? 'right-0' : '-right-full'" style="transition: right 0.5s">
                     <ul class="space-y-4">
                         <template v-for="(menuMb, menuMbIndex) in menus" :key="menuMbIndex">
-                            <li
-                                class="flex items-center justify-between py-2"
-                                :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'"
-                            >
+                            <li class="flex items-center justify-between py-2"
+                                :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'">
                                 <Link :href="menuMb.slug" @click="closeMenu()" class="block w-full">{{
                                     menuMb.title
                                 }}</Link>
@@ -113,43 +39,14 @@
                         </template>
                     </ul>
 
-                    <button class="flex items-center gap-1 text-primary-900">
-                        <Cart />
-                        <span class="button-1 !font-normal">Giỏ hàng</span>
-                    </button>
-
-                    <div class="flex items-center gap-1 text-primary-900 notranslate">
-                        <Global />
-
-                        <div class="flex items-center gap-0.5">
-                            <button
-                                :class="$page.props.locale.current == 'vi' ? '' : 'opacity-40'"
-                                type="button"
-                                @click="switchLang('vi')"
-                            >
-                                VI
-                            </button>
-                            <span class="opacity-20">/</span>
-                            <button
-                                :class="$page.props.locale.current == 'en' ? '' : 'opacity-40'"
-                                type="button"
-                                @click="switchLang('en')"
-                            >
-                                EN
-                            </button>
-                        </div>
-                    </div>
-
                     <!-- Bắt buộc có để Google init, mình ẩn đi -->
                     <div id="google_translate_element" class="hidden"></div>
                 </div>
             </div>
         </div>
-        <div
-            @mouseenter="setBackgroundHover('leave')"
+        <div @mouseenter="setBackgroundHover('leave')"
             :class="hoverBackground ? 'visible duration-100' : 'invisible duration-100'"
-            class="absolute w-screen h-screen bg-black opacity-50 z-1"
-        ></div>
+            class="absolute w-screen h-screen bg-black opacity-50 z-1"></div>
     </header>
 </template>
 <script>
@@ -198,37 +95,37 @@ export default {
             isOpenSearch: false,
             menus: [
                 {
-                    title: this.tt('Giới thiệu'),
+                    title: this.tt('Home'),
+                    slug: this.route('home'),
+                    type: 'home',
+                    subMenu: [],
+                },
+                {
+                    title: this.tt('About us'),
                     slug: this.route('histories.index'),
                     type: 'histories',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Sản phẩm'),
+                    title: this.tt('Products'),
                     slug: this.route('products.index'),
                     type: 'products',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Dịch vụ'),
+                    title: this.tt('Careers'),
                     slug: this.route('services'),
                     type: 'services',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Bài viết'),
+                    title: this.tt('News'),
                     slug: this.route('posts'),
                     type: 'posts',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Chính sách'),
-                    slug: this.route('policies.index'),
-                    type: 'policies',
-                    subMenu: [],
-                },
-                {
-                    title: this.tt('Liên hệ'),
+                    title: this.tt('Contact'),
                     slug: this.route('contact'),
                     type: 'contact',
                     subMenu: [],
@@ -245,18 +142,6 @@ export default {
             isToggleSubMenu: false,
             currentType: '',
             currentSubMenu: [],
-            languageList: [
-                {
-                    title: 'VI',
-                    type: 'vi',
-                    link: '/',
-                },
-                {
-                    title: 'EN',
-                    type: 'en',
-                    link: '/en',
-                },
-            ],
 
             isLoading: false,
             searchText: this.$attrs.keyword || '',
@@ -577,7 +462,7 @@ export default {
                     // Thử remove hẳn
                     try {
                         el.parentNode && el.parentNode.removeChild(el)
-                    } catch {}
+                    } catch { }
                 })
 
                 // Ẩn tooltip/popup
@@ -606,7 +491,7 @@ export default {
             try {
                 document.body.style.setProperty('top', '0px', 'important')
                 document.documentElement.style.setProperty('top', '0px', 'important')
-            } catch {}
+            } catch { }
         },
         injectCssHacks() {
             const css = `
@@ -636,7 +521,7 @@ export default {
                     banner.style.setProperty('display', 'none', 'important')
                     try {
                         banner.remove()
-                    } catch {}
+                    } catch { }
                 }
                 this.ensureBodyTop()
             })
@@ -704,45 +589,55 @@ body {
 .header-shadow {
     box-shadow: 0 0 3px #1018280f, 0 1px 2px #1018280f;
 }
+
 .language-box {
     box-shadow: 0px 1px 2px 0px #1018280d;
 }
+
 .bg-header {
     clip-path: polygon(0 0, 100% 0%, 88% 100%, 0% 100%);
 }
+
 @media screen and (min-width: 375px) {
     .header-shape {
         width: calc(100vw - ((100vw - 425px) / 2));
     }
 }
+
 @media screen and (min-width: 768px) {
     .header-shape {
         width: calc(100vw - ((100vw - 768px) / 2));
     }
 }
+
 @media screen and (min-width: 1024px) {
     .header-shape {
         width: calc(100vw - ((100vw - 1024px) / 2));
     }
 }
+
 @media screen and (min-width: 1280px) {
     .header-shape {
         width: calc(100vw - ((100vw - 1250px) / 2));
     }
 }
+
 @media screen and (min-width: 1366px) {
     .header-shape {
         width: calc(100vw - ((100vw - 1280px) / 2));
     }
 }
+
 @media screen and (min-width: 1440px) {
     .header-shape {
         width: calc(100vw - ((100vw - 1265px) / 2));
     }
 }
+
 .bg-gradient-header {
     background-image: linear-gradient(350.4deg, #2b40b6 3.98%, #2067e3 30%);
 }
+
 .text-gradient {
     background: var(--Gradient, linear-gradient(93deg, #afa38e 4.2%, #e0d8bf 72.2%, #a79c86 148.11%));
     background-clip: text;
@@ -751,14 +646,20 @@ body {
 }
 
 .menu {
-    max-height: 0; /* Chiều cao ban đầu */
-    overflow: hidden; /* Ẩn nội dung thừa */
-    opacity: 0; /* Ban đầu ẩn hoàn toàn nội dung */
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; /* Hiệu ứng đồng bộ */
+    max-height: 0;
+    /* Chiều cao ban đầu */
+    overflow: hidden;
+    /* Ẩn nội dung thừa */
+    opacity: 0;
+    /* Ban đầu ẩn hoàn toàn nội dung */
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
+    /* Hiệu ứng đồng bộ */
 }
 
 .group:hover .menu {
-    max-height: 90vh; /* Chiều cao tối đa khi hover */
-    opacity: 1; /* Nội dung hiển thị dần */
+    max-height: 90vh;
+    /* Chiều cao tối đa khi hover */
+    opacity: 1;
+    /* Nội dung hiển thị dần */
 }
 </style>
