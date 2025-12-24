@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-[180px] md:min-h-[200px] xl:min-h-[240px] relative" :class="customClass">
+    <div class="min-h-[180px] md:min-h-[200px] xl:min-h-[700px] relative" :class="customClass">
         <div class="bg-banner"></div>
         <div class="container relative z-20">
             <JamBreadcrumb :items="breadcrumbs" class="is-background" :class="breadCrumbClass" />
