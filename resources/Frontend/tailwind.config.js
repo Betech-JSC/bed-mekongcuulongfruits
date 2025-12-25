@@ -470,7 +470,7 @@ module.exports = {
                 center: true,
                 padding: {
                     DEFAULT: '1rem',
-                    'lg': '5rem',
+                    'lg': '2rem',
                     'xl': '9rem',
                 },
             },
