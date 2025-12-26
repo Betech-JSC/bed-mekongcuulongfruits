@@ -1,144 +1,202 @@
 <template>
     <main>
-        <BannerImage :banner="banner" classBanner="h-[320px] xl:h-[440px]" />
-        <section class="py-12">
-            <div class="container md:space-y-6 space-y-4 xl:space-y-8">
-                <div class="md:flex items-center justify-between">
-                    <JamBreadcrumb :items="banner.breadcrumbs" />
-                    <div class="flex items-center gap-3">
-                        <!-- Select category -->
-                        <CustomSelect title="Danh mục" :options="categories" filterKey="categories" />
-                        <CustomSelect title="Sắp xếp" :options="sortOptions" filterKey="sort" />
-                    </div>
+        <section class="relative">
+            <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
+            <UITabs :tabs="tabs" />
+        </section>
+        <section id="product-information" class="py-12 md:py-16 xl:pt-20 xl:pb-10 bg-[#E5C025]">
+            <div class="container flex flex-col lg:flex-row items-start md:gap-12 gap-8 xl:gap-20">
+                <div class="max-w-full max-lg:mx-auto lg:max-w-[380px] xl:max-w-[480px] w-full relative overflow-hidden">
+                    <JPicture
+                        class="w-full h-full object-contain"
+                        src="/assets/images/products/image-product.png"
+                        mobileSrc="/assets/images/products/image-product.png"
+                        alt="item image"
+                    />
                 </div>
-                <div>
-                    <div
-                        class="grid md:grid-cols-3 grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 xl:gap-8 border-b border-gray-200 md:pb-6 pb-4 xl:pb-8 notranslate"
-                    >
-                        <CardCardProduct v-for="(product, index) in products.data" :key="index" :item="product" />
+                <div class="flex-1">
+                    <div class="body-0 uppercase mb-3">Over view</div>
+                    <h2 class="display-3 font-bold text-[#B61F04] mb-6 md:mb-8 xl:mb-10">
+                        The world’s favorite banana, proudly grown in Vietnam’s fertile Mekong Delta.
+                    </h2>
+                    <div class="title-2 mb-6 md:mb-8 xl:mb-10">
+                        <p>
+                            The Cavendish banana is one of Vietnam’s most popular export fruits, loved worldwide for its
+                            sweet flavor, soft texture, and natural freshness.
+                        </p>
+                        <p>
+                            Grown in the fertile Mekong Delta, our bananas are carefully cultivated and harvested to
+                            ensure consistent quality and year-round supply.
+                        </p>
                     </div>
-                    <Pagination :links="products.links" class="pt-3 pb-4" />
+                    <h2 class="display-3 text-[#B61F04] mb-3 font-bold">Characteristics of Cavendish Bananas</h2>
+                    <ul class="body-1 text-gray-900 list-disc pl-6">
+                        <li>
+                            Ideal harvest age: 10–12 weeks (from the day the bunch is cut), with a diameter of 30mm –
+                            45mm, and still retaining the natural threads.
+                        </li>
+                        <li>
+                            Bananas should not be too old (avoid overly round fruit or those with slight sickle cuts).
+                        </li>
+                        <li>
+                            Bananas should not be too green, ensuring proper flesh development, sweetness, and quality
+                            for ripening.
+                        </li>
+                        <li>
+                            Color: Bright green or uniform green without patches, spots, or premature yellowing caused
+                            by light.
+                        </li>
+                        <li>
+                            Fruits must be intact, naturally developed, with a gentle curve. No double bananas or
+                            deformities are accepted.
+                        </li>
+                        <li>
+                            When ripened, bananas should turn a vibrant yellow with a chewy, fragrant, and sweet flesh.
+                        </li>
+                        <li class="font-semibold">Brix (when ripened): 22–24.</li>
+                    </ul>
                 </div>
             </div>
         </section>
-        <section
-            class="flex relative justify-center items-end bg-white min-h-[350px] lg:min-h-[320px] xl:min-h-[400px] md:py-0 py-12"
-        >
-            <div class="absolute bottom-0 left-0 w-full bg-primary-500 h-full md:h-[250px] xl:h-[283px] z-[1]"></div>
+        <section id="harvest-seasons" class="md:py-16 py-12 xl:py-20">
+            <div class="container">
+                <h2 class="headline-1 font-bold uppercase">Harvest Seasons</h2>
+                <div class="body-1 text-gray-900 max-w-[630px] w-full mt-2 mb-6">
+                    Available year-round thanks to continuous cultivation cycles. Peak harvest occurs from March to
+                    October, ensuring stable volumes and reliable export supply.
+                </div>
 
-            <div class="relative w-full">
-                <div class="container">
-                    <div class="md:flex items-center justify-between">
-                        <div class="relative z-[1] text-white max-w-[770px] w-full max-md:text-center">
-                            <h2 class="display-3">
-                                {{ tt('Tặng phẩm thiết kế riêng') }}
-                            </h2>
-                            <p class="body-1 mt-3 xl:mt-4 mb-3 md:mb-4 xl:mb-5">
-                                {{
-                                    tt(
-                                        'Dù là quà tặng trong sự kiện, vật phẩm khuyến mại hay bộ kit giới thiệu sản phẩm mới,Sip N Source luôn đảm bảo sự chỉn chu, cảm xúc và hiệu quả truyền thông lâu dài.'
-                                    )
-                                }}
-                            </p>
-                            <Link :href="route('products.index')" class="btn third flex items-center justify-center">
-                                <span>{{ tt('Xem ngay') }}</span>
-                            </Link>
+                <JPicture
+                    class="w-full h-full object-contain"
+                    src="/assets/images/products/image-chart.png"
+                    alt="image chart"
+                />
+            </div>
+        </section>
+        <section id="production-process" class="md:py-16 py-12 xl:py-20">
+            <div class="container">
+                <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-12">
+                    <div class="grid grid-cols-2 gap-3">
+                        <JPicture
+                            wrapperClass="aspect-w-6 aspect-h-4 relative"
+                            class="w-full h-full object-cover"
+                            src="/assets/images/products/image-progress-1.jpg"
+                            alt="image progress"
+                        />
+                        <div class="space-y-3 flex flex-col">
+                            <JPicture
+                                wrapperClass="aspect-w-3 aspect-h-2 relative"
+                                class="w-full h-full object-cover"
+                                src="/assets/images/products/image-progress-2.jpg"
+                                alt="image progress"
+                            />
+                            <JPicture
+                                wrapperClass="aspect-w-3 aspect-h-2 relative"
+                                class="w-full h-full object-cover"
+                                src="/assets/images/products/image-progress-3.jpg"
+                                alt="image progress"
+                            />
                         </div>
-                        <div
-                            class="flex relative justify-center items-center max-md:mx-auto w-[300px] md:w-[250px] xl:w-[310px] z-[1]"
-                        >
-                            <div
-                                class="aspect-w-1 aspect-h-1 max-md:mx-auto w-[300px] md:w-[250px] md:h-[250px] xl:w-[310px] xl:h-[310px] md:translate-y-[-64px]"
-                            >
-                                <JPicture
-                                    src="/assets/images/products/image-box-gift.webp"
-                                    alt="Gift box image"
-                                    class="w-full h-full object-cover"
-                                />
+                    </div>
+                    <div>
+                        <h2 class="headline-1 font-bold uppercase text-[#60140A] mb-4">Production Process</h2>
+                        <div class="title-2" v-for="(itemProgress, indexProgress) in progressList" :key="indexProgress">
+                            {{ `${indexProgress + 1}. ${itemProgress}` }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="packing-specifications" class="bg-[#B61F04] md:py-16 py-12 xl:py-20">
+            <div class="container">
+                <div class="grid lg:grid-cols-2 md:gap-12 gap-8 xl:gap-20">
+                    <div>
+                        <JPicture
+                            wrapperClass="relative block"
+                            class="w-full h-full object-cover"
+                            src="/assets/images/products/image-packing.jpg"
+                            alt="image packing"
+                        />
+                    </div>
+                    <div class="space-y-5">
+                        <div class="space-y-2 text-[#E5C025]">
+                            <h2 class="headline-1 font-bold uppercase">Packing Specifications</h2>
+                            <div class="headline-1">Box Weight 13Kg</div>
+                        </div>
+                        <div class="space-y-2 text-white">
+                            <div class="title-1 font-bold">Container 40ft:</div>
+                            <div class="body-1">
+                                - Palletized Loading: 22 pallets, each pallet holds 60 boxes (Total: 1,320 boxes, Total
+                                weight: 17,160kg)
+                            </div>
+                        </div>
+                        <div class="space-y-2 text-white">
+                            <div class="title-1 font-bold">Box Specifications:</div>
+                            <div class="body-1">
+                                <p>- Hand:</p>
+                                <p>6H: 1.9kg - 2.3kg per Hand, 13 or more bananas per hand.</p>
+                                <p>8H: 1.5kg - 1.9kg per Hand, 11 or more bananas per hand.</p>
+                                <p>Evenly sized banana bunches, with no missing fruits on either side.</p>
+                                <p>- CP:</p>
+                                <p>10CP: 1.1 - 1.5kg per CP, 6-8 bananas per CP.</p>
+                                <p>12CP: 0.9 - 1.3kg per CP, 5-8 bananas per CP.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <SectionCustomerSlider :items="customers" />
+        <section id="preservation-methods" class="md:py-16 py-12 xl:py-20">
+            <div class="container">
+                <h2 class="headline-1 font-bold uppercase text-[#60140A]">Production Process</h2>
+                <div class="body-1 text-gray-900 mt-2 mb-6">
+                    Cavendish bananas are stored at 13–14°C with 85–95% humidity to maintain freshness. Ethylene control
+                    and proper ventilation help regulate ripening and prevent decay during transport and storage.
+                </div>
+                <div class="grid md:grid-cols-3 gap-[22px]">
+                    <div v-for="(itemMethod, indexMethod) in imagesMethod" :key="indexMethod" class="block w-full h-full aspect-w-3 aspect-h-2 relative">
+                        <JPicture
+                            class="w-full h-full object-cover"
+                            :src="itemMethod"
+                            alt="image method"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 </template>
 <script>
-import axios from 'axios'
-import JamBreadcrumb from '@/Components/Jam/Breadcrumb.vue'
-import Pagination from '@/Components/Paginate.vue'
-import BannerImage from '@/Components/BannerImage.vue'
-import CustomSelect from '@/Components/CustomSelect.vue'
-import { Inertia } from '@inertiajs/inertia'
-
 export default {
-    props: ['categories', 'category', 'products'],
-    components: { JamBreadcrumb, Pagination, BannerImage, CustomSelect },
+    props: ['posts', 'services', 'sliders'],
     data() {
         return {
-            filters: {
-                sort: 'desc', // default
-                category: null,
-            },
-            sortOptions: [
-                { title: 'Mới nhất', value: 'desc' },
-                { title: 'Cũ nhất', value: 'asc' },
-                { title: 'A → Z', value: 'az' },
-                { title: 'Z → A', value: 'za' },
-            ],
             banner: {
-                title: this.tt('Quà tặng'),
-                description: this.tt('Đồng hành cùng thương hiệu tạo nên dấu ấn riêng'),
-                image: '/assets/images/products/bg-banner.webp',
-                breadcrumbs: [
-                    {
-                        title: this.tt('Sản phẩm'),
-                    },
-                ],
+                title: this.tt('Cavendish banana'),
+                image: '/assets/images/products/banner.jpg',
             },
-
-            customers: [
-                {
-                    image: '/assets/images/home/image-partner.webp',
-                    title: 'Johnnie Walker',
-                    description:
-                        'Món quà nhỏ nhưng được khách hàng của chúng tôi cực kỳ yêu thích. Thiết kế dễ thương, chất liệu an toàn, lại mang dấu ấn thương hiệu rõ ràng.',
-                },
-                {
-                    image: '/assets/images/home/image-partner.webp',
-                    title: 'Johnnie Walker',
-                    description:
-                        'Món quà nhỏ nhưng được khách hàng của chúng tôi cực kỳ yêu thích. Thiết kế dễ thương, chất liệu an toàn, lại mang dấu ấn thương hiệu rõ ràng.',
-                },
-                {
-                    image: '/assets/images/home/image-partner.webp',
-                    title: 'Johnnie Walker',
-                    description:
-                        'Món quà nhỏ nhưng được khách hàng của chúng tôi cực kỳ yêu thích. Thiết kế dễ thương, chất liệu an toàn, lại mang dấu ấn thương hiệu rõ ràng.',
-                },
-                {
-                    image: '/assets/images/home/image-partner.webp',
-                    title: 'Johnnie Walker',
-                    description:
-                        'Món quà nhỏ nhưng được khách hàng của chúng tôi cực kỳ yêu thích. Thiết kế dễ thương, chất liệu an toàn, lại mang dấu ấn thương hiệu rõ ràng.',
-                },
-                {
-                    image: '/assets/images/home/image-partner.webp',
-                    title: 'Johnnie Walker',
-                    description:
-                        'Món quà nhỏ nhưng được khách hàng của chúng tôi cực kỳ yêu thích. Thiết kế dễ thương, chất liệu an toàn, lại mang dấu ấn thương hiệu rõ ràng.',
-                },
+            tabs: [
+                { title: this.tt('Product Information'), value: 'product-information' },
+                { title: this.tt('Harvest Seasons'), value: 'harvest-seasons' },
+                { title: this.tt('Production Process'), value: 'production-process' },
+                { title: this.tt('Packing Specifications'), value: 'packing-specifications' },
+                { title: this.tt('Preservation methods'), value: 'preservation-methods' },
+            ],
+            progressList: [
+                'Harvest bananas',
+                'Cut and clean each bunch by soaking and washing',
+                'Dry the bananas, sort according to specifications, and weigh',
+                'Pack the bananas',
+                'Store in cold storage',
+                'Load goods onto the container',
+            ],
+            imagesMethod: [
+                '/assets/images/products/image-method-1.jpg',
+                '/assets/images/products/image-method-2.jpg',
+                '/assets/images/products/image-method-3.jpg',
             ],
         }
     },
-    methods: {
-        applyFilters() {
-            Inertia.get('/posts', this.filters, {
-                preserveState: true,
-                preserveScroll: true,
-            })
-        },
-    },
 }
 </script>
+
