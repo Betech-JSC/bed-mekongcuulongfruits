@@ -1,55 +1,53 @@
 <template>
     <main>
-        <BannerImage :banner="banner" classBanner="h-[320px]" />
-        <section class="xl:py-20 md:py-16 py-12">
-            <div class="container">
-                <div class="grid md:grid-cols-2 gap-6 xl:gap-16">
+        <section class="relative">
+            <div class="absolute inset-0">
+                <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[600px]" />
+            </div>
+            <div class="absolute inset-0 bg-opacity-30 bg-black w-full md:h-[550px] h-[550px] xl:h-[600px]"></div>
+            <div class="relative">
+                <div class="container">
+                    <div class="pt-[160px] pb-[130px]">
+                        <h1 class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-[#E7C226] bg-opacity-80 py-4 px-20">Contact us</h1>
+                    </div>
+                <div class="grid md:grid-cols-2 gap-6 xl:gap-16 bg-white border-8 border-[#F6E8D4] rounded-3xl p-6">
                     <div>
                         <div class="md:space-y-5 space-y-4 xl:space-y-6">
                             <div class="md:space-y-6 space-y-4 xl:space-y-8">
-                                <div>
-                                    <p class="title-1 text-primary-800">
-                                        {{ tt('Chúng tôi luôn đồng hành cùng bạn.') }}
-                                    </p>
-                                    <h2 class="display-3 text-primary-800 uppercase mt-3 mb-4 md:mb-6 xl:mb-8">
-                                        {{ tt('Liên hệ với Sip N Source') }}
+                                <div>                                    
+                                    <h2 class="headline-1 text-[#60140A] mb-2">
+                                        {{ tt('Do you have any questions?') }}
                                     </h2>
-                                    <div class="body-1 text-gray-900">
-                                        {{
-                                            tt(
-                                                'Bạn có một ý tưởng đang ấp ủ, một chiến dịch cần triển khai, hay chỉ đơn giản là muốn tìm một đối tác hiểu ngành rượu?'
-                                            )
-                                        }}
-                                    </div>
+                                    <p class="body-0 text-neutral-800">
+                                        Please fill out the form below
+                                    </p>
                                 </div>
-                                <div class="bg-primary-50 p-4 md:p-6 xl:p-8 md:space-y-5 space-y-4 xl:space-y-6">
-                                    <div class="title-1 text-gray-900">{{ tt('Gửi yêu cầu cho chúng tôi') }}</div>
-                                    <div class="md:space-y-5 space-y-4 xl:space-y-6 body-1">
+                                <div class="space-y-4">
                                         <JamFieldSet
                                             v-model="form.contact.data.Name"
                                             :field="{
                                                 rules: rules,
                                                 errors: errors,
                                                 type: 'text',
-                                                placeholder: tt('Họ và tên'),
-                                                name: 'Họ và tên',
+                                                placeholder: tt('Enter your name'),
+                                                name: 'Your name',
                                                 fieldName: 'Name',
-                                                errorText: tt('Họ tên không hợp lệ'),
+                                                errorText: tt('Your name is invalid'),
                                             }"
                                             :isSubmit="isSubmit"
                                             @setIsSubmit="setIsSubmit"
                                             :isContact="true"
                                         />
                                         <JamFieldSet
-                                            v-model="form.contact.data.Email"
+                                            v-model="form.contact.data.Company"
                                             :field="{
                                                 rules: rules,
                                                 errors: errors,
-                                                type: 'email',
-                                                placeholder: tt('Email'),
-                                                name: 'Email',
-                                                fieldName: 'Email',
-                                                errorText: tt('Email không hợp lệ'),
+                                                type: 'text',
+                                                placeholder: tt('Enter your company name'),
+                                                name: 'Your company name',
+                                                fieldName: 'Company',
+                                                errorText: tt('Your company name is invalid'),
                                             }"
                                             :isSubmit="isSubmit"
                                             @setIsSubmit="setIsSubmit"
@@ -61,31 +59,45 @@
                                                 rules: rules,
                                                 errors: errors,
                                                 type: 'number',
-                                                placeholder: tt('Số điện thoại'),
-                                                name: 'Số điện thoại',
+                                                placeholder: tt('Enter phone number'),
+                                                name: 'Your phone number',
                                                 fieldName: 'Phone',
-                                                errorText: tt('Số điện thoại không hợp lệ'),
+                                                errorText: tt('Your phone is invalid'),
                                             }"
                                             :isSubmit="isSubmit"
                                             @setIsSubmit="setIsSubmit"
                                             :isContact="true"
                                         />
                                         <JamFieldSet
+                                            v-model="form.contact.data.Email"
+                                            :field="{
+                                                rules: rules,
+                                                errors: errors,
+                                                type: 'email',
+                                                placeholder: tt('Enter your email'),
+                                                name: 'Email',
+                                                fieldName: 'Email',
+                                                errorText: tt('Email is invalid'),
+                                            }"
+                                            :isSubmit="isSubmit"
+                                            @setIsSubmit="setIsSubmit"
+                                            :isContact="true"
+                                        />                                       
+                                        <JamFieldSet
                                             v-model="form.contact.data['Nội dung yêu cầu']"
                                             :field="{
                                                 rules: rules,
                                                 errors: errors,
                                                 type: 'text',
-                                                placeholder: tt('Nội dung yêu cầu'),
-                                                name: 'Nội dung yêu cầu',
-                                                fieldName: 'note',
-                                                errorText: tt('Họ tên không hợp lệ'),
+                                                placeholder: tt('Message/ notes'),
+                                                name: 'Message',
+                                                fieldName: 'Note',
+                                                errorText: tt('Message/ notes is invalid'),
                                             }"
                                             :isSubmit="isSubmit"
                                             @setIsSubmit="setIsSubmit"
                                             :isContact="true"
                                         />
-                                    </div>
                                     <button
                                         class="button-1 space-x-[12px] bg-primary-800 lg:hover:bg-primary-900 text-primary-100 flex items-center justify-center text-center transform transition-all py-[12px] w-full rounded-full button-1"
                                         @click="contact"
@@ -97,14 +109,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="aspect-w-4 aspect-h-5">
-                        <JPicture
-                            src="/assets/images/contact/image-contact.webp"
-                            alt="image contact"
-                            class="w-full h-full object-cover"
-                        />
+                    <div>
+                        <h2 class="display-2 text-[#60140A]">Contact information</h2>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
         <ModalSuccess
@@ -127,9 +136,10 @@ import JamBreadcrumb from '@/Components/Jam/Breadcrumb.vue'
 import ChevronContact from '@/Components/Icons/ChevronContact.vue'
 const emptyForm = {
     Name: '',
+    Company: '',
     Phone: null,
     Email: '',
-    note: '',
+    Note: '',
 }
 export default {
     props: ['agencies'],
@@ -154,13 +164,8 @@ export default {
     data() {
         return {
             banner: {
-                title: this.tt('Liên hệ'),
-                image: '/assets/images/contact/bg-banner.webp',
-                breadcrumbs: [
-                    {
-                        title: this.tt('Liên hệ'),
-                    },
-                ],
+                // title: this.tt('Contact us'),
+                image: '/assets/images/contact/banner.jpg',
             },
             form: {
                 contact: {
@@ -172,6 +177,7 @@ export default {
             },
             rules: {
                 Name: 'required|min:3|max:25',
+                Company: 'required|min:3|max:25',
                 Phone: 'phone|required|min:10|max:11',
                 Email: 'email|required',
             },
