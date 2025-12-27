@@ -8,21 +8,23 @@
             <div class="relative">
                 <div class="container">
                     <div class="pt-[160px] pb-[130px]">
-                        <h1 class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-[#E7C226] bg-opacity-80 py-4 px-20">Contact us</h1>
+                        <h1
+                            class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-[#E7C226] bg-opacity-80 py-4 px-8 md:px-16 xl:px-20"
+                        >
+                            Contact us
+                        </h1>
                     </div>
-                <div class="grid md:grid-cols-2 gap-6 xl:gap-16 bg-white border-8 border-[#F6E8D4] rounded-3xl p-6">
-                    <div>
-                        <div class="md:space-y-5 space-y-4 xl:space-y-6">
-                            <div class="md:space-y-6 space-y-4 xl:space-y-8">
-                                <div>                                    
-                                    <h2 class="headline-1 text-[#60140A] mb-2">
-                                        {{ tt('Do you have any questions?') }}
-                                    </h2>
-                                    <p class="body-0 text-neutral-800">
-                                        Please fill out the form below
-                                    </p>
-                                </div>
-                                <div class="space-y-4">
+                    <div class="grid lg:grid-cols-2 gap-6 xl:gap-10 bg-white border-4 xl:border-8 border-[#F6E8D4] rounded-3xl p-3 md:p-4 xl:p-6">
+                        <div>
+                            <div class="md:space-y-5 space-y-4 xl:space-y-6">
+                                <div class="md:space-y-6 space-y-4 xl:space-y-8">
+                                    <div>
+                                        <h2 class="headline-1 font-bold text-[#60140A] mb-2">
+                                            {{ tt('Do you have any questions?') }}
+                                        </h2>
+                                        <p class="body-0 text-neutral-800">Please fill out the form below</p>
+                                    </div>
+                                    <div class="space-y-4">
                                         <JamFieldSet
                                             v-model="form.contact.data.Name"
                                             :field="{
@@ -32,6 +34,7 @@
                                                 placeholder: tt('Enter your name'),
                                                 name: 'Your name',
                                                 fieldName: 'Name',
+                                                label: 'Your name',
                                                 errorText: tt('Your name is invalid'),
                                             }"
                                             :isSubmit="isSubmit"
@@ -47,48 +50,53 @@
                                                 placeholder: tt('Enter your company name'),
                                                 name: 'Your company name',
                                                 fieldName: 'Company',
+                                                label: 'Your company name',
                                                 errorText: tt('Your company name is invalid'),
                                             }"
                                             :isSubmit="isSubmit"
                                             @setIsSubmit="setIsSubmit"
                                             :isContact="true"
                                         />
-                                        <JamFieldSet
-                                            v-model="form.contact.data.Phone"
-                                            :field="{
-                                                rules: rules,
-                                                errors: errors,
-                                                type: 'number',
-                                                placeholder: tt('Enter phone number'),
-                                                name: 'Your phone number',
-                                                fieldName: 'Phone',
-                                                errorText: tt('Your phone is invalid'),
-                                            }"
-                                            :isSubmit="isSubmit"
-                                            @setIsSubmit="setIsSubmit"
-                                            :isContact="true"
-                                        />
-                                        <JamFieldSet
-                                            v-model="form.contact.data.Email"
-                                            :field="{
-                                                rules: rules,
-                                                errors: errors,
-                                                type: 'email',
-                                                placeholder: tt('Enter your email'),
-                                                name: 'Email',
-                                                fieldName: 'Email',
-                                                errorText: tt('Email is invalid'),
-                                            }"
-                                            :isSubmit="isSubmit"
-                                            @setIsSubmit="setIsSubmit"
-                                            :isContact="true"
-                                        />                                       
+                                        <div class="grid md:grid-cols-2 gap-4 md:gap-2">
+                                            <JamFieldSet
+                                                v-model="form.contact.data.Phone"
+                                                :field="{
+                                                    rules: rules,
+                                                    errors: errors,
+                                                    type: 'number',
+                                                    placeholder: tt('Enter phone number'),
+                                                    name: 'Your phone number',
+                                                    fieldName: 'Phone',
+                                                    label: 'Your phone number',
+                                                    errorText: tt('Your phone is invalid'),
+                                                }"
+                                                :isSubmit="isSubmit"
+                                                @setIsSubmit="setIsSubmit"
+                                                :isContact="true"
+                                            />
+                                            <JamFieldSet
+                                                v-model="form.contact.data.Email"
+                                                :field="{
+                                                    rules: rules,
+                                                    errors: errors,
+                                                    type: 'email',
+                                                    placeholder: tt('Enter your email'),
+                                                    name: 'Email',
+                                                    fieldName: 'Email',
+                                                    label: 'Email',
+                                                    errorText: tt('Email is invalid'),
+                                                }"
+                                                :isSubmit="isSubmit"
+                                                @setIsSubmit="setIsSubmit"
+                                                :isContact="true"
+                                            />
+                                        </div>
                                         <JamFieldSet
                                             v-model="form.contact.data['Nội dung yêu cầu']"
                                             :field="{
                                                 rules: rules,
                                                 errors: errors,
-                                                type: 'text',
+                                                type: 'textarea',
                                                 placeholder: tt('Message/ notes'),
                                                 name: 'Message',
                                                 fieldName: 'Note',
@@ -98,23 +106,101 @@
                                             @setIsSubmit="setIsSubmit"
                                             :isContact="true"
                                         />
-                                    <button
-                                        class="button-1 space-x-[12px] bg-primary-800 lg:hover:bg-primary-900 text-primary-100 flex items-center justify-center text-center transform transition-all py-[12px] w-full rounded-full button-1"
-                                        @click="contact"
-                                    >
-                                        <div>{{ tt('Gửi yêu cầu') }}</div>
-                                        <i class="gg-spinner" v-if="isLoading"></i>
-                                    </button>
+                                        <button
+                                            class="button-1 space-x-3 bg-[#E5C025] text-[#B61F04] lg:hover:bg-[#B61F04] lg:hover:text-[#E5C025] flex items-center justify-center text-center transform transition-all py-3 px-5 w-max rounded-full"
+                                            @click="contact"
+                                        >
+                                            <div>{{ tt('Submit now') }}</div>
+                                            <i class="gg-spinner" v-if="isLoading"></i>
+                                            <div v-else>
+                                                <Arrow />
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="bg-[#FEF8E4] rounded-2xl p-4 md:p-6 xl:p-8 space-y-4">
+                                <!-- TODO: Chưa có thông tin social -->
+                                <h2 class="headline-1 font-bold text-[#60140A]">Contact information</h2>
+                                <div
+                                    v-for="(itemInfo, indexInfo) in infos"
+                                    :key="indexInfo"
+                                    class="md:flex  md:space-y-0 space-y-2 items-center justify-between border-b border-neutral-200 pb-4"
+                                >
+                                    <div>{{ itemInfo.title }}</div>
+                                    <div class="md:max-w-[280px] w-full md:text-right">
+                                        <a
+                                            :href="itemInfo.link"
+                                            :target="itemInfo.target"
+                                            rel="noopener noreferrer nofollow"
+                                            class="lg:hover:text-primary duration-300 ease-in-out"
+                                        >
+                                            {{ itemInfo.description }}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="md:flex md:space-y-0 space-y-2 items-center justify-between">
+                                    <span>Social information</span>
+                                    <span class="w-full max-w-[300px] flex items-center md:justify-end gap-4">
+                                        <a
+                                            href=""
+                                            target="_blank"
+                                            rel="noopener noreferrer nofollow"
+                                            class="lg:hover:opacity-80 duration-300 ease-in-out"
+                                        >
+                                            <LinkedIn />
+                                        </a>
+                                        <a
+                                            href=""
+                                            target="_blank"
+                                            rel="noopener noreferrer nofollow"
+                                            class="lg:hover:opacity-80 duration-300 ease-in-out"
+                                        >
+                                            <Facebook />
+                                        </a>
+                                        <a
+                                            href=""
+                                            target="_blank"
+                                            rel="noopener noreferrer nofollow"
+                                            class="lg:hover:opacity-80 duration-300 ease-in-out"
+                                        >
+                                            <Youtube />
+                                        </a>
+                                        <a
+                                            href=""
+                                            target="_blank"
+                                            rel="noopener noreferrer nofollow"
+                                            class="lg:hover:opacity-80 duration-300 ease-in-out"
+                                        >
+                                            <Instagram />
+                                        </a>
+                                        <a
+                                            href=""
+                                            target="_blank"
+                                            rel="noopener noreferrer nofollow"
+                                            class="lg:hover:opacity-80 duration-300 ease-in-out"
+                                        >
+                                            <WhatApps />
+                                        </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2 class="display-2 text-[#60140A]">Contact information</h2>
-                    </div>
                 </div>
             </div>
-            </div>
+        </section>
+        <section class="pt-8">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6835.1599510308015!2d106.69711510916163!3d10.779460219595896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f482e54c543%3A0xeeae301bfcf78bf8!2zMTIzIEhhaSBCw6AgVHLGsG5nLCBC4bq_biBOZ2jDqSwgUXXhuq1uIDEsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaCA3MDAwMDAsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1766842028375!5m2!1svi!2s"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                class="w-full h-[600px]"
+            ></iframe>
         </section>
         <ModalSuccess
             @close="closePopup"
@@ -132,8 +218,13 @@
 import { validateForm } from '@/validator'
 import Pagination from '@/Components/Paginate.vue'
 import JamFieldSet from '../Components/Jam/FieldSet.vue'
-import JamBreadcrumb from '@/Components/Jam/Breadcrumb.vue'
 import ChevronContact from '@/Components/Icons/ChevronContact.vue'
+import LinkedIn from '@/Components/Icons/LinkedIn.vue'
+import Facebook from '@/Components/Icons/Facebook.vue'
+import Youtube from '@/Components/Icons/Youtube.vue'
+import Instagram from '@/Components/Icons/Instagram.vue'
+import WhatApps from '@/Components/Icons/WhatApps.vue'
+import Arrow from '@/Components/Icons/Arrow.vue'
 const emptyForm = {
     Name: '',
     Company: '',
@@ -143,7 +234,7 @@ const emptyForm = {
 }
 export default {
     props: ['agencies'],
-    components: { JamFieldSet, Pagination, JamBreadcrumb, ChevronContact },
+    components: { JamFieldSet, Pagination, ChevronContact, LinkedIn, Facebook, Youtube, Instagram, WhatApps, Arrow },
     directives: {
         'click-outside': {
             beforeMount: (el, binding) => {
@@ -167,6 +258,26 @@ export default {
                 // title: this.tt('Contact us'),
                 image: '/assets/images/contact/banner.jpg',
             },
+            infos: [
+                {
+                    title: 'Hotline',
+                    description: '0987 654 321',
+                    link: 'tel:0987654321',
+                    target: '_self',
+                },
+                {
+                    title: 'Email',
+                    description: 'vietnamfarmer@gmail.com',
+                    link: 'mailto:vietnamfarmer@gmail.com',
+                    target: '_self',
+                },
+                {
+                    title: 'Address',
+                    description: '123 Hai Bà Trưng, Phường Tây Thạnh, Quận Tân Phú, Thành phố Hồ Chí Minh, Việt Nam.',
+                    link: '',
+                    target: '_blank',
+                },
+            ],
             form: {
                 contact: {
                     data: {

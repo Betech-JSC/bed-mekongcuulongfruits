@@ -28,7 +28,7 @@
                     v-if="validate !== true && validate !== undefined"
                     class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]"
                 >
-                    {{ `${capitalizedLabel} không hợp lệ` }}
+                    {{ `${capitalizedLabel} is invalid` }}
                 </small>
             </div>
         </div>

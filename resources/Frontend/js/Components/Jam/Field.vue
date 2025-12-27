@@ -5,10 +5,9 @@
         <label
             v-if="field.label"
             :for="field.name"
-            class="block text-gray-700 label-2"
+            class="block text-gray-900 body-2"
             :class="isContact ? 'lg:mb-1.5 mb-1 text-gray-700' : 'mb-[2px] text-white'"
         >
-            <!-- {{ field.label }}<span v-if="isRequired" class="text-red-600">*</span> -->
             {{ field.label }}
             <!-- <span v-if="isRequired" class="text-red-600">*</span> -->
         </label>
@@ -252,22 +251,23 @@ export default {
 </script>
 <style lang="scss" scoped>
 .input-form {
-    @apply block w-full py-2.5 text-gray-700 border-b border-gray-300 bg-transparent focus:bg-transparent focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary-800 h-[44px];
+    @apply block w-full px-3 py-2.5 text-gray-700 border border-neutral-100 rounded-md bg-transparent focus:bg-transparent focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary-800 h-[44px];
+    @apply text-[14px] leading-[140%] font-third;
     &:focus {
         @apply duration-200;
     }
 }
 
 .input-cart {
-    @apply block w-full px-3.5 py-2.5 text-gray-500 border border-gray-300 rounded-lg bg-transparent focus:bg-transparent focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary-800 h-[44px];
+    @apply block w-full px-3 py-2.5 text-gray-500 border border-gray-300 rounded-lg bg-transparent focus:bg-transparent focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary-800 h-[44px];
     &:focus {
         @apply duration-200;
     }
 }
 
 .input-area {
-    @apply min-h-[134px] block w-full py-2.5 xl:px-3.5 px-2.5 text-gray-700 border border-gray-300  bg-white  focus:bg-white focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-blue-500;
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    @apply min-h-[100px] block w-full p-3 text-gray-500 border border-neutral-100 rounded-md bg-white  focus:bg-white focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-blue-500;
+    @apply text-[14px] leading-[140%] font-third;
     &:focus {
         @apply duration-200;
     }
