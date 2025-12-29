@@ -6,7 +6,7 @@
                     <div class="col-span-full lg:col-span-5 flex flex-col justify-between">
                         <div class="md:space-y-6 space-y-3 xl:space-y-8">
                             <JamBreadcrumb :items="breadcrumbs" />
-                            <h1 class="headline-3 font-bold text-[#B61F04] uppercase">
+                            <h1 class="headline-3 font-bold text-brand-100 uppercase">
                                 Vietnam fruit, vegetable exports hit record high in September, led by durian, processed
                                 goods
                             </h1>

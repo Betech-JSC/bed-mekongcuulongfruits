@@ -7,7 +7,7 @@
                     v-for="(itemTab, indexTab) in tabs"
                     :key="indexTab"
                     :class="[
-                        'button-1 max-xl:text-[16px] duration-300 ease-in-out font-bold py-2 xl:py-3 px-4 xl:px-5 rounded-full w-full text-center md:w-max cursor-pointer text-[#B61F04]',
+                        'button-1 max-xl:text-[16px] duration-300 ease-in-out font-bold py-2 xl:py-3 px-4 xl:px-5 rounded-full w-full text-center md:w-max cursor-pointer text-brand-100',
                         active === itemTab.value ? 'bg-[#E5C025]' : 'lg:hover:bg-[#E5C025]',
                     ]"
                     @click="goToSection(itemTab.value)"

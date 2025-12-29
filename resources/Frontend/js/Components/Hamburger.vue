@@ -33,7 +33,7 @@ export default {
             height: 2px;
             margin-bottom: 3px;
             margin-top: 3px;
-            @apply bg-primary-600 transition ease-out duration-200 flex-shrink-0;
+            @apply bg-brand-200 rounded-full transition ease-out duration-200 flex-shrink-0;
         }
 
         .menu-is-opened & {

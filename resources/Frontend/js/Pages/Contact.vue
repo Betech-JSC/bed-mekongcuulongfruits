@@ -9,17 +9,17 @@
                 <div class="container">
                     <div class="pt-[160px] pb-[130px]">
                         <h1
-                            class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-[#E7C226] bg-opacity-80 py-4 px-8 md:px-16 xl:px-20"
+                            class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-brand-300 bg-opacity-80 py-4 px-8 md:px-16 xl:px-20"
                         >
                             Contact us
                         </h1>
                     </div>
-                    <div class="grid lg:grid-cols-2 gap-6 xl:gap-10 bg-white border-4 xl:border-8 border-[#F6E8D4] rounded-3xl p-3 md:p-4 xl:p-6">
+                    <div class="grid lg:grid-cols-2 gap-6 xl:gap-10 bg-white border-4 xl:border-8 border-brand-200 rounded-3xl p-3 md:p-4 xl:p-6">
                         <div>
                             <div class="md:space-y-5 space-y-4 xl:space-y-6">
                                 <div class="md:space-y-6 space-y-4 xl:space-y-8">
                                     <div>
-                                        <h2 class="headline-1 font-bold text-[#60140A] mb-2">
+                                        <h2 class="headline-1 font-bold text-primary mb-2">
                                             {{ tt('Do you have any questions?') }}
                                         </h2>
                                         <p class="body-0 text-neutral-800">Please fill out the form below</p>
@@ -107,7 +107,7 @@
                                             :isContact="true"
                                         />
                                         <button
-                                            class="button-1 space-x-3 bg-[#E5C025] text-[#B61F04] lg:hover:bg-[#B61F04] lg:hover:text-[#E5C025] flex items-center justify-center text-center transform transition-all py-3 px-5 w-max rounded-full"
+                                            class="button-1 font-bold space-x-3 bg-brand-300 text-brand-100 lg:hover:bg-brand-100 lg:hover:text-brand-200 flex items-center justify-center text-center transform transition-all py-3 px-5 w-max rounded-full"
                                             @click="contact"
                                         >
                                             <div>{{ tt('Submit now') }}</div>
@@ -123,7 +123,7 @@
                         <div>
                             <div class="bg-[#FEF8E4] rounded-2xl p-4 md:p-6 xl:p-8 space-y-4">
                                 <!-- TODO: Chưa có thông tin social -->
-                                <h2 class="headline-1 font-bold text-[#60140A]">Contact information</h2>
+                                <h2 class="headline-1 font-bold text-primary">Contact information</h2>
                                 <div
                                     v-for="(itemInfo, indexInfo) in infos"
                                     :key="indexInfo"

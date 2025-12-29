@@ -31,7 +31,7 @@
                         class="absolute inset-0 bg-[url('/assets/images/factory/bg-global-export.png')] bg-contain bg-no-repeat bg-top"
                     ></div>
                     <div class="relative py-[48px] md:py-[64px] xl:py-[100px]">
-                        <div class="display-3 text-[#B61F04] text-center">Global Export</div>
+                        <div class="display-3 text-brand-100 text-center">Global Export</div>
                         <div
                             class="headline-3 text-center text-gray-900 max-w-[900px] w-full mx-auto md:mt-4 mt-3 xl:mt-6 mb-8 md:mb-14 xl:mb-16"
                         >

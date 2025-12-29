@@ -13,11 +13,11 @@
                     class="col-span-full xl:col-span-8 flex md:flex-row flex-col items-start justify-between gap-8 lg:gap-16"
                 >
                     <div class="space-y-3 md:max-w-[300px] lg:max-w-[400px] xl:max-w-[307px] w-full">
-                        <div class="label-1 text-brown uppercase">Công ty TNHH Vietnam Farmer</div>
+                        <div class="label-1 font-semibold text-brown uppercase">Công ty TNHH Vietnam Farmer</div>
                         <div class="label-2 !font-normal space-y-3">
                             <div v-for="(itemInfo, indexInfo) in infos" :key="indexInfo">
                                 <span class="mr-1 font-bold">{{ itemInfo.title }}</span>
-                                <span class="lg:hover:text-primary-100 duration-300 ease-in-out">
+                                <span class="text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
                                     <a
                                         :href="itemInfo.href"
                                         :target="itemInfo.target"
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="md:space-y-6 space-y-4 xl:space-y-8">
-                        <div class="label-1 text-brown">VIETNAM FARMER</div>
+                        <div class="label-1 font-semibold uppercase text-brown">Vietnam Farmer</div>
                         <ul class="md:space-y-3 space-y-2 xl:space-y-4">
                             <li v-for="(itemMenu, indexMenu) in menus" :key="indexMenu">
                                 <Link
@@ -55,7 +55,7 @@
                         </ul>
                     </div>
                     <div class="md:space-y-6 space-y-4 xl:space-y-8">
-                        <div class="label-1 text-brown">Sản phẩm</div>
+                        <div class="label-1 font-semibold text-brown">Sản phẩm</div>
                         <ul class="md:space-y-3 space-y-2 xl:space-y-4">
                             <li v-for="(itemProduct, indexProduct) in categories" :key="indexProduct">
                                 <Link

@@ -1,63 +1,81 @@
 <template>
-    <header class="sticky inset-x-0 top-0 z-[1000]" @mouseleave="menuSelected = null">
-        <div class="relative h-full bg-primary-25">
-            <div
-                class="container flex items-center justify-between py-2 border-b border-primary-100">
+    <header 
+        class="fixed inset-x-0 top-0 z-[1000] transition-all duration-300" 
+        :class="{ 'bg-brand-300 shadow-md': isScrolled || isToggleMenu }"
+        @mouseleave="menuSelected = null"
+    >
+        <div class="relative h-full">
+            <div class="container flex items-center justify-between py-2">
                 <Logo />
 
                 <ul class="hidden md:flex items-center xl:space-x-8 md:space-x-5">
                     <template v-for="(menu, index) in menus" :key="index">
-                        <li v-if="menu && menu.title !== ''" @mouseover="setMenuSelected(menu)"
-                            @mouseenter="setFirstSubMenu">
-                            <Link :href="menu.slug" class="flex items-center space-x-2 relative" :class="fullPath.includes(menu.slug) ? 'text-primary-800' : 'text-primary-900'
-                                " @click="menuSelected = null">
-                            <div class="">{{ menu.title }}</div>
+                        <li
+                            v-if="menu && menu.title !== ''"
+                            @mouseover="setMenuSelected(menu)"
+                            @mouseenter="setFirstSubMenu"
+                        >
+                            <Link
+                                :href="menu.slug"
+                                class="flex items-center space-x-2 relative duration-150 ease-in-out"
+                                :class="fullPath.includes(menu.slug) ? 'text-brand-100' : 'text-white lg:hover:text-brand-100'"
+                                @click="menuSelected = null"
+                            >
+                                <div>{{ menu.title }}</div>
                             </Link>
                         </li>
                     </template>
                 </ul>
 
-                <div>
-                    <button class="max-lg:hidden btn btn-primary">Get in touch</button>
+                <div class="flex items-center justify-center">
+                    <Link :href="route('contact')" class="max-lg:hidden btn btn-primary">Get in touch</Link>
                     <button @click="onToggleMenu()" class="lg:hidden">
                         <Hamburger :isToggleMenu="isToggleMenu" />
                     </button>
                 </div>
             </div>
-            <div class="fixed md:top-[var(--header-height-md)] top-[var(--header-height-sm)] w-full h-full z-[1000] lg:hidden"
-                :class="isToggleMenu ? 'right-0' : '-right-full'" style="transition: right 0.5s">
-                <div class="w-full md:w-[50vw] h-full bg-primary-25 absolute z-30 duration-300 px-6 py-10 space-y-4"
-                    :class="isToggleMenu ? 'right-0' : '-right-full'" style="transition: right 0.5s">
+
+            <!-- Mobile Menu -->
+            <div
+                class="fixed md:top-[var(--header-height-md)] top-[var(--header-height-sm)] w-full h-full z-[1000] lg:hidden"
+                :class="isToggleMenu ? 'right-0' : '-right-full'"
+                style="transition: right 0.5s"
+            >
+                <div
+                    class="w-full md:w-[50vw] h-full bg-primary-25 absolute z-30 duration-300 px-6 py-10 space-y-4"
+                    :class="isToggleMenu ? 'right-0' : '-right-full'"
+                    style="transition: right 0.5s"
+                >
                     <ul class="space-y-4">
                         <template v-for="(menuMb, menuMbIndex) in menus" :key="menuMbIndex">
-                            <li class="flex items-center justify-between py-2"
-                                :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'">
-                                <Link :href="menuMb.slug" @click="closeMenu()" class="block w-full">{{
-                                    menuMb.title
-                                }}</Link>
+                            <li
+                                class="flex items-center justify-between py-2"
+                                :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'"
+                            >
+                                <Link :href="menuMb.slug" @click="closeMenu()" class="block w-full">
+                                    {{ menuMb.title }}
+                                </Link>
                             </li>
                         </template>
                     </ul>
 
-                    <!-- Bắt buộc có để Google init, mình ẩn đi -->
+                    <!-- Google Translate Element (hidden) -->
                     <div id="google_translate_element" class="hidden"></div>
                 </div>
             </div>
         </div>
-        <div @mouseenter="setBackgroundHover('leave')"
+
+        <!-- Background Overlay -->
+        <div
+            @mouseenter="setBackgroundHover('leave')"
             :class="hoverBackground ? 'visible duration-100' : 'invisible duration-100'"
-            class="absolute w-screen h-screen bg-black opacity-50 z-1"></div>
+            class="absolute w-screen h-screen bg-black opacity-50 z-1"
+        ></div>
     </header>
 </template>
+
 <script>
 import DropdownArrow from './Icons/DropdownArrow.vue'
-import Phone from './Icons/Phone.vue'
-import Mail from './Icons/Mail.vue'
-import Cart from './Icons/Cart.vue'
-import Global from './Icons/Global.vue'
-
-import axios from 'axios'
-import { useAppStore } from '@/stores/index'
 
 export default {
     props: {
@@ -70,29 +88,11 @@ export default {
             default: '',
         },
     },
-    components: { DropdownArrow, Phone, Mail, Cart, Global },
-    directives: {
-        'click-outside': {
-            beforeMount: (el, binding) => {
-                el.clickOutsideEvent = (event) => {
-                    // here I check that click was outside the el and his children
-                    if (!(el == event.target || el.contains(event.target))) {
-                        // and if it did, call method provided in attribute value
-                        binding.value()
-                    }
-                }
-                document.addEventListener('click', el.clickOutsideEvent)
-            },
-            unmounted: (el) => {
-                document.removeEventListener('click', el.clickOutsideEvent)
-            },
-        },
-    },
+    components: { DropdownArrow },
     data() {
         return {
             inited: false,
-            activeHover: false,
-            isOpenSearch: false,
+            isScrolled: false,
             menus: [
                 {
                     title: this.tt('Home'),
@@ -114,8 +114,8 @@ export default {
                 },
                 {
                     title: this.tt('Careers'),
-                    slug: this.route('services'),
-                    type: 'services',
+                    slug: this.route('recruitment.index'),
+                    type: 'recruitment',
                     subMenu: [],
                 },
                 {
@@ -134,145 +134,32 @@ export default {
             hoverBackground: false,
             menuSelected: null,
             subMenuSelected: null,
-            isActive: '',
-            currentLan: null,
             isToggleMenu: false,
-            isToggleSubMenu: false,
-            currentType: '',
-            currentSubMenu: [],
-
-            isLoading: false,
-            searchText: this.$attrs.keyword || '',
-
-            instantSearch: [],
-            isLoadingSearch: false,
-            QUANTITY_SUBMENU: 11,
-            showMegaMb: false,
-            collapseActive: null,
-            isShowPopupSearch: false,
-            menuSelected: null,
-            menuSubSelected: null,
-            recently_search: this.$page.props.data.recently_search || [],
         }
     },
-    computed: {
-        appStore() {
-            return useAppStore()
-        },
-        locationID: function () {
-            return useAppStore().locationID
-        },
-        productsMenuSubSelected() {
-            if (!this.menuSubSelected) return []
-            return this.menuSubSelected.products || []
-        },
-        cartData() {
-            return useAppStore().cart
-        },
-        isShowPopupSearchInit() {
-            return this.isShowPopupSearch && (this.keywords.length > 0 || this.recently_search.length > 0)
-        },
-
-        flashSale() {
-            return this.$page.props.data.flash_sale || null
-        },
-        keywords() {
-            return this.$page.props.data.keywords || []
-        },
-        categories() {
-            return this.$page.props.data.menu_categories || []
-        },
-        hasColMenu() {
-            return this.subMenusColOne.length > 0 || this.subMenusColTwo.length > 0 || this.subMenusColThree.length > 0
-        },
-        subMenusColOne() {
-            if (!this.menuSubSelected) return []
-
-            return this.menuSubSelected.nodes.slice(0, this.QUANTITY_SUBMENU)
-        },
-        subMenusColTwo() {
-            if (!this.menuSubSelected) return []
-
-            return this.menuSubSelected.nodes.slice(this.QUANTITY_SUBMENU, this.QUANTITY_SUBMENU * 2)
-        },
-        subMenusColThree() {
-            if (!this.menuSubSelected) return []
-            return this.menuSubSelected.nodes.slice(this.QUANTITY_SUBMENU * 2, this.QUANTITY_SUBMENU * 3)
-        },
-    },
-    watch: {
-        '$page.url': function (newURL) {
-            this.instantSearch = []
-            this.isShowPopupSearch = false
-        },
-    },
     methods: {
+        handleScroll() {
+            this.isScrolled = window.scrollY > 100
+        },
         setMenuSelected(item) {
             this.menuSelected = item
         },
         setFirstSubMenu() {
-            if (this.menuSelected.subMenu && this.menuSelected.subMenu.length > 0) {
+            if (this.menuSelected?.subMenu?.length > 0) {
                 this.subMenuSelected = this.menuSelected.subMenu[0]
             }
         },
         setBackgroundHover(type) {
-            console.log('type', type)
-            type === 'enter' ? (this.hoverBackground = true) : (this.hoverBackground = false)
-        },
-        activeMenu(slug) {
-            const splitPath = this.fullPath.split('/')
-            return slug === splitPath[splitPath.length - 1]
+            this.hoverBackground = type === 'enter'
         },
         onToggleMenu() {
             this.isToggleMenu = !this.isToggleMenu
-            document.body.classList.add('overflow-hidden')
+            document.body.classList.toggle('overflow-hidden', this.isToggleMenu)
         },
         closeMenu() {
-            const el = document.body
-            el.classList.remove('overflow-hidden', 'menu-is-opened')
+            document.body.classList.remove('overflow-hidden', 'menu-is-opened')
             this.isToggleMenu = false
-            this.isToggleSubMenu = false
         },
-        toggleSubMenu(arr, type) {
-            this.isToggleSubMenu = !this.isToggleSubMenu
-            this.currentSubMenu = arr
-            this.currentType = type
-        },
-        closeSubMenu() {
-            this.isToggleSubMenu = false
-        },
-        async updateCart() {
-            if (this.isLoading) return
-            this.isLoading = true
-
-            let cartOrder = null
-
-            const { data } = await axios.put(
-                this.route('checkout.cart.update', {
-                    rowId: this.cart.rowId,
-                    quantity: this.quantity,
-                })
-            )
-
-            cartOrder = data
-
-            if (this.locationID) {
-                const base_url = this.route('checkout.shipping')
-                const { data } = await axios.get(base_url, {
-                    params: {
-                        region: this.locationID,
-                    },
-                })
-                // TODO
-                if (data?.data) cartOrder = data.data
-            }
-
-            this.appStore.$patch({
-                cart: cartOrder,
-            })
-            this.isLoading = false
-        },
-
         switchLang(lang) {
             const target = lang === 'en' ? 'en' : 'vi'
 
@@ -281,9 +168,7 @@ export default {
                 if (!sel) return false
                 sel.value = target
                 sel.dispatchEvent(new Event('change'))
-                this.curr = target
 
-                // 🔥 Nuke banner + fix body ngay khi đổi ngữ
                 this.nukeBanner()
                 this.ensureBodyTop()
 
@@ -291,8 +176,7 @@ export default {
                     replace: true,
                     preserveState: true,
                     onFinish: () => {
-                        // Reload lại trang sau khi ngôn ngữ thay đổi
-                        window.location.reload() // Đây sẽ reload trang sau khi URL được thay đổi
+                        window.location.reload()
                     },
                 })
 
@@ -303,29 +187,21 @@ export default {
                 let tries = 0
                 const itv = setInterval(() => {
                     tries++
-                    if (apply() || tries > 50) clearInterval(itv) // ~5s
+                    if (apply() || tries > 50) clearInterval(itv)
                 }, 100)
             }
 
-            this.isOpen = false
             this.isToggleMenu = false
         },
-
-        // Gỡ sạch mọi iframe/banner Google + tooltip nếu bị chèn lại
         nukeBanner() {
-            // 1) Bắn ngay lập tức
             const killOnce = () => {
-                // Xóa tất cả iframes banner
                 document.querySelectorAll('iframe.goog-te-banner-frame').forEach((el) => {
-                    // Ẩn nếu không remove được
                     el.style.setProperty('display', 'none', 'important')
-                    // Thử remove hẳn
                     try {
-                        el.parentNode && el.parentNode.removeChild(el)
-                    } catch { }
+                        el.parentNode?.removeChild(el)
+                    } catch {}
                 })
 
-                // Ẩn tooltip/popup
                 const tt = document.getElementById('goog-gt-tt')
                 if (tt) tt.style.setProperty('display', 'none', 'important')
 
@@ -333,95 +209,72 @@ export default {
                     .querySelectorAll('.goog-te-balloon-frame, .goog-te-menu-frame')
                     .forEach((el) => el.style.setProperty('display', 'none', 'important'))
 
-                // Ép body về top:0
                 this.ensureBodyTop()
             }
 
-            // 2) Poll vài giây vì Google có thể chèn trễ
             killOnce()
             let count = 0
             const itv = setInterval(() => {
                 killOnce()
                 count++
-                if (count > 40) clearInterval(itv) // ~4s
+                if (count > 40) clearInterval(itv)
             }, 100)
         },
-
         ensureBodyTop() {
             try {
                 document.body.style.setProperty('top', '0px', 'important')
                 document.documentElement.style.setProperty('top', '0px', 'important')
-            } catch { }
+            } catch {}
         },
         injectCssHacks() {
             const css = `
-                /* Ẩn banner ngang trên cùng */
                 .goog-te-banner-frame { display: none !important; }
                 body { top: 0 !important; }
-
-                /* Ẩn tooltip & balloon & menu */
                 #goog-gt-tt, .goog-te-balloon-frame, .goog-te-menu-frame { display: none !important; }
                 .goog-text-highlight { background: none !important; box-shadow: none !important; }
-
-                /* Ẩn gadget mặc định */
                 .goog-te-gadget { display: none !important; }
-
-                /* Giữ layout không bị đẩy xuống */
                 html { position: static !important; }
-                `
+            `
             const style = document.createElement('style')
             style.type = 'text/css'
             style.appendChild(document.createTextNode(css))
             document.head.appendChild(style)
 
-            // Quan sát DOM – nếu Google chèn lại thì ẩn tiếp
             const mo = new MutationObserver(() => {
                 const banner = document.querySelector('.goog-te-banner-frame')
                 if (banner) {
                     banner.style.setProperty('display', 'none', 'important')
                     try {
                         banner.remove()
-                    } catch { }
+                    } catch {}
                 }
                 this.ensureBodyTop()
             })
             mo.observe(document.documentElement, { childList: true, subtree: true })
         },
     },
-
     mounted() {
-        if (this.isShowPopupSearch) {
-            this.instantSearch = []
-        }
+        // Add scroll event listener
+        window.addEventListener('scroll', this.handleScroll)
 
         this.injectCssHacks()
 
-        // Lưu callback init ở scope global vì Google sẽ gọi theo tên này
         window.googleTranslateElementInit = () => {
-            /* global google */
             try {
                 new window.google.translate.TranslateElement(
                     {
-                        pageLanguage: 'vi', // ngôn ngữ gốc
-                        includedLanguages: 'vi,en', // chỉ bật VI & EN
+                        pageLanguage: 'vi',
+                        includedLanguages: 'vi,en',
                         autoDisplay: false,
                     },
                     'google_translate_element'
                 )
                 this.inited = true
-                // Đồng bộ ngôn ngữ từ cookie/localStorage (nếu có)
-                this.syncFromCookie()
-                // Nếu trước đó user chọn EN thì tự áp lại
-                const remembered = localStorage.getItem('lang_pref')
-                if (remembered && remembered !== this.curr) {
-                    this.switchLang(remembered)
-                }
             } catch (e) {
                 // no-op
             }
         }
 
-        // Nạp script nếu chưa có
         if (!document.getElementById('google-translate-script')) {
             const s = document.createElement('script')
             s.id = 'google-translate-script'
@@ -429,14 +282,18 @@ export default {
             s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
             document.head.appendChild(s)
         } else {
-            // Nếu nơi khác đã nạp, chủ động gọi init
             if (typeof window.googleTranslateElementInit === 'function') {
                 window.googleTranslateElementInit()
             }
         }
     },
+    beforeUnmount() {
+        // Remove scroll event listener
+        window.removeEventListener('scroll', this.handleScroll)
+    },
 }
 </script>
+
 <style lang="scss">
 body {
     --header-height-sm: 60px;
@@ -445,81 +302,17 @@ body {
     --header-height-xl: 104px;
 }
 </style>
+
 <style lang="scss" scoped>
-.header-shadow {
-    box-shadow: 0 0 3px #1018280f, 0 1px 2px #1018280f;
-}
-
-.language-box {
-    box-shadow: 0px 1px 2px 0px #1018280d;
-}
-
-.bg-header {
-    clip-path: polygon(0 0, 100% 0%, 88% 100%, 0% 100%);
-}
-
-@media screen and (min-width: 375px) {
-    .header-shape {
-        width: calc(100vw - ((100vw - 425px) / 2));
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .header-shape {
-        width: calc(100vw - ((100vw - 768px) / 2));
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .header-shape {
-        width: calc(100vw - ((100vw - 1024px) / 2));
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .header-shape {
-        width: calc(100vw - ((100vw - 1250px) / 2));
-    }
-}
-
-@media screen and (min-width: 1366px) {
-    .header-shape {
-        width: calc(100vw - ((100vw - 1280px) / 2));
-    }
-}
-
-@media screen and (min-width: 1440px) {
-    .header-shape {
-        width: calc(100vw - ((100vw - 1265px) / 2));
-    }
-}
-
-.bg-gradient-header {
-    background-image: linear-gradient(350.4deg, #2b40b6 3.98%, #2067e3 30%);
-}
-
-.text-gradient {
-    background: var(--Gradient, linear-gradient(93deg, #afa38e 4.2%, #e0d8bf 72.2%, #a79c86 148.11%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .menu {
     max-height: 0;
-    /* Chiều cao ban đầu */
     overflow: hidden;
-    /* Ẩn nội dung thừa */
     opacity: 0;
-    /* Ban đầu ẩn hoàn toàn nội dung */
     transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
-    /* Hiệu ứng đồng bộ */
 }
 
 .group:hover .menu {
     max-height: 90vh;
-    /* Chiều cao tối đa khi hover */
     opacity: 1;
-    /* Nội dung hiển thị dần */
 }
 </style>

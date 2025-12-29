@@ -26,7 +26,7 @@
                         </svg>
                     </span>
                     <a
-                        class="text-[#60140A] lg:hover:text-primary-900"
+                        class="text-primary lg:hover:text-primary-900"
                         :href="item.link"
                         >{{ item.title }}</a
                     >
@@ -40,8 +40,8 @@
                             />
                         </svg>
                     </span>
-                    <span class="text-[#60140A]" v-if="!ish1">{{ item.title }}</span>
-                    <h1 class="inline text-[#60140A]" v-else>{{ item.title }}</h1>
+                    <span class="text-primary" v-if="!ish1">{{ item.title }}</span>
+                    <h1 class="inline text-primary" v-else>{{ item.title }}</h1>
                 </template>
             </template>
         </div>

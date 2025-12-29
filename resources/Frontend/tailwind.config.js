@@ -397,7 +397,7 @@ module.exports = {
             colors: {
                 ...colors,
                 primary: {
-                    DEFAULT: "#A15D26",
+                    DEFAULT: "#60140A",
                     25: "#FFFBEF",
                     50: "#FEF8E4",
                     100: "#F9EDD0",
@@ -410,9 +410,12 @@ module.exports = {
                     800: "#A15D26",
                     900: "#5E320E"
                 },
-                navy: {
-                    600: "#1A6D5E"
-                }
+                brand: {
+                    100: "#B61F04",
+                    200: "#F6E8D4",
+                    300: "#E5C025",
+                },
+                brown: "#7B4B2A"
             },
             boxShadow: {
                 xs: '0px 1px 2px rgba(16, 24, 40, 0.05)',
@@ -438,9 +441,9 @@ module.exports = {
             }),
 
             fontFamily: {
-                display: ['FzRubik', 'sans-serif'],
+                display: ['NotoSans', 'sans-serif'],
                 sans: [
-                    'Philosopher',
+                    'Inter',
                     'ui-sans-serif',
                     'system-ui',
                     '-apple-system',
@@ -456,7 +459,6 @@ module.exports = {
                     '"Segoe UI Symbol"',
                     '"Noto Color Emoji"',
                 ],
-                third: ['UTM-Avo', 'sans-serif'],
             },
 
             maxWidth: {

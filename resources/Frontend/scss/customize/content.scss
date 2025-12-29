@@ -159,7 +159,7 @@
         @apply text-[22px] font-bold leading-[145%] font-sans text-gray-900 mt-4 md:mt-6 xl:mt-8 mb-3 lg:mb-4 first:mt-0;
     }
     p {
-        @apply text-[16px] leading-[150%] font-third;
+        @apply text-[16px] leading-[150%] font-sans;
     }
     img {
         @apply md:my-6 my-4 xl:my-8;

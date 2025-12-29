@@ -19,7 +19,7 @@
                             <JamBreadcrumb :items="banner.breadcrumbs" :isWhite="true" />
                             <div class="space-y-3 text-center text-white">
                                 <h1
-                                    class="display-2 inline-block uppercase"
+                                    class="display-2 font-bold inline-block uppercase"
                                     v-html="banner.title"
                                 ></h1>
                                 <div class="body-0 !font-sans !tracking-[1%]">

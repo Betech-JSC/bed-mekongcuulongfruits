@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex-1">
                     <div class="body-0 uppercase mb-3">Over view</div>
-                    <h2 class="display-3 font-bold text-[#B61F04] mb-6 md:mb-8 xl:mb-10">
+                    <h2 class="display-3 font-bold text-brand-100 mb-6 md:mb-8 xl:mb-10">
                         The world’s favorite banana, proudly grown in Vietnam’s fertile Mekong Delta.
                     </h2>
                     <div class="title-2 mb-6 md:mb-8 xl:mb-10">
@@ -29,7 +29,7 @@
                             ensure consistent quality and year-round supply.
                         </p>
                     </div>
-                    <h2 class="display-3 text-[#B61F04] mb-3 font-bold">Characteristics of Cavendish Bananas</h2>
+                    <h2 class="display-3 text-brand-100 mb-3 font-bold">Characteristics of Cavendish Bananas</h2>
                     <ul class="body-1 text-gray-900 list-disc pl-6">
                         <li>
                             Ideal harvest age: 10–12 weeks (from the day the bunch is cut), with a diameter of 30mm –
@@ -60,7 +60,7 @@
         </section>
         <section id="harvest-seasons" class="md:py-16 py-12 xl:py-20">
             <div class="container">
-                <h2 class="headline-1 font-bold uppercase">Harvest Seasons</h2>
+                <h2 class="headline-1 font-bold text-primary uppercase">Harvest Seasons</h2>
                 <div class="body-1 text-gray-900 max-w-[630px] w-full mt-2 mb-6">
                     Available year-round thanks to continuous cultivation cycles. Peak harvest occurs from March to
                     October, ensuring stable volumes and reliable export supply.
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="headline-1 font-bold uppercase text-[#60140A] mb-4">Production Process</h2>
+                        <h2 class="headline-1 font-bold uppercase text-primary mb-4">Production Process</h2>
                         <div class="title-2" v-for="(itemProgress, indexProgress) in progressList" :key="indexProgress">
                             {{ `${indexProgress + 1}. ${itemProgress}` }}
                         </div>
@@ -107,7 +107,7 @@
                 </div>
             </div>
         </section>
-        <section id="packing-specifications" class="bg-[#B61F04] md:py-16 py-12 xl:py-20">
+        <section id="packing-specifications" class="bg-brand-100 md:py-16 py-12 xl:py-20">
             <div class="container">
                 <div class="grid lg:grid-cols-2 md:gap-12 gap-8 xl:gap-20">
                     <div>
@@ -148,7 +148,7 @@
         </section>
         <section id="preservation-methods" class="md:py-16 py-12 xl:py-20">
             <div class="container">
-                <h2 class="headline-1 font-bold uppercase text-[#60140A]">Production Process</h2>
+                <h2 class="headline-1 font-bold uppercase text-primary">Preservation methods</h2>
                 <div class="body-1 text-gray-900 mt-2 mb-6">
                     Cavendish bananas are stored at 13–14°C with 85–95% humidity to maintain freshness. Ethylene control
                     and proper ventilation help regulate ripening and prevent decay during transport and storage.

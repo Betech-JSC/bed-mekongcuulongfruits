@@ -30,7 +30,7 @@
                     {{ item.title }}
                 </Link>
                 <div
-                    class="text-gray-900 font-third"
+                    class="text-gray-900"
                     :class="isLarge ? 'body-1 line-clamp-2' : 'body-2 line-clamp-4 h-[84px]'"
                 >
                     {{ item.description }}

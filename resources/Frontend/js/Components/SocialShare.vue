@@ -6,7 +6,7 @@
                 <div class="relative">
                     <div
                         @click="copyLink()"
-                        class="w-8 h-8 bg-[#F2F2F2] text-[#B61F04] rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-[#B61F04] lg:hover:text-[#F2F2F2]"
+                        class="w-8 h-8 bg-[#F2F2F2] text-brand-100 rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-brand-100 lg:hover:text-[#F2F2F2]"
                     >
                         <Share />
                     </div>
@@ -22,21 +22,21 @@
             <a
                 :href="instagramUrl"
                 target="_blank"
-                class="w-8 h-8 bg-[#F2F2F2] text-[#B61F04] rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-[#B61F04] lg:hover:text-[#F2F2F2]"
+                class="w-8 h-8 bg-[#F2F2F2] text-brand-100 rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-brand-100 lg:hover:text-[#F2F2F2]"
             >
                 <LinkedIn />
             </a>
             <a
                 :href="twitterUrl"
                 target="_blank"
-                class="w-8 h-8 bg-[#F2F2F2] text-[#B61F04] rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-[#B61F04] lg:hover:text-[#F2F2F2]"
+                class="w-8 h-8 bg-[#F2F2F2] text-brand-100 rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-brand-100 lg:hover:text-[#F2F2F2]"
             >
                 <Twitter />
             </a>
             <a
                 :href="facebookUrl"
                 target="_blank"
-                class="w-8 h-8 bg-[#F2F2F2] text-[#B61F04] rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-[#B61F04] lg:hover:text-[#F2F2F2]"
+                class="w-8 h-8 bg-[#F2F2F2] text-brand-100 rounded-full flex items-center justify-center duration-150 cursor-pointer lg:hover:bg-brand-100 lg:hover:text-[#F2F2F2]"
             >
                 <Facebook />
             </a>

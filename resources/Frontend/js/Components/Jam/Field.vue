@@ -251,8 +251,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .input-form {
-    @apply block w-full px-3 py-2.5 text-gray-700 border border-neutral-100 rounded-md bg-transparent focus:bg-transparent focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary-800 h-[44px];
-    @apply text-[14px] leading-[140%] font-third;
+    @apply block w-full px-3 py-2.5 text-gray-700 border border-neutral-100 rounded-md bg-transparent focus:bg-transparent focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary h-[44px];
+    @apply text-[14px] leading-[140%] font-sans;
     &:focus {
         @apply duration-200;
     }
@@ -266,8 +266,8 @@ export default {
 }
 
 .input-area {
-    @apply min-h-[100px] block w-full p-3 text-gray-500 border border-neutral-100 rounded-md bg-white  focus:bg-white focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-blue-500;
-    @apply text-[14px] leading-[140%] font-third;
+    @apply min-h-[100px] block w-full p-3 text-gray-500 border border-neutral-100 rounded-md bg-white  focus:bg-white focus:ring-0 outline-none focus:outline-none focus:duration-200 focus:border-primary;
+    @apply text-[14px] leading-[140%] font-sans;
     &:focus {
         @apply duration-200;
     }
