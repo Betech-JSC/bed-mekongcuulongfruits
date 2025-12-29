@@ -1,108 +1,107 @@
 <template>
     <main>
-        <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
-        <section class="bg-gray-25 md:py-16 py-12 xl:py-20">
-            <div class="container md:space-y-8 space-y-6 xl:space-y-12">
-                <h2 class="display-3 text-center font-bold text-brand-100">JOIN  VietNam Farmer</h2>
-                <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
-                    <div v-for="(itemJob, indexJob) in jobs" :key="indexJob" class="border border-gray-200 rounded-[16px] relative px-6 py-8">
-                        <div class="absolute h-[66px] w-2 bg-brand-100 top-1/2 -translate-y-1/2 left-0"></div>
-                        <div class="relative space-y-3">
-                            <div class="flex items-center gap-2 text-[#CF9C49]">
-                                <Location />
-                                <span>{{ itemJob.location }}</span>
-                            </div>
-                            <h3 class="button-1 font-bold text-gray-900">{{ itemJob.title }}</h3>
-                            <div class="flex items-center gap-3 body-1 text-gray-700">
-                                <span>Vacancies: {{ itemJob.vacancies }}</span>
-                                <span>|</span>
-                                <span>Deadline: {{ itemJob.deadline }}</span>
-                            </div>
-
-                        </div>
+        <SectionHeroSlider :items="slidersHero" />
+        <section class="bg-brand-300 py-20">
+            <div class="container space-y-[72px]">
+                <div class="grid grid-cols-12 gap-8">
+                    <div class="col-span-7 space-y-3">
+                        <div class="headline-3 text-brand-100 uppercase">Our Products</div>
+                        <h2 class="display-2 font-bold text-brand-100 uppercase">Fresh From Vietnam’s Mekong Delta</h2>
                     </div>
+                    <div class="col-span-5 ml-auto">
+                        <Link
+                            :href="route('contact')"
+                            class="btn btn-secondary space-x-3 flex items-center justify-center"
+                        >
+                            <span>{{ tt('See more') }}</span>
+                            <Arrow />
+                        </Link>
+                    </div>
+                </div>
+                <div>
+                    <!-- Sliders -->
                 </div>
             </div>
         </section>
-        <section class="bg-[#FFFBEF] relative md:py-16 py-12 xl:py-[100px] overflow-hidden">
-            <div class="absolute bottom-0 left-0 max-w-[130px] md:max-w-[320px] xl:max-w-[481px] w-full">
-                   <JPicture
-                        class="w-full h-full object-contain"
-                        src="/assets/images/job/image-mask-left.png"
-                        alt="image mask left"
-                    />
+        <section class="pt-20 pb-[60px]">
+            <div class="container space-y-20">
+                <div class="flex items-start gap-8">
+                    <div class="max-w-[320px] w-full">
+                        <div class="headline-2 font-bold text-brand-100 uppercase">Certified Quality, Trusted Worldwide</div>
+                    </div>
+                    <div class="body-1 text-gray-900">
+                        At VietNam Farmer, quality and safety are our top priorities. We comply with international standards and hold globally recognized certifications to ensure our products meet the highest requirements of importers and consumers.
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div class="headline-1 font-bold text-brand-100 uppercase">Availability season</div>
+                        <div class="flex items-center gap-8">
+                            <!-- Button Pagination -->
+                        </div>
+                    </div>
+                    <!-- Sliders -->
+                </div>
             </div>
-             <div class="absolute bottom-0 right-0 max-w-[90px] md:max-w-[260px] xl:max-w-[302px] w-full">
-                   <JPicture
-                        class="w-full h-full object-contain"
-                        src="/assets/images/job/image-mask-right.png"
-                        alt="image mask right"
-                    />
+        </section>
+        <section class="relative">
+            <div class="absolute inset-0">                
+                <JPicture
+                    alt="background feedback"
+                    src="/assets/images/home/bg-feedback.jpg"
+                    class="w-full h-full object-cover"
+                />
             </div>
             <div class="relative">
-                <div class="container md:space-y-8 space-y-6 xl:space-y-12 text-center">
-                    <h2 class="display-3 text-center font-bold text-brand-100 uppercase">Share and connect</h2>
-                    <div class="headline-3 text-gray-900">At VietNam Farmer, we believe that the strength of a team comes not only from professional competence, but also from moments of sharing.</div>
-                    <div class="relative">
-                        <JPicture
-                        class="w-full h-full object-contain"
-                        src="/assets/images/job/image-connect.png"
-                        alt="image connect"
-                    />
-                    </div>
+                <div class="container">
+                    
                 </div>
             </div>
         </section>
     </main>
 </template>
 <script>
-import Location from '@/Components/Icons/Location.vue';
+import Arrow from '@/Components/Icons/Arrow.vue'
+import SectionHeroSlider from '@/Components/SectionHeroSlider.vue'
 
 export default {
-    components: { Location },
-    props: ['posts', 'services', 'sliders'],
+    components: { Arrow, SectionHeroSlider },
+    // props: ['posts', 'services', 'sliders'],
     data() {
         return {
-            banner: {
-                title: this.tt('Recruitment'),
-                image: '/assets/images/job/banner.jpg',
-            },
-            jobs: [
+            slidersHero: [
                 {
-                    title: "Export Sales Executive",
-                    location: "Ho Chi Minh City",
-                    vacancies: 2,
-                    deadline: "30/11/2025"
+                    image: {
+                        url: '/assets/images/demo/image-slider-1.jpg',
+                        alt: 'image demo',
+                    },
+                    image_mobile: {
+                        url: '/assets/images/demo/image-slider-1.jpg',
+                        alt: 'image demo',
+                    },
+                    title: 'Bringing the Essence of the Mekong Delta to the World',
                 },
                 {
-                    title: "Export Sales Executive",
-                    location: "Ho Chi Minh City",
-                    vacancies: 2,
-                    deadline: "30/11/2025"
+                    image: {
+                        url: '/assets/images/demo/image-slider-2.jpg',
+                        alt: 'image demo',
+                    },
+                    image_mobile: {
+                        url: '/assets/images/demo/image-slider-2.jpg',
+                        alt: 'image demo',
+                    },
+                    title: 'Bringing the Essence of the Mekong Delta to the World',
                 },
                 {
-                    title: "Export Sales Executive",
-                    location: "Ho Chi Minh City",
-                    vacancies: 2,
-                    deadline: "30/11/2025"
-                },
-                {
-                    title: "Export Sales Executive",
-                    location: "Ho Chi Minh City",
-                    vacancies: 2,
-                    deadline: "30/11/2025"
-                },
-                {
-                    title: "Export Sales Executive",
-                    location: "Ho Chi Minh City",
-                    vacancies: 2,
-                    deadline: "30/11/2025"
-                },
-                {
-                    title: "Export Sales Executive",
-                    location: "Ho Chi Minh City",
-                    vacancies: 2,
-                    deadline: "30/11/2025"
+                    image: {
+                        url: '/assets/images/demo/image-slider-3.jpg',
+                        alt: 'image demo',
+                    },
+                    image_mobile: {
+                        url: '/assets/images/demo/image-slider-3.jpg',
+                        alt: 'image demo',
+                    },
+                    title: 'Bringing the Essence of the Mekong Delta to the World',
                 },
             ],
         }
