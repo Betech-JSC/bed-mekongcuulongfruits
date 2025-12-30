@@ -10,7 +10,7 @@
             :breakpoints="breakpoints"
             :pagination="{ clickable: true, el: '.hero-pagination' }"
             @swiper="onSwiperInit"
-            class="h-[520px] xl:h-[800px] max-h-screen overflow-hidden relative"
+            class="h-[550px] md:h-[620px] xl:h-[800px] max-h-screen overflow-hidden relative"
         >
             <swiper-slide v-for="(item, index) in items" :key="index">
                 <div class="absolute inset-0">
@@ -30,7 +30,7 @@
                             <div
                                 class="col-span-full md:col-span-8 lg:col-span-7 flex items-center h-full"
                             >
-                                <div class="space-y-5 md:space-y-[24px] xl:space-y-[30px] max-w-[600px] w-full">
+                                <div class="space-y-5 md:space-y-[24px] xl:space-y-[30px] max-w-[500px] xl:max-w-[600px] w-full">
                                     <h1 class="display-2 font-bold uppercase text-brand-200">
                                         {{ item.title || '' }}
                                     </h1>
@@ -61,7 +61,7 @@
         </swiper>
 
         <!-- Pagination đặt ngoài để dễ style/định vị -->
-        <div class="hero-pagination absolute left-0 translate-x-[144px] !bottom-8 z-10"></div>
+        <div class="hero-pagination absolute !w-max left-0 translate-x-4 md:translate-x-8 xl:translate-x-[144px] !bottom-8 z-10"></div>
     </section>
 </template>
 
