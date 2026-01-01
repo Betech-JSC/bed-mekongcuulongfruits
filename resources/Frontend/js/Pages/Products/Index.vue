@@ -70,7 +70,7 @@
             </div>
         </section>
         <section id="production-process" class="bg-primary md:py-16 py-12 xl:py-20">
-            <div class="container space-y-6">
+            <div class="container space-y-12">
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
                     <div class="grid grid-cols-2 gap-3">
                         <JPicture
@@ -140,14 +140,8 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h2 class="headline-1 font-bold uppercase text-brand-300">Preservation methods</h2>
-                    <div class="body-1 text-white mt-2 mb-6">
-                        Cavendish bananas are stored at 13–14°C with 85–95% humidity to maintain freshness. Ethylene
-                        control and proper ventilation help regulate ripening and prevent decay during transport and
-                        storage.
-                    </div>
-                    <div class="grid md:grid-cols-3 gap-[22px]">
+                <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">                    
+                    <div class="grid md:grid-cols-2 gap-[22px]">
                         <div
                             v-for="(itemMethod, indexMethod) in imagesMethod"
                             :key="indexMethod"
@@ -155,6 +149,14 @@
                         >
                             <JPicture class="w-full h-full object-cover" :src="itemMethod" alt="image method" />
                         </div>
+                    </div>
+                    <div>
+                        <h2 class="headline-1 font-bold uppercase text-brand-300">Preservation methods</h2>
+                    <div class="body-1 text-white mt-2 mb-6">
+                        Cavendish bananas are stored at 13–14°C with 85–95% humidity to maintain freshness. Ethylene
+                        control and proper ventilation help regulate ripening and prevent decay during transport and
+                        storage.
+                    </div>
                     </div>
                 </div>
             </div>
@@ -186,7 +188,6 @@ export default {
             imagesMethod: [
                 '/assets/images/products/image-method-1.jpg',
                 '/assets/images/products/image-method-2.jpg',
-                '/assets/images/products/image-method-3.jpg',
             ],
             productDemo: {
                 overview: {
