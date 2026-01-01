@@ -1,7 +1,7 @@
 <template>
     <div class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 w-full">
         <div class="container">
-           <div class="overflow-x-auto bg-white p-2 rounded-[16px] md:rounded-full max-w-[1090px] w-full">
+           <div class="overflow-x-auto bg-white p-2 rounded-[16px] md:rounded-full w-max mx-auto">
              <div class="flex md:flex-row flex-col items-center gap-2 w-full md:w-max mx-auto">
                 <div
                     v-for="(itemTab, indexTab) in tabs"
