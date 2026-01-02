@@ -76,7 +76,7 @@
                                             rules: rules,
                                             errors: errors,
                                             type: 'textarea',
-                                            placeholder: tt('Lời nhắn gửi tới Sip N Source'),
+                                            placeholder: tt('Lời nhắn gửi tới Farmer Vietnam'),
                                             name: 'Nội dung yêu cầu',
                                             fieldName: 'note',
                                             label: 'Lời nhắn',

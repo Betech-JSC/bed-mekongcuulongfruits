@@ -133,7 +133,7 @@
                             <h2 class="display-3">Tặng phẩm thiết kế riêng</h2>
                             <p class="body-1 mt-3 xl:mt-4 mb-3 md:mb-4 xl:mb-5">
                                 Dù là quà tặng trong sự kiện, vật phẩm khuyến mại hay bộ kit giới thiệu sản phẩm mới,
-                                Sip N Source luôn đảm bảo sự chỉn chu, cảm xúc và hiệu quả truyền thông lâu dài.
+                                Farmer Vietnam luôn đảm bảo sự chỉn chu, cảm xúc và hiệu quả truyền thông lâu dài.
                             </p>
                             <Link :href="route('products.index')" class="btn third flex items-center justify-center">
                                 <span>Xem ngay</span>

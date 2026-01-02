@@ -18,7 +18,7 @@ class PostController extends Controller
             $posts = Post::query()
                 ->active()
                 ->filter(request()->all())
-                ->paginate(3)
+                ->paginate(9)
                 ->onEachSide(0)
                 ->through(function ($item) {
                     return $item->transform();
@@ -30,8 +30,17 @@ class PostController extends Controller
                 ->get()
                 ->map(fn($item) => $item->transform());
 
+            $topPosts = Post::query()
+                ->active()
+                ->orderByPosition()
+                ->orderBy('id', 'desc')
+                ->take(4)
+                ->get()
+                ->map(fn($item) => $item->transform());                
+
             $data = [
                 'categories' => $categories,
+                'top_posts' => $topPosts,
                 'posts' => $posts,
             ];
 

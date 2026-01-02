@@ -2,15 +2,16 @@
     <div v-show="links && links.length > 3">
         <div class="flex flex-wrap items-center justify-center space-x-3">
             <template v-for="(link, key) in links">
-                <div v-if="link.label == 'Previous' || link.label == 'Next'" :key="key">
+                <div v-if="link.label == 'Previous' || link.label == 'Next' || link.label == '<' || link.label == '>'" :key="key">
                     <Link
                         v-if="link.url"
                         :href="link.url"
-                        class="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] flex items-center justify-center rotate-180 cursor-pointer lg:hover:text-primary-800 duration-300 ease-in-out"
+                        class="w-[30px] h-[30px] lg:w-10 lg:h-10 rounded flex items-center justify-center cursor-pointer lg:hover:text-white text-gray-900 lg:hover:bg-brand-100 duration-300 ease-in-out"
                     >
                         <svg
                             :class="{
-                                'transform': link.label == 'Previous',
+                                transform: link.label == '<' || link.label == 'Previous',
+                                'rotate-180': link.label == '>' || link.label == 'Next',
                             }"
                             width="20"
                             height="20"
@@ -19,9 +20,9 @@
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                d="M15.8327 10H4.16602M4.16602 10L9.99935 15.8334M4.16602 10L9.99935 4.16669"
+                                d="M15.8337 10.0003H4.16699M4.16699 10.0003L10.0003 15.8337M4.16699 10.0003L10.0003 4.16699"
                                 stroke="currentColor"
-                                stroke-width="1.67"
+                                stroke-width="1.66667"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             />
@@ -29,11 +30,12 @@
                     </Link>
                     <div
                         v-else
-                        class="w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] flex items-center justify-center rotate-0 text-gray-400"
+                        class="w-[30px] h-[30px] lg:w-10 lg:h-10 flex items-center justify-center rotate-0 text-gray-400"
                     >
                         <svg
                             :class="{
-                                transform: link.label == 'Next',
+                                transform: link.label == '>' || link.label == 'Next',
+                                'rotate-180': link.label == '>' || link.label == 'Next',
                             }"
                             width="20"
                             height="20"
@@ -42,9 +44,9 @@
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                d="M15.8327 10H4.16602M4.16602 10L9.99935 15.8334M4.16602 10L9.99935 4.16669"
+                                d="M15.8337 10.0003H4.16699M4.16699 10.0003L10.0003 15.8337M4.16699 10.0003L10.0003 4.16699"
                                 stroke="currentColor"
-                                stroke-width="1.67"
+                                stroke-width="1.66667"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                             />
@@ -54,7 +56,7 @@
                 <div v-else :key="key + 1">
                     <div
                         v-if="link.active"
-                        class="body-2 w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] border flex bg-primary-700 border-primary-700 text-white items-center justify-center rounded-full"
+                        class="body-2 font-medium w-[30px] h-[30px] lg:w-10 lg:h-10 flex bg-primary text-white items-center justify-center rounded"
                     >
                         <div>
                             {{ link.label }}
@@ -62,7 +64,7 @@
                     </div>
                     <Link
                         v-else
-                        class="body-2 w-[30px] h-[30px] lg:w-[40px] lg:h-[40px] border flex text-gray-700 rounded-full lg:hover:bg-primary-700 lg:hover:border-primary-700 duration-300 ease-in-out lg:hover:text-white items-center justify-center"
+                        class="body-2 font-medium w-[30px] h-[30px] lg:w-10 lg:h-10 flex text-gray-500 rounded lg:hover:bg-brand-100 duration-300 ease-in-out lg:hover:text-white items-center justify-center"
                         :href="link.url"
                     >
                         <div>

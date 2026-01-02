@@ -7,10 +7,10 @@
                         class="grid md:grid-cols-2 md:gap-6 gap-4 xl:gap-12"
                     >
                         <CardCardPost
-                            :item="postsHot.data[0]"
+                            :item="top_posts[0]"
                         />
                         <div class="flex flex-col md:gap-6 gap-4 xl:gap-12">
-                            <CardCardPostRow v-for="(itemPostHot, indexPostHot) in postsHot.data.slice(1,4)" :key="indexPostHot" :item="itemPostHot" />
+                            <CardCardPostRow v-for="(itemPostHot, indexPostHot) in top_posts.slice(1,4)" :key="indexPostHot" :item="itemPostHot" />
                         </div>
                     </div>
                     <div class="grid grid-cols-2 lg:grid-cols-3 md:gap-6 gap-4 xl:gap-12">
@@ -27,181 +27,13 @@ import Pagination from '@/Components/Paginate.vue'
 export default {
     components: { Pagination },
 
-    props: ['categories', 'posts', 'banner'],
+    props: ['categories', 'posts', 'top_posts'],
     data() {
         return {
             banner: {
                 title: this.tt('News'),
                 image: '/assets/images/posts/banner.jpg',
             },
-            postsHot: {
-                data: [
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                ],
-            },
-            posts: {
-                data: [
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                    {
-                        image: {
-                            url: '/assets/images/posts/banner.jpg',
-                            alt: 'image demo',
-                        },
-                        title: 'VietNam Farmer Expands Export to Japan',
-                        slug: 'demo',
-                        description:
-                            'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
-                    },
-                ],
-            },      
         }
     }, 
 }

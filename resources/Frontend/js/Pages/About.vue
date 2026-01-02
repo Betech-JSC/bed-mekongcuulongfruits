@@ -15,7 +15,7 @@
                             <p>
                                 {{
                                     tt(
-                                        'Sip N Source là agency chuyên cung cấp dịch vụ marketing trọn gói dành riêng cho các thương hiệu rượu nhập khẩu tại Việt Nam.'
+                                        'Farmer Vietnam là agency chuyên cung cấp dịch vụ marketing trọn gói dành riêng cho các thương hiệu rượu nhập khẩu tại Việt Nam.'
                                     )
                                 }}
                             </p>
