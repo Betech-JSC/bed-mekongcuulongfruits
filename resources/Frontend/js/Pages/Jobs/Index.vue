@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <main>
         <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
         <section class="bg-gray-25 md:py-16 py-12 xl:py-20">
@@ -57,9 +57,11 @@
 </template>
 <script>
 import Location from '@/Components/Icons/Location.vue';
+import BannerImage from '@/Components/BannerImage.vue'
+import JPicture from '@toannguyen112/bed-library-essentials/src/js/components/JPicture.vue'
 
 export default {
-    components: { Location },
+    components: { Location, BannerImage, JPicture },
     props: ['posts', 'services', 'sliders'],
     data() {
         return {
@@ -108,4 +110,9 @@ export default {
         }
     },
 }
-</script>
+</script> -->
+<template>
+    <div>
+        <h1>Jobs</h1>
+    </div>
+</template>

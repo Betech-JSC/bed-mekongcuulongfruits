@@ -36,11 +36,13 @@
 <script>
 import JamBreadcrumb from '@/Components/Jam/Breadcrumb.vue'
 import LogoSymbol from '@/Components/Icons/LogoSymbol.vue'
+import JPicture from '@toannguyen112/bed-library-essentials/src/js/components/JPicture.vue'
 
 export default {
     components: {
         JamBreadcrumb,
         LogoSymbol,
+        JPicture,
     },
     props: ["banner", "classBanner"]
 }

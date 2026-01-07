@@ -26,6 +26,15 @@
         </Link>
         <hr />
         <SidebarMain />
+        <Link
+            v-if="can('admin.jobs.index')"
+            :href="route('admin.jobs.index')"
+            :class="{ active: isUrl('admin.jobs.*') }"
+            class="item"
+        >
+            <ph:briefcase-light />
+            <span>{{ tt('models.table_list.jobs') }}</span>
+        </Link>
         <hr />
         <Link
             v-if="can('admin.files.index')"

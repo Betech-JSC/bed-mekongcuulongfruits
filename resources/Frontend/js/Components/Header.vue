@@ -114,8 +114,8 @@ export default {
                 },
                 {
                     title: this.tt('Careers'),
-                    slug: this.route('recruitment.index'),
-                    type: 'recruitment',
+                    slug: this.route('jobs'),
+                    type: 'jobs',
                     subMenu: [],
                 },
                 {

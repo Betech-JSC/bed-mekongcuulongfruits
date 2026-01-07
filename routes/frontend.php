@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\SitemapController;
 use App\Http\Controllers\Frontend\PolicyController;
 use App\Http\Controllers\Frontend\ServiceController;
+use App\Http\Controllers\Frontend\JobController;
 use Inertia\Inertia;
 
 Route::get('sitemap.xml', [SitemapController::class, 'index']);
@@ -23,7 +24,7 @@ Route::middleware(['meta_seo', 'opening'])->group(function () {
             Route::get(Lang::uri('search'), 'search')->name('search');
             Route::get(Lang::uri('search-v2'), 'searchV2')->name('api.search');
             Route::get(Lang::uri('/'), 'index')->name('home');
-            Route::get(Lang::uri('/recruitment'), 'jobs')->name('recruitment.index');
+
         });
 
         Route::get(Lang::uri('/contact'), [AgencyController::class, 'index'])->name('contact');
@@ -36,6 +37,11 @@ Route::middleware(['meta_seo', 'opening'])->group(function () {
         Route::controller(PostController::class)->group(function () {
             Route::get(Lang::uri('posts'), 'index')->name('posts');
             Route::get(Lang::uri('posts') . '/{slug}', 'show')->name('posts.show');
+        });
+
+        Route::controller(JobController::class)->group(function () {
+            Route::get(Lang::uri('jobs'), 'index')->name('jobs');
+            Route::get(Lang::uri('jobs') . '/{slug}', 'show')->name('jobs.show');
         });
 
         Route::controller(ServiceController::class)->group(function () {
