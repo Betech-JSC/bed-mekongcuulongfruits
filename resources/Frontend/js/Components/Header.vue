@@ -8,21 +8,51 @@
             <div class="container flex items-center justify-between py-2">
                 <Logo />
 
-                <ul class="hidden md:flex items-center xl:space-x-8 md:space-x-5">
+                <ul class="hidden md:flex items-center xl:space-x-7 md:space-x-5">
                     <template v-for="(menu, index) in menus" :key="index">
                         <li
                             v-if="menu && menu.title !== ''"
                             @mouseover="setMenuSelected(menu)"
                             @mouseenter="setFirstSubMenu"
+                            class="relative group"
                         >
-                            <Link
+                            <div
+                                v-if="menu.subMenu && menu.subMenu.length > 0"
                                 :href="menu.slug"
-                                class="flex items-center space-x-2 relative duration-150 ease-in-out"
-                                :class="fullPath.includes(menu.slug) ? 'text-brand-100' : 'text-white lg:hover:text-brand-100'"
+                                class="flex items-center gap-1 relative duration-150 ease-in-out py-1.5 px-3 rounded-[12px]"
+                                :class="fullPath.includes(menu.slug) ? 'text-brand-100' : 'text-white lg:hover:bg-primary'"
+                                @click="menuSelected = null"
+                            >
+                                <div>{{ menu.title }}</div>
+                            </div>
+                            <Link
+                                v-else
+                                :href="menu.slug"
+                                class="flex items-center gap-1 relative duration-150 ease-in-out p-1.5 rounded-[12px]"
+                                :class="fullPath.includes(menu.slug) ? 'text-brand-100' : 'text-white lg:hover:bg-primary'"
                                 @click="menuSelected = null"
                             >
                                 <div>{{ menu.title }}</div>
                             </Link>
+
+                            <!-- Desktop Dropdown -->
+                            <div 
+                                v-if="menu.subMenu && menu.subMenu.length > 0"
+                                class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-max"
+                            >
+                                <ul class="bg-white rounded-[12px] overflow-hidden py-3">
+                                    <li v-for="(subItem, subIndex) in menu.subMenu" :key="subIndex">
+                                        <Link 
+                                            :href="subItem.slug"
+                                            class="block px-4 py-2 body-2 text-gray-900 hover:bg-brand-200 hover:text-brand-500 transition-colors duration-300 ease-in-out"
+                                            :class="{'bg-brand-50 text-brand-500': fullPath.includes(subItem.slug)}"
+                                            @click="menuSelected = null"
+                                        >
+                                            {{ subItem.title }}
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </template>
                 </ul>
@@ -49,12 +79,44 @@
                     <ul class="space-y-4">
                         <template v-for="(menuMb, menuMbIndex) in menus" :key="menuMbIndex">
                             <li
-                                class="flex items-center justify-between py-2"
+                                class="flex flex-col py-2 border-b border-gray-100 last:border-0"
                                 :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'"
                             >
-                                <Link :href="menuMb.slug" @click="closeMenu()" class="block w-full">
-                                    {{ menuMb.title }}
-                                </Link>
+                                <div class="flex items-center justify-between w-full">
+                                    <Link :href="menuMb.slug" @click="closeMenu()" class="flex-1">
+                                        {{ menuMb.title }}
+                                    </Link>
+                                    <button 
+                                        v-if="menuMb.subMenu && menuMb.subMenu.length > 0"
+                                        @click="toggleMobileSubMenu(menuMbIndex)"
+                                        class="p-2 -mr-2 text-primary-600 hover:text-primary-800 focus:outline-none"
+                                    >
+                                        <DropdownArrow 
+                                            class="w-5 h-5 transition-transform duration-300"
+                                            :class="{ 'rotate-180': activeMobileSubMenus.includes(menuMbIndex) }"
+                                        />
+                                    </button>
+                                </div>
+
+                                <!-- Mobile Submenu Accordion -->
+                                <div 
+                                    v-if="menuMb.subMenu && menuMb.subMenu.length > 0"
+                                    class="overflow-hidden transition-[max-height] duration-300 ease-in-out"
+                                    :style="{ maxHeight: activeMobileSubMenus.includes(menuMbIndex) ? '500px' : '0px' }"
+                                >
+                                    <ul class="pl-4 mt-2 space-y-2 border-l-2 border-primary-200 ml-1">
+                                        <li v-for="(subItem, subIndex) in menuMb.subMenu" :key="subIndex">
+                                            <Link 
+                                                :href="subItem.slug"
+                                                @click="closeMenu()"
+                                                class="block py-1 text-sm text-primary-700 hover:text-primary-900"
+                                                :class="{'font-medium text-primary-900': fullPath.includes(subItem.slug)}"
+                                            >
+                                                {{ subItem.title }}
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
                         </template>
                     </ul>
@@ -110,7 +172,20 @@ export default {
                     title: this.tt('Products'),
                     slug: this.route('products.index'),
                     type: 'products',
-                    subMenu: [],
+                    subMenu: [
+                        {
+                            title: "Banana",
+                            slug: this.route('products.show', { slug: 'banana' }),
+                        },
+                        {
+                            title: "Pineapple",
+                            slug: this.route('products.show', { slug: 'pineapple' }),
+                        },
+                        {
+                            title: "Lemon",
+                            slug: this.route('products.show', { slug: 'lemon' }),
+                        },
+                    ],
                 },
                 {
                     title: this.tt('Careers'),
@@ -135,6 +210,7 @@ export default {
             menuSelected: null,
             subMenuSelected: null,
             isToggleMenu: false,
+            activeMobileSubMenus: [],
         }
     },
     methods: {
@@ -156,9 +232,17 @@ export default {
             this.isToggleMenu = !this.isToggleMenu
             document.body.classList.toggle('overflow-hidden', this.isToggleMenu)
         },
+        toggleMobileSubMenu(index) {
+            if (this.activeMobileSubMenus.includes(index)) {
+                this.activeMobileSubMenus = this.activeMobileSubMenus.filter(i => i !== index)
+            } else {
+                this.activeMobileSubMenus.push(index)
+            }
+        },
         closeMenu() {
             document.body.classList.remove('overflow-hidden', 'menu-is-opened')
             this.isToggleMenu = false
+            this.activeMobileSubMenus = []
         },
         switchLang(lang) {
             const target = lang === 'en' ? 'en' : 'vi'

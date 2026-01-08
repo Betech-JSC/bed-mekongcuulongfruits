@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <main>
         <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
         <section class="bg-gray-25 md:py-16 py-12 xl:py-20">
@@ -110,9 +110,4 @@ export default {
         }
     },
 }
-</script> -->
-<template>
-    <div>
-        <h1>Jobs</h1>
-    </div>
-</template>
+</script>
