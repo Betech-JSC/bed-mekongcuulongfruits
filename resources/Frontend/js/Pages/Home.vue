@@ -3,17 +3,13 @@
         <SectionHeroSlider :items="slidersHero" />
         <SectionProducts :items="products" />
         <SectionAvailability :items="charts" />
-        <SectionFeedback />
+        <SectionFeedback :items="feedbacks" />
         <SectionHotNews :items="posts" />
         <section class="relative">
             <div class="absolute z-10 inset-0 bg-linear-white"></div>
             <div class="aspect-w-13 aspect-h-5">
-                <JPicture
-                    src="/assets/images/home/image-art-farmer.jpg"
-                    alt="item art farmer"
-                    wrapperClass="picture-cover"
-                    class="w-full h-full object-cover"
-                />
+                <JPicture src="/assets/images/home/image-art-farmer.jpg" alt="item art farmer"
+                    wrapperClass="picture-cover" class="w-full h-full object-cover" />
             </div>
         </section>
     </main>
@@ -266,6 +262,48 @@ export default {
                         'We are proud to announce our first shipment of Cavendish bananas to Japan, a market known for its strict quality standards. This milestone reflects our commitment to global growth and premium quality.',
                 },
             ],
+            feedbacks: [
+                {
+                    rating: 5,
+                    content: `Exceptional freshness! The Dragon Fruit shipment arrived in perfect condition. Farmer Vietnam is officially our top supplier for exotic fruits.`,
+                    title: "Sarah Jenkins",
+                    description: "Procurement Manager, Organic Foods UK",
+                    image: {
+                        url: '/assets/images/demo/author.jpg',
+                        alt: 'image author',
+                    },
+                },
+                {
+                    rating: 5,
+                    content: `Exceptional freshness! The Dragon Fruit shipment arrived in perfect condition. Farmer Vietnam is officially our top supplier for exotic fruits.`,
+                    title: "Sarah Jenkins",
+                    description: "Procurement Manager, Organic Foods UK",
+                    image: {
+                        url: '/assets/images/demo/author.jpg',
+                        alt: 'image author',
+                    },
+                },
+                {
+                    rating: 5,
+                    content: `Exceptional freshness! The Dragon Fruit shipment arrived in perfect condition. Farmer Vietnam is officially our top supplier for exotic fruits.`,
+                    title: "Sarah Jenkins",
+                    description: "Procurement Manager, Organic Foods UK",
+                    image: {
+                        url: '/assets/images/demo/author.jpg',
+                        alt: 'image author',
+                    },
+                },
+                {
+                    rating: 5,
+                    content: `Exceptional freshness! The Dragon Fruit shipment arrived in perfect condition. Farmer Vietnam is officially our top supplier for exotic fruits.`,
+                    title: "Sarah Jenkins",
+                    description: "Procurement Manager, Organic Foods UK",
+                    image: {
+                        url: '/assets/images/demo/author.jpg',
+                        alt: 'image author',
+                    },
+                },
+            ]
         }
     },
 }
