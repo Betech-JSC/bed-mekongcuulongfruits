@@ -5,38 +5,29 @@
                 <div class="col-span-full xl:col-span-4">
                     <div class="max-w-[200px] lg:max-w-[221px] max-h-[215px] max-xl:mx-auto">
                         <Link :href="route('home')">
-                            <JPicture src="/assets/images/logo-footer.png" alt="logo" class="w-full h-full" />
+                        <JPicture src="/assets/images/logo-footer.png" alt="logo" class="w-full h-full" />
                         </Link>
                     </div>
                 </div>
                 <div
-                    class="col-span-full xl:col-span-8 flex md:flex-row flex-col items-start justify-between gap-8 lg:gap-16"
-                >
+                    class="col-span-full xl:col-span-8 flex md:flex-row flex-col items-start justify-between gap-8 lg:gap-16">
                     <div class="space-y-3 md:max-w-[300px] lg:max-w-[400px] xl:max-w-[307px] w-full">
                         <div class="label-1 font-semibold text-brown uppercase">Công ty TNHH Vietnam Farmer</div>
                         <div class="label-2 !font-normal space-y-3">
                             <div v-for="(itemInfo, indexInfo) in infos" :key="indexInfo">
                                 <span class="mr-1 font-bold">{{ itemInfo.title }}</span>
                                 <span class="text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
-                                    <a
-                                        :href="itemInfo.href"
-                                        :target="itemInfo.target"
-                                        rel="noopener noreferrer nofollow"
-                                    >
+                                    <a :href="itemInfo.href" :target="itemInfo.target"
+                                        rel="noopener noreferrer nofollow">
                                         {{ itemInfo.content }}
                                     </a>
                                 </span>
                             </div>
                         </div>
                         <div class="flex items-center gap-6">
-                            <a
-                                v-for="(itemSocial, indexSocial) in socials"
-                                :key="indexSocial"
-                                :href="itemSocial.href"
-                                target="_blank"
-                                rel="noopener noreferrer nofollow"
-                                class="lg:hover:opacity-100 opacity-75 duration-300 ease-in-out"
-                            >
+                            <a v-for="(itemSocial, indexSocial) in socials" :key="indexSocial" :href="itemSocial.href"
+                                target="_blank" rel="noopener noreferrer nofollow"
+                                class="lg:hover:opacity-100 opacity-75 duration-300 ease-in-out">
                                 <JPicture :src="itemSocial.icon" :alt="itemSocial.alt" />
                             </a>
                         </div>
@@ -45,11 +36,9 @@
                         <div class="label-1 font-semibold uppercase text-brown">Vietnam Farmer</div>
                         <ul class="md:space-y-3 space-y-2 xl:space-y-4">
                             <li v-for="(itemMenu, indexMenu) in menus" :key="indexMenu">
-                                <Link
-                                    :href="itemMenu.slug"
-                                    class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out"
-                                >
-                                    {{ itemMenu.title }}
+                                <Link :href="itemMenu.slug"
+                                    class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
+                                {{ itemMenu.title }}
                                 </Link>
                             </li>
                         </ul>
@@ -58,16 +47,11 @@
                         <div class="label-1 font-semibold text-brown">Sản phẩm</div>
                         <ul class="md:space-y-3 space-y-2 xl:space-y-4">
                             <li v-for="(itemProduct, indexProduct) in categories" :key="indexProduct">
-                                <Link
-                                    v-if="itemProduct.slug"
-                                    :href="
-                                        route('products.categories', {
-                                            slug: itemProduct.slug,
-                                        })
-                                    "
-                                    class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out"
-                                >
-                                    {{ itemProduct.title }}
+                                <Link v-if="itemProduct.slug" :href="route('products.categories', {
+                                    slug: itemProduct.slug,
+                                })
+                                    " class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
+                                {{ itemProduct.title }}
                                 </Link>
                             </li>
                         </ul>
@@ -80,15 +64,13 @@
                 <div class="flex md:flex-row flex-col items-center justify-between gap-4 md:gap-0 text-gray-700 body-2">
                     <div>© MEKONG CUU LONG. All rights reserved.</div>
                     <div class="flex items-center gap-4 body-2">
-                        <div
-                            v-for="(itemPolicy, indexPolicy) in policies"
-                            :key="indexPolicy"
-                            class="lg:hover:text-primary duration-300 ease-in-out relative flex items-center justify-center gap-3"
-                        >
+                        <div v-for="(itemPolicy, indexPolicy) in policies" :key="indexPolicy"
+                            class="lg:hover:text-primary duration-300 ease-in-out relative flex items-center justify-center gap-3">
                             <Link :href="route('policies.show', { slug: itemPolicy.slug })">
-                                {{ itemPolicy.title }}
+                            {{ itemPolicy.title }}
                             </Link>
-                            <span v-if="indexPolicy < policies.length - 1" class="w-1 h-1 bg-gray-500 rounded-full mt-0.5"></span>
+                            <span v-if="indexPolicy < policies.length - 1"
+                                class="w-1 h-1 bg-gray-500 rounded-full mt-0.5"></span>
                         </div>
                     </div>
                 </div>
@@ -109,14 +91,14 @@ export default {
                 },
                 {
                     title: 'Điện thoại:',
-                    content: this.tt('0987 654 321'),
-                    href: `tel:${this.tt('0987 654 321')}`,
+                    content: this.tt('0909 981 381'),
+                    href: `tel:${this.tt('0909 981 381')}`,
                     target: '_self',
                 },
                 {
                     title: 'Văn phòng:',
-                    content: '123 Hai Bà Trưng, Phường Tây Thạnh, Quận Tân Phú, Thành phố Hồ Chí Minh, Việt Nam.',
-                    href: 'https://maps.app.goo.gl/VamA4nKhMs1BzcRQA',
+                    content: 'Số 4 đường 1A, Ấp 57, Xã Tân Nhựt, Tp. Hồ Chí Minh, Việt Nam',
+                    href: 'https://maps.app.goo.gl/SA8X8sqzuSftUyEPA',
                     target: '_blank',
                 },
             ],
@@ -211,6 +193,7 @@ export default {
     background: url('/assets/images/footer/background-mobile.webp');
     @apply bg-cover bg-no-repeat;
 }
+
 @media screen and (min-width: 768px) {
     .bg-footer {
         background: url('/assets/images/footer/background.webp');

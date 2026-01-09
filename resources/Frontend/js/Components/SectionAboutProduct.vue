@@ -82,12 +82,36 @@ export default {
             itemsOrigin: [
                 {
                     image: {
-                        url: '/assets/images/demo/image-product-1.png',
-                        alt: "image product origin"
+                        url: '/assets/images/demo/image-location-1.jpg',
+                        alt: "image location 1"
                     },
                     title: 'Mekong Delta (ĐBSCL)',
                     description: 'Leading region for fresh fruit exports.',
-                }
+                },
+                {
+                    image: {
+                        url: '/assets/images/demo/image-location-2.jpg',
+                        alt: "image location 2"
+                    },
+                    title: 'Mekong Delta (ĐBSCL)',
+                    description: 'Leading region for fresh fruit exports.',
+                },
+                {
+                    image: {
+                        url: '/assets/images/demo/image-location-3.jpg',
+                        alt: "image location 3"
+                    },
+                    title: 'Mekong Delta (ĐBSCL)',
+                    description: 'Leading region for fresh fruit exports.',
+                },
+                {
+                    image: {
+                        url: '/assets/images/demo/image-location-4.jpg',
+                        alt: "image location 4"
+                    },
+                    title: 'Mekong Delta (ĐBSCL)',
+                    description: 'Leading region for fresh fruit exports.',
+                },
             ],
         }
     },
