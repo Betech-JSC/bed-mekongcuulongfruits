@@ -1,5 +1,5 @@
 <template>
-    <footer class="relative space-y-10 pt-10">
+    <footer class="relative space-y-10 py-10">
         <div class="container">
             <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
                 <div class="col-span-full xl:col-span-4">
@@ -59,10 +59,10 @@
                 </div>
             </div>
         </div>
-        <div class="border-t border-[#F9EDD0] border-opacity-30 py-3">
+        <!-- <div class="border-t border-[#F9EDD0] border-opacity-30 py-3">
             <div class="container">
                 <div class="flex md:flex-row flex-col items-center justify-between gap-4 md:gap-0 text-gray-700 body-2">
-                    <div>© MEKONG CUU LONG. All rights reserved.</div>
+                    <div>© FARMER VIETNAM. All rights reserved.</div>
                     <div class="flex items-center gap-4 body-2">
                         <div v-for="(itemPolicy, indexPolicy) in policies" :key="indexPolicy"
                             class="lg:hover:text-primary duration-300 ease-in-out relative flex items-center justify-center gap-3">
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </footer>
 </template>
 <script>
