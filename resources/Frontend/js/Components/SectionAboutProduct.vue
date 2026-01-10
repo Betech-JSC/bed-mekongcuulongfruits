@@ -37,21 +37,23 @@
             <div class="md:space-y-8 space-y-6 xl:space-y-12">
                 <h2 class="display-3 font-bold text-primary">Product origins</h2>
 
-                <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
-                    <div class="md:col-span-6 col-span-full xl:col-span-4">
-                        <CardProductOrigin :item="itemsOrigin[0]" />
+                <div class="space-y-8">
+                    <div class="grid grid-cols-12 md:gap-5 gap-4 xl:gap-6">
+                        <div class="md:col-span-6 col-span-full xl:col-span-4">
+                            <CardProductOrigin :item="itemsOrigin[0]" />
+                        </div>
+                        <div class="md:col-span-6 col-span-full xl:col-span-8">
+                            <CardProductOrigin :item="itemsOrigin[1]" />
+                        </div>
                     </div>
-                    <div class="md:col-span-6 col-span-full xl:col-span-6">
-                        <CardProductOrigin :item="itemsOrigin[1]" />
-                    </div>
-                </div>
 
-                <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
-                    <div class="md:col-span-6 col-span-full xl:col-span-7 xl:col-start-2">
-                        <CardProductOrigin :item="itemsOrigin[2]" />
-                    </div>
-                    <div class="md:col-span-6 col-span-full xl:col-span-4">
-                        <CardProductOrigin :item="itemsOrigin[3]" />
+                    <div class="grid grid-cols-12 md:gap-5 gap-4 xl:gap-6">
+                        <div class="md:col-span-6 col-span-full">
+                            <CardProductOrigin :item="itemsOrigin[2]" />
+                        </div>
+                        <div class="md:col-span-6 col-span-full">
+                            <CardProductOrigin :item="itemsOrigin[3]" />
+                        </div>
                     </div>
                 </div>
 

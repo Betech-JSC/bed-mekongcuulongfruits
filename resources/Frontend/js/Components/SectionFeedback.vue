@@ -115,7 +115,7 @@ export default {
 
 <style lang="scss" scoped>
 .btn-swiper {
-    @apply absolute z-10 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-brand-100 rounded-full lg:hover:bg-brand-100 lg:hover:text-brand-200 flex items-center justify-center duration-300 ease-in-out;
+    @apply absolute z-10 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-brand-100 rounded-full lg:hover:bg-brand-100 lg:hover:text-brand-200 hidden xl:flex items-center justify-center duration-300 ease-in-out;
 }
 
 .swiper-button-prev {

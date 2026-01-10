@@ -2,7 +2,7 @@
     <main>
         <SectionHeroSlider :items="slidersHero" />
         <SectionProducts :items="products" />
-        <SectionAvailability :items="charts" />
+        <SectionAvailability :items="charts" :certifications="certifications" />
         <SectionFeedback :items="feedbacks" />
         <SectionHotNews :items="posts" />
         <section class="relative">
@@ -182,6 +182,38 @@ export default {
                     description:
                         'Chuối Cavendish thuộc loại cây thảo, cao từ 5m – 6m, là loài sống lâu năm, thân cây tròn, mềm, thẳng, có bẹ lá. Lá cây to dài. Trái nằm trên buồng, có từ 6-8 trái, mỗi nải có khoảng 12trái. Trái chuối Canvendish nhỏ, dài, có mùi thơm. Khi chín, vỏ vẫn màu xanh nhưng khi chín mùi thì vỏ chuyển sang màu vàng.  Quả chuối thơm ngon, có vị ngọt nhẹ.',
                     type: 2,
+                },
+            ],
+            certifications: [
+                {
+                    image: {
+                        url: '/assets/images/home/image-partner-1.jpg',
+                        alt: 'image partner home',
+                    },
+                },
+                {
+                    image: {
+                        url: '/assets/images/home/image-partner-2.jpg',
+                        alt: 'image partner home',
+                    },
+                },
+                {
+                    image: {
+                        url: '/assets/images/home/image-partner-3.jpg',
+                        alt: 'image partner home',
+                    },
+                },
+                {
+                    image: {
+                        url: '/assets/images/home/image-partner-4.jpg',
+                        alt: 'image partner home',
+                    },
+                },
+                {
+                    image: {
+                        url: '/assets/images/home/image-partner-5.jpg',
+                        alt: 'image partner home',
+                    },
                 },
             ],
             charts: [

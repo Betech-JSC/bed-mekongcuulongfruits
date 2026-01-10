@@ -7,10 +7,22 @@
                         Certified Quality, Trusted Worldwide
                     </div>
                 </div>
-                <div class="body-1 text-gray-900">
-                    At VietNam Farmer, quality and safety are our top priorities. We comply with international standards
-                    and hold globally recognized certifications to ensure our products meet the highest requirements of
-                    importers and consumers.
+                <div class="md:space-y-6 space-y-4 xl:space-y-8">
+                    <div class="body-1 text-gray-900">
+                        At VietNam Farmer, quality and safety are our top priorities. We comply with international
+                        standards
+                        and hold globally recognized certifications to ensure our products meet the highest requirements
+                        of
+                        importers and consumers.
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div v-for="(itemCertificate, indexCertificate) in certifications" :key="indexCertificate"
+                            class="w-auto h-[90px] xl:h-[120px]">
+                            <JPicture :src="itemCertificate.image.url"
+                                :alt="itemCertificate.image.alt || itemCertificate.title"
+                                class="w-full h-full object-contain" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="space-y-6">
@@ -18,20 +30,14 @@
                     <div class="headline-1 font-bold text-brand-100 uppercase">Availability season</div>
                     <div class="flex items-center gap-8">
                         <!-- Button Pagination -->
-                        <button
-                            @click="slidePrev"
+                        <button @click="slidePrev"
                             class="w-12 h-12 flex items-center justify-center text-brand-100 lg:hover:text-brand-300 duration-300 ease-in-out"
-                            :disabled="isBeginning"
-                            :class="{ 'opacity-50 cursor-not-allowed': isBeginning }"
-                        >
+                            :disabled="isBeginning" :class="{ 'opacity-50 cursor-not-allowed': isBeginning }">
                             <ArrowSlider class="rotate-180" />
                         </button>
-                        <button
-                            @click="slideNext"
+                        <button @click="slideNext"
                             class="w-12 h-12 flex items-center justify-center text-brand-100 lg:hover:text-brand-300 duration-300 ease-in-out"
-                            :disabled="isEnd"
-                            :class="{ 'opacity-50 cursor-not-allowed': isEnd }"
-                        >
+                            :disabled="isEnd" :class="{ 'opacity-50 cursor-not-allowed': isEnd }">
                             <ArrowSlider />
                         </button>
                     </div>
@@ -40,49 +46,30 @@
                 <!-- Custom Title Pagination -->
                 <div class="scrollbar-hide overflow-x-auto ">
                     <div class="flex items-center gap-3 md:gap-4 pb-2 w-full">
-                    <button
-                        v-for="(item, index) in items"
-                        :key="index"
-                        @click="slideTo(index)"
-                        class="label-1 font-semibold flex items-center gap-2.5 p-2 md:p-3 rounded-xl transition-all duration-300"
-                        :class="
-                            activeIndex === index
+                        <button v-for="(item, index) in items" :key="index" @click="slideTo(index)"
+                            class="label-1 font-semibold flex items-center gap-2.5 p-2 md:p-3 rounded-xl transition-all duration-300"
+                            :class="activeIndex === index
                                 ? 'bg-brand-100 text-white'
                                 : 'bg-brand-200 text-gray-900 lg:hover:bg-brand-300'
-                        "
-                    >
-                        <div class="w-8 h-8">
-                            <div class="aspect-w-1 aspect-h-1">
-                                <JPicture
-                                    :src="item.icon.url"
-                                    :alt="item.icon.alt || item.title"
-                                    class="w-full h-full object-cover"
-                                />
+                                ">
+                            <div class="w-8 h-8">
+                                <div class="aspect-w-1 aspect-h-1">
+                                    <JPicture :src="item.icon.url" :alt="item.icon.alt || item.title"
+                                        class="w-full h-full object-cover" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex-1 w-max">{{ item.title }}</div>
-                    </button>
-                </div>
+                            <div class="flex-1 w-max">{{ item.title }}</div>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Sliders -->
-                <swiper
-                    :modules="modules"
-                    :slides-per-view="1"
-                    :space-between="24"
-                    :loop="false"
-                    :navigation="false"
-                    @swiper="onSwiper"
-                    @slideChange="onSlideChange"
-                    class="availability-swiper"
-                >
+                <swiper :modules="modules" :slides-per-view="1" :space-between="24" :loop="false" :navigation="false"
+                    @swiper="onSwiper" @slideChange="onSlideChange" class="availability-swiper">
                     <swiper-slide v-for="(item, index) in items" :key="index">
                         <div class="">
-                            <JPicture
-                                :src="item.image.url"
-                                :alt="item.image.alt || item.title"
-                                class="w-full h-full object-contain"
-                            />
+                            <JPicture :src="item.image.url" :alt="item.image.alt || item.title"
+                                class="w-full h-full object-contain" />
                         </div>
                     </swiper-slide>
                 </swiper>
@@ -102,7 +89,7 @@ export default {
         SwiperSlide,
         ArrowSlider,
     },
-    props: ['items'],
+    props: ['items', 'certifications'],
     data() {
         return {
             modules: [],
