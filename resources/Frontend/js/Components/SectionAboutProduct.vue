@@ -67,7 +67,26 @@
     </section>
     <section class="bg-primary-25 md:py-20 py-12 xl:py-[100px]">
         <div class="container md:space-y-[80px] space-y-[64px] xl:space-y-[120px]">
-            <!-- TODO: Chưa chốt Mission & Vision -->
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6 xl:gap-12">
+                <div class="relative rounded-[16px] overflow-hidden">
+                    <JPicture src="/assets/images/about/bg-vision-mission.png" alt="background vision mission"
+                        class="w-full h-full object-cover" />
+                </div>
+                <div class="space-y-3">
+                    <div v-for="(itemValue, indexValue) in keys" :key="indexValue"
+                        class="gap-3 md:p-5 p-4 xl:p-6 space-y-4 md:space-y-5 xl:space-y-6 rounded-[16px] md:rounded-[20px] xl:rounded-[24px] bg-white">
+                        <div
+                            class="flex items-center gap-3 justify-center gap-6 headline-3 text-primary font-bold uppercase">
+                            <div class="xl:w-12 xl:h-12 md:w-10 md:h-10 w-8 h-8">
+                                <JPicture :src="itemValue.image.url" :alt="itemValue.image.alt"
+                                    class="w-full h-full object-cover" />
+                            </div>
+                            <span>{{ itemValue.title }}</span>
+                        </div>
+                        <div class="prose prose-value" v-html="itemValue.description"></div>
+                    </div>
+                </div>
+            </div>
 
             <div class="relative">
                 <JPicture src="/assets/images/about/bg-core-value.png" alt="background core value"
@@ -133,6 +152,37 @@ export default {
     },
     data() {
         return {
+            keys: [
+                {
+                    image: {
+                        url: '/assets/images/about/icon-vision.png',
+                        alt: 'vision'
+                    },
+                    title: 'Vision',
+                    description: `
+                        <p>To become a leading Vietnamese agricultural exporter, trusted by international customers through:</p>
+                        <ul>
+                            <li>Diverse sourcing from key agricultural regions.</li>
+                            <li>Comprehensive quality control and export procedures meeting international standards.</li>
+                            <li>Professional and reliable services, helping Vietnamese agricultural products reach global markets.</li>
+                        </ul>
+                    `,
+                },
+                {
+                    image: {
+                        url: '/assets/images/about/icon-mission.png',
+                        alt: 'mission'
+                    },
+                    title: 'Mission',
+                    description: `
+                        <ul>
+                            <li>Provide agricultural products that meet international export standards, ensuring food safety and traceability.</li>
+                            <li>Build a sustainable supply chain, enhance the value of Vietnamese agricultural products, and secure farmers’ benefits.</li>
+                            <li>Promote Vietnamese agricultural brands through stable quality and comprehensive product control.</li>
+                        </ul>
+                    `,
+                },
+            ],
             itemsOrigin: [
                 {
                     image: {
@@ -229,5 +279,13 @@ export default {
 
 :deep(.swiper-product) {
     overflow: visible;
+}
+
+:deep(.prose-value) {
+    @apply text-[14px] leading-[150%] font-sans font-medium text-gray-900;
+
+    ul {
+        @apply pl-1;
+    }
 }
 </style>
