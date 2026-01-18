@@ -16,21 +16,10 @@ class JobController extends Controller
             ->active()
             ->sortByPosition()
             ->get()
-            ->map(fn ($item) => $item->transform());
-
-        $posts = Post::query()
-            ->activeLocale()
-            ->activeCategories()
-            ->orderBy('is_featured', 'desc')
-            ->orderByPosition()
-            ->orderBy('id', 'desc')
-            ->take(8)
-            ->get()
-            ->map(fn ($item) => $item->transform());
+            ->map(fn($item) => $item->transform());
 
         $data = [
             'jobs' => $jobs,
-            'posts' => $posts,
             'sliders' => Slider::getByPosition('JOB_SLIDER'),
         ];
 
@@ -73,7 +62,7 @@ class JobController extends Controller
         $items = $job->relatedJobs()
             ->active()
             ->get()
-            ->map(fn ($item) => $item->transform());
+            ->map(fn($item) => $item->transform());
 
         return response()->json([
             'success' => true,

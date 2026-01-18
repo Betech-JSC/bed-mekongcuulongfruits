@@ -27,6 +27,8 @@ class ProductTranslation extends BaseModel
         'ingredient',
         'promotion',
         'package_included',
+        'harvest_season',
+        'product_process',
 
         'seo_meta_title',
         'seo_slug',

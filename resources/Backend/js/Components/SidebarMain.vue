@@ -39,25 +39,6 @@
         <span>{{ tt('models.table_list.posts') }}</span>
     </Link>
     <Link
-        v-if="can('admin.services.index')"
-        :href="route('admin.services.index')"
-        :class="{ active: isUrl('admin.services.*') }"
-        class="item"
-    >
-        <ph-newspaper-clipping-light />
-        <span>{{ tt('models.table_list.services') }}</span>
-    </Link>
-    <Link
-        v-if="can('admin.orders.index')"
-        :href="route('admin.orders.index')"
-        :class="{ active: isUrl('admin.orders.*') }"
-        class="item"
-    >
-        <mdi:order-bool-ascending-variant />
-        <span>{{ tt('models.table_list.orders') }}</span>
-        <span class="badge badge-danger" v-if="newOrder">{{ newOrder }}</span>
-    </Link>
-    <Link
         v-if="can('admin.contacts.index')"
         :href="route('admin.contacts.index')"
         :class="{ active: isUrl('admin.contacts.*') }"
@@ -84,15 +65,6 @@
     >
         <bi:sliders2 />
         <span>{{ tt('models.table_list.sliders') }}</span>
-    </Link>
-    <Link
-        v-if="can('admin.policies.index')"
-        :href="route('admin.policies.index')"
-        :class="{ active: isUrl('admin.policies.*') }"
-        class="item"
-    >
-        <material-symbols:policy-outline-sharp />
-        <span>{{ tt('models.table_list.policies') }}</span>
     </Link>
 </template>
 

@@ -5,21 +5,6 @@
         </Link>
     </div>
     <nav class="flex-1 px-2 pb-4 space-y-1 navs">
-        <ul
-            class="flex px-4 py-5 space-x-2 !uppercase overflow-y-auto btn-group"
-            v-if="$page.props.locale.list.length > 1"
-        >
-            <Button
-                class="grow !min-w-fit"
-                v-for="(locale, index) in $page.props.locale.list"
-                :key="index"
-                :label="locale"
-                size="sm"
-                @click="switchLocale(locale)"
-                :class="currentLocale === locale ? 'btn-primary' : 'btn-outline-primary'"
-            />
-        </ul>
-        <hr />
         <Link :href="route('admin.dashboard.index')" :class="{ active: isUrl('admin.dashboard.index') }" class="item">
             <ph:chart-bar-light />
             <span>Dashboard</span>

@@ -62,6 +62,8 @@ class Product extends BaseModel
         'inject_head',
         'inject_body_start',
         'inject_body_end',
+        'harvest_season',
+        'product_process',
 
         'created_by',
         'updated_by',
@@ -76,6 +78,8 @@ class Product extends BaseModel
         'description',
         'specification',
         'package_included',
+        'harvest_season',
+        'product_process',
 
         'seo_meta_title',
         'seo_slug',
@@ -104,6 +108,11 @@ class Product extends BaseModel
     protected $casts = [
         'images' => 'array',
         'image' => 'array',
+
+        'images_overviews' => 'array',
+        'images_product_process' => 'array',
+        'images_package_specification' => 'array',
+        'images_preservation_methods' => 'array',
     ];
 
     public function rules()
@@ -367,6 +376,21 @@ class Product extends BaseModel
             'slug' => $this->seo_slug ?? $this->slug,
             'images' => $images,
             'price' => $this->price ?? 0,
+            'product_process' => transform_richtext($this->product_process),
+            'harvest_season' => transform_richtext($this->harvest_season),
+
+            'images_overviews' => collect($this->images_overviews)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_product_process' => collect($this->images_product_process)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_package_specification' => collect($this->images_package_specification)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_preservation_methods' => collect($this->images_preservation_methods)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
         ];
     }
 
