@@ -77,9 +77,17 @@ class Product extends BaseModel
         'content',
         'description',
         'specification',
+
+        'title_overview',
+        'content_overview',
+        'title_characteristics',
+        'content_characteristics',
+
         'package_included',
         'harvest_season',
         'product_process',
+        'product_preservation',
+        'content_overview',
 
         'seo_meta_title',
         'seo_slug',
@@ -367,17 +375,22 @@ class Product extends BaseModel
             'title' => $this->title,
             'sku' => $this->sku,
             'description' => $this->description,
-            'price' => $this->price,
-            'new_price' => $this->new_price,
             'category' => $this->category,
             'content' => transform_richtext($this->content),
-            'package_included' => transform_richtext($this->package_included),
-            'specification' => transform_richtext($this->specification),
             'slug' => $this->seo_slug ?? $this->slug,
             'images' => $images,
             'price' => $this->price ?? 0,
-            'product_process' => transform_richtext($this->product_process),
-            'harvest_season' => transform_richtext($this->harvest_season),
+
+            'title_overview' => $this->title_overview,
+            'content_overview' => $this->content_overview,
+            'title_characteristics' => $this->title_characteristics,
+            'content_characteristics' => $this->content_characteristics,
+
+            'package_included' => $this->package_included,
+            'harvest_season' => $this->harvest_season,
+            'product_process' => $this->product_process,
+            'product_preservation' => $this->product_preservation,
+            'content_overview' => $this->content_overview,
 
             'images_overviews' => collect($this->images_overviews)->map(function ($item) {
                 return $this->getImageDetail($item);

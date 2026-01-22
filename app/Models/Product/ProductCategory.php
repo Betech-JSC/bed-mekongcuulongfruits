@@ -56,6 +56,18 @@ class ProductCategory extends BaseModel
         'banner',
         'description',
 
+
+        'title_overview',
+        'content_overview',
+        'title_characteristics',
+        'content_characteristics',
+
+        'package_included',
+        'harvest_season',
+        'product_process',
+        'product_preservation',
+        'content_overview',
+
         'seo_meta_title',
         'seo_slug',
         'seo_meta_description',
