@@ -65,6 +65,13 @@ class Product extends BaseModel
         'harvest_season',
         'product_process',
 
+        'banner',
+        'image_harvest_season',
+        'images_characteristics',
+        'images_product_process',
+        'images_package_specification',
+        'images_preservation_methods',
+
         'created_by',
         'updated_by',
         'deleted_by',
@@ -117,7 +124,9 @@ class Product extends BaseModel
         'images' => 'array',
         'image' => 'array',
 
-        'images_overviews' => 'array',
+        'banner' => 'array',
+        'image_harvest_season' => 'array',
+        'images_characteristics' => 'array',
         'images_product_process' => 'array',
         'images_package_specification' => 'array',
         'images_preservation_methods' => 'array',
