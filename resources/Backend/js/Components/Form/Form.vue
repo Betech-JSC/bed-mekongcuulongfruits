@@ -1,48 +1,22 @@
 <template>
-    <form
-        @submit.prevent="submit"
-        :canaction="canStore"
-        :class="{
-            'grid grid-cols-12 gap-y-4 lg:gap-x-6 lg:p-6':
-                config?.addGrid !== false,
-        }"
-    >
-        <div
-            v-if="
-                showActions &&
-                (canDestroyResource || canStore) &&
-                config?.showActionOntop
-            "
-            class="flex justify-between col-span-full lg:col-span-8"
-        >
-            <Button
-                v-if="canDestroyResource && !form.deleted_at && form.id"
-                :label="tt('models.form.delete')"
-                class="btn-danger-link"
-                @click="destroy"
-            />
-            <Button
-                v-if="reloadOctane"
-                label="Xóa cache"
-                class="btn-primary"
-                @click="reloadOctane"
-                :loading="octaneReloading"
-            />
+    <form @submit.prevent="submit" :canaction="canStore" :class="{
+        'grid grid-cols-12 gap-y-4 lg:gap-x-6 lg:p-6':
+            config?.addGrid !== false,
+    }">
+        <div v-if="
+            showActions &&
+            (canDestroyResource || canStore) &&
+            config?.showActionOntop
+        " class="flex justify-between col-span-full lg:col-span-8">
+            <Button v-if="canDestroyResource && !form.deleted_at && form.id" :label="tt('models.form.delete')"
+                class="btn-danger-link" @click="destroy" />
+            <Button v-if="reloadOctane" label="Xóa cache" class="btn-primary" @click="reloadOctane"
+                :loading="octaneReloading" />
             <div class="flex items-center ml-auto space-x-2">
                 <slot name="buttons"></slot>
-                <Button
-                    v-if="canStoreDraft"
-                    :label="tt('models.form.store_draft')"
-                    @click="storeDraft"
-                    class="btn-white"
-                    :loading="form.processing"
-                />
-                <Button
-                    v-if="canStore"
-                    :label="tt('models.form.save')"
-                    type="submit"
-                    :loading="form.processing"
-                />
+                <Button v-if="canStoreDraft" :label="tt('models.form.store_draft')" @click="storeDraft"
+                    class="btn-white" :loading="form.processing" />
+                <Button v-if="canStore" :label="tt('models.form.save')" type="submit" :loading="form.processing" />
             </div>
         </div>
         <div class="space-y-6 col-span-full lg:col-span-8">
@@ -53,46 +27,20 @@
                 <FlashMessages />
             </div>
             <slot :form="form" :errors="form.errors" :submit="submit" />
-            <div
-                v-if="showActions && (canDestroyResource || canStore)"
-                class="flex justify-between card-footer"
-            >
-                <Button
-                    v-if="canDestroyResource && !form.deleted_at && form.id"
-                    :label="tt('models.form.delete')"
-                    class="btn-danger-link"
-                    @click="destroy"
-                />
-                <Button
-                    v-if="reloadOctane"
-                    label="Xóa cache"
-                    class="btn-primary"
-                    @click="reloadOctane"
-                    :loading="octaneReloading"
-                />
+            <div v-if="showActions && (canDestroyResource || canStore)" class="flex justify-between card-footer">
+                <Button v-if="canDestroyResource && !form.deleted_at && form.id" :label="tt('models.form.delete')"
+                    class="btn-danger-link" @click="destroy" />
+                <Button v-if="reloadOctane" label="Xóa cache" class="btn-primary" @click="reloadOctane"
+                    :loading="octaneReloading" />
                 <div class="flex items-center ml-auto space-x-2">
                     <slot name="buttons"></slot>
-                    <Button
-                        v-if="canStoreDraft"
-                        :label="tt('models.form.store_draft')"
-                        @click="storeDraft"
-                        class="btn-white"
-                        :loading="form.processing"
-                    />
-                    <Button
-                        v-if="canStore"
-                        :label="tt('models.form.save')"
-                        type="submit"
-                        :loading="form.processing"
-                    />
+                    <Button v-if="canStoreDraft" :label="tt('models.form.store_draft')" @click="storeDraft"
+                        class="btn-white" :loading="form.processing" />
+                    <Button v-if="canStore" :label="tt('models.form.save')" type="submit" :loading="form.processing" />
                 </div>
             </div>
         </div>
-        <div
-            v-if="$slots.aside"
-            class="col-span-full lg:col-span-4"
-            :class="{ 'order-first': !!config.reverse }"
-        >
+        <div v-if="$slots.aside" class="col-span-full lg:col-span-4" :class="{ 'order-first': !!config.reverse }">
             <slot name="aside" :form="form" />
         </div>
     </form>
@@ -118,7 +66,7 @@ export default {
         return {
             form: this.$inertia.form(this.modelValue),
             octaneReloading: false,
-            isLoading : false,
+            isLoading: false,
             initFormValue: this.modelValue,
         };
     },
@@ -170,17 +118,17 @@ export default {
         },
     },
     created() {
-            document.addEventListener("inertia:before", this.beforeWindowUnload);
-            window.addEventListener("beforeunload", this.beforeWindowUnload);
+        document.addEventListener("inertia:before", this.beforeWindowUnload);
+        window.addEventListener("beforeunload", this.beforeWindowUnload);
     },
     unmounted() {
-            document.removeEventListener("inertia:before", this.beforeWindowUnload);
-            window.removeEventListener("beforeunload", this.beforeWindowUnload);
+        document.removeEventListener("inertia:before", this.beforeWindowUnload);
+        window.removeEventListener("beforeunload", this.beforeWindowUnload);
     },
     methods: {
 
         confirmLeave() {
-            return confirm( this.tt('models.message.confirm_message') );
+            return confirm(this.tt('models.message.confirm_message'));
         },
 
         confirmStayInDirtyForm() {
@@ -213,35 +161,35 @@ export default {
 
         validateAsync(...fields) {
             this.isLoading = true,
-            this.$inertia.post(
-                this.route(`admin.${this.currentResource}.store`, {
-                    id: this.form?.id,
-                }),
-                this.pick(this.form, fields),
-                {
-                    preserveScroll: true,
-                    headers: { "X-Dry-Run": true },
-                    onError: (errors) => this.form.setError(errors),
-                    onSuccess: () => this.form.clearErrors(...fields),
-                }
-            );
+                this.$inertia.post(
+                    this.route(`admin.${this.currentResource}.store`, {
+                        id: this.form?.id,
+                    }),
+                    this.pick(this.form, fields),
+                    {
+                        preserveScroll: true,
+                        headers: { "X-Dry-Run": true },
+                        onError: (errors) => this.form.setError(errors),
+                        onSuccess: () => this.form.clearErrors(...fields),
+                    }
+                );
             this.isLoading = false
         },
 
         submit() {
             this.isLoading = true,
-            this.$inertia.post(
-                this.route(`admin.${this.currentResource}.store`, {
-                    id: this.form?.id,
-                }),
-                this.form,
-                {
-                    onSuccess: () => {
-                        this.form = this.$inertia.form(this.modelValue);
-                        this.isLoading = true
-                    },
-                }
-            );
+                this.$inertia.post(
+                    this.route(`admin.${this.currentResource}.store`, {
+                        id: this.form?.id,
+                    }),
+                    this.form,
+                    {
+                        onSuccess: () => {
+                            this.form = this.$inertia.form(this.modelValue);
+                            this.isLoading = true
+                        },
+                    }
+                );
             this.isLoading = false
         },
 
@@ -277,7 +225,7 @@ export default {
                 this.$inertia.post(
                     this.route(`admin.${this.currentResource}.restore`, {
                         id: this.form.id,
-                    }),this.isLoading = true,
+                    }), this.isLoading = true,
                 );
             }
         },
