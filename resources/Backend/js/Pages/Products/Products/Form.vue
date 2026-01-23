@@ -259,6 +259,7 @@ export default {
                 old_price: this.item.old_price ?? 0,
                 sale_price: this.item.sale_price ?? 0,
 
+                image: this.item.image ?? [],
                 banner: this.item.banner ?? [],
                 image_harvest_season: this.item.image_harvest_season ?? [],
                 images_characteristics: this.item.images_characteristics ?? [],
