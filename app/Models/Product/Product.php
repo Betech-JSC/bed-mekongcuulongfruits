@@ -401,7 +401,16 @@ class Product extends BaseModel
             'product_preservation' => $this->product_preservation,
             'content_overview' => $this->content_overview,
 
-            'images_overviews' => collect($this->images_overviews)->map(function ($item) {
+            'banner' => collect($this->banner)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'image' => collect($this->image)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),            
+            'image_harvest_season' => collect($this->image_harvest_season)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_characteristics' => collect($this->images_characteristics)->map(function ($item) {
                 return $this->getImageDetail($item);
             }),
             'images_product_process' => collect($this->images_product_process)->map(function ($item) {
