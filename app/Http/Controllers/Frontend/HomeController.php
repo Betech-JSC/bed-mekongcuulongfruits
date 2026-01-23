@@ -20,6 +20,7 @@ class HomeController extends Controller
 
             $posts = Post::query()
                 ->active()
+                ->where('type', Post::TYPE_POST)
                 ->activeCategories()
                 ->where('is_featured', 1)
                 ->orderByPosition()
@@ -27,16 +28,24 @@ class HomeController extends Controller
                 ->get()
                 ->map(fn($item) => $item->transform());
 
-            $services = Service::query()
+            $certificates = Post::query()
+                ->where('type', Post::TYPE_CERTIFICATE)
                 ->active()
                 ->take(4)
+                ->get()
+                ->map(fn($item) => $item->transform());
+
+            $products = Product::query()
+                ->where('is_featured', 1)
+                ->active()
                 ->get()
                 ->map(fn($item) => $item->transform());
 
             $data = [
                 'sliders' => $sliders,
                 'posts' => $posts,
-                'services' => $services,
+                'certificates' => $certificates,
+                'products' => $products,
             ];
 
             if (request()->wantsJson()) {
