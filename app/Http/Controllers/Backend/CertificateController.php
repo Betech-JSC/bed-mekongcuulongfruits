@@ -6,18 +6,19 @@ use App\Models\Post\Post;
 use Illuminate\Routing\Controller;
 use App\Traits\HasCrudActions;
 
-class PostController extends Controller
+class CertificateController extends Controller
 {
     use HasCrudActions;
     public $model = Post::class;
 
-    public $with = [
-        'form' => ['relatedPosts']
-    ];
+    private function getTable()
+    {
+        return 'Certificaties';
+    }
 
     private function beforeIndex($query)
     {
-        return $query->where('type', Post::TYPE_POST)
+        return $query->where('type', Post::TYPE_CERTIFICATE)
             ->orderBy('id', 'DESC');
     }
 }

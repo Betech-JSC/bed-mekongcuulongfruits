@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\AgencyController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ApplyController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CertificateController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\SliderController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\Backend\ConfigController;
 Route::localized(function () {
     Route::middleware(['auth:admin'])->name('admin.')->group(function () {
         Route::module(PostController::class);
+        Route::module(CertificateController::class);
         Route::module(ProductController::class);
         Route::module(BrandController::class);
         Route::module(PostCategoryController::class);

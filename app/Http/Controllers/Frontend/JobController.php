@@ -12,44 +12,52 @@ class JobController extends Controller
 {
     public function index()
     {
-        $jobs = Job::query()
-            ->active()
-            ->sortByPosition()
-            ->get()
-            ->map(fn($item) => $item->transform());
+        try {
+            $jobs = Job::query()
+                ->active()
+                ->sortByPosition()
+                ->get()
+                ->map(fn($item) => $item->transform());
 
-        $data = [
-            'jobs' => $jobs,
-            'sliders' => Slider::getByPosition('JOB_SLIDER'),
-        ];
+            $data = [
+                'jobs' => $jobs,
+                'sliders' => Slider::getByPosition('JOB_SLIDER'),
+            ];
 
-        if (request()->wantsJson()) {
-            return response()->json($data);
+            if (request()->wantsJson()) {
+                return response()->json($data);
+            }
+
+            return Inertia::render('Jobs/Index', $data);
+        } catch (\Throwable $th) {
+            dd($th);
         }
-
-        return Inertia::render('Jobs/Index', $data);
     }
 
     public function show($slug)
     {
-        $job = Job::query()
-            ->active()
-            ->whereSlug($slug)
-            ->firstOrFail();
+        try {
+            $job = Job::query()
+                ->active()
+                ->whereSlug($slug)
+                ->firstOrFail();
 
-        $job->increment('view_count');
+            $job->increment('view_count');
 
-        $data = [
-            'job' => $job->transformDetails(),
-            'seo' => $job->transformSeo()
-        ];
+            $data = [
+                'job' => $job->transformDetails(),
+                'seo' => $job->transformSeo()
+            ];
 
-        if (request()->wantsJson()) {
-            return response()->json($data);
+            if (request()->wantsJson()) {
+                return response()->json($data);
+            }
+
+            return Inertia::render('Jobs/Show', $data)
+                ->withViewData(['seo' => $data['seo']]);
+        } catch (\Throwable $th) {
+            dd($th);
         }
-
-        return Inertia::render('Jobs/Show', $data)
-            ->withViewData(['seo' => $data['seo']]);
     }
 
     public function relatedJobs($jobId)
