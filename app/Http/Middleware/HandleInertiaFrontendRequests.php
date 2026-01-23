@@ -19,7 +19,7 @@ class HandleInertiaFrontendRequests extends Middleware
     public function share(Request $request)
     {
         try {
-            $footer_products = Product::query()
+            $products = Product::query()
                 ->active()
                 ->take(5)
                 ->get();
@@ -33,43 +33,6 @@ class HandleInertiaFrontendRequests extends Middleware
                 'meta_pages',
             );
 
-            $menuCategories = ProductCategory::query()
-                ->whereMenuHeader()
-                ->with([
-                    'nodes.products'
-                ])
-                ->get()
-                ->map(function ($category) {
-                    // Format danh mục cấp 2
-                    $formatCategory = function ($node) {
-                        return [
-                            'id' => $node->id,
-                            'title' =>  $node->menu_title ?? $node->title,
-                            'slug' => $node->seo_slug ?? $node->slug,
-                            'products' => $node->products->take(4)->map(fn($product) => $product->transform()), // Lấy 4 sản phẩm đầu tiên sau khi query
-                        ];
-                    };
-
-                    return [
-                        'id' => $category->id,
-                        'title' => $category->menu_title ?? $category->title,
-                        'slug' => $category->seo_slug ?? $category->slug,
-                        'nodes' => $category->nodes->map($formatCategory), // Format danh mục cấp 2
-                    ];
-                });
-
-
-            $footerCategories = ProductCategory::query()
-                ->active()
-                // ->whereMenuFooter()
-                ->get()
-                ->map(function ($item) {
-                    return [
-                        'id' => $item->id,
-                        'title' =>  $item->menu_title ?? $item->title,
-                        'slug' => $item->seo_slug ?? $item->slug,
-                    ];
-                });
 
             $global = settings()
                 ->group('general')
@@ -93,10 +56,7 @@ class HandleInertiaFrontendRequests extends Middleware
                     'query' => $request->query(),
                 ],
                 'data' => [
-                    'menu_categories' => $menuCategories,
-                    'footer_categories' => $footerCategories,
-                    'featured_category' => [],
-                    'footer_products' => $footer_products,
+                    'products' => $products,
                 ]
             ]);
 
