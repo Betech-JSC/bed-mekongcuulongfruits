@@ -43,7 +43,7 @@
                                 <ul class="bg-white rounded-[12px] overflow-hidden py-3">
                                     <li v-for="(subItem, subIndex) in menu.subMenu" :key="subIndex">
                                         <Link 
-                                            :href="subItem.slug"
+                                            :href="route('products.show', { slug: subItem.slug })"
                                             class="block px-4 py-2 body-2 text-gray-900 hover:bg-brand-200 hover:text-brand-500 transition-colors duration-300 ease-in-out"
                                             :class="{'bg-brand-50 text-brand-500': fullPath.includes(subItem.slug)}"
                                             @click="menuSelected = null"
@@ -107,7 +107,7 @@
                                     <ul class="pl-4 mt-2 space-y-2 border-l-2 border-primary-200 ml-1">
                                         <li v-for="(subItem, subIndex) in menuMb.subMenu" :key="subIndex">
                                             <Link 
-                                                :href="subItem.slug"
+                                                :href="route('products.show', { slug: subItem.slug })"
                                                 @click="closeMenu()"
                                                 class="block py-1 text-sm text-primary-700 hover:text-primary-900"
                                                 :class="{'font-medium text-primary-900': fullPath.includes(subItem.slug)}"
@@ -172,20 +172,7 @@ export default {
                     title: this.tt('Products'),
                     slug: this.route('products.index'),
                     type: 'products',
-                    subMenu: [
-                        {
-                            title: "Banana",
-                            slug: this.route('products.show', { slug: 'banana' }),
-                        },
-                        {
-                            title: "Pineapple",
-                            slug: this.route('products.show', { slug: 'pineapple' }),
-                        },
-                        {
-                            title: "Lemon",
-                            slug: this.route('products.show', { slug: 'lemon' }),
-                        },
-                    ],
+                    subMenu: this.$page.props.data.products
                 },
                 {
                     title: this.tt('Careers'),

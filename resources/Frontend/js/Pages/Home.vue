@@ -24,7 +24,7 @@ import SectionProducts from '@/Components/SectionProducts.vue'
 
 export default {
     components: { Arrow, SectionHeroSlider, SectionProducts, SectionAvailability, SectionFeedback, SectionHotNews },
-    // props: ['posts', 'services', 'sliders'],
+    props: ['certificates', 'products', 'posts'],
     data() {
         return {
             slidersHero: [
