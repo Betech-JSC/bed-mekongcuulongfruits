@@ -31,6 +31,7 @@ class Product extends BaseModel
     public $with = [
         'categories',
         'brand',
+        'translations',
     ];
 
     public $fillable = [
@@ -118,7 +119,7 @@ class Product extends BaseModel
         ]
     ];
 
-    public $appends = ['url', 'is_flash_sale', 'sale_price', 'is_flash_sale_cart'];
+    public $appends = ['url'];
 
     protected $casts = [
         'images' => 'array',
@@ -171,17 +172,6 @@ class Product extends BaseModel
         return $this->stock_quantity  > 0 ? 'Còn hàng' : 'Hết hàng';
     }
 
-    public function getSalePriceAttribute()
-    {
-        return $this->isFlashSale() ?
-            $this->flashSales->first()->flash_sale_price : 0;
-    }
-
-    public function getIsFlashSalePriceAttribute()
-    {
-        return $this->isFlashSale() ?
-            $this->flashSales->first() : "";
-    }
 
     public function saveRelatedProducts($model)
     {
@@ -346,18 +336,12 @@ class Product extends BaseModel
             'sku' => $this->sku,
             'description' => $this->description,
 
-            'banner' => collect($this->banner)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
-            'image' => collect($this->image)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
-            'image_harvest_season' => collect($this->image_harvest_season)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
-            'images_characteristics' => collect($this->images_characteristics)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
+            'banner' => $this->getImageDetail($this->banner),
+
+            'image' => $this->getImageDetail($this->image),
+            'image_harvest_season' => $this->getImageDetail($this->image_harvest_season),
+
+            'images_characteristics' => $this->getImageDetail($this->images_characteristics),
             'images_product_process' => collect($this->images_product_process)->map(function ($item) {
                 return $this->getImageDetail($item);
             }),
@@ -367,7 +351,6 @@ class Product extends BaseModel
             'images_preservation_methods' => collect($this->images_preservation_methods)->map(function ($item) {
                 return $this->getImageDetail($item);
             }),
-
         ];
 
         return $data;
@@ -394,16 +377,6 @@ class Product extends BaseModel
                 ];
             });
 
-        $banner = collect($this->banner)
-            ->map(function ($item) {
-                return $this->getImageDetail($item);
-            });
-
-        $image = collect($this->image)
-            ->map(function ($item) {
-                return $this->getImageDetail($item);
-            });
-
         return  [
             'id' => $this->id,
             'title' => $this->title,
@@ -427,14 +400,12 @@ class Product extends BaseModel
             'product_preservation' => $this->product_preservation,
             'content_overview' => $this->content_overview,
 
-            'banner' => $banner,
-            'image' => $image,
-            'image_harvest_season' => collect($this->image_harvest_season)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
-            'images_characteristics' => collect($this->images_characteristics)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
+            'banner' => $this->getImageDetail($this->banner),
+
+            'image' => $this->getImageDetail($this->image),
+            'image_harvest_season' => $this->getImageDetail($this->image_harvest_season),
+
+            'images_characteristics' => $this->getImageDetail($this->images_characteristics),
             'images_product_process' => collect($this->images_product_process)->map(function ($item) {
                 return $this->getImageDetail($item);
             }),
@@ -552,44 +523,6 @@ class Product extends BaseModel
         }
 
         return $relatedProducts->map(fn($item) => $item->transform());
-    }
-
-    public function scopeWhereFlashSale($query)
-    {
-        $currentDateTime = Carbon::now();
-
-        return $query->whereHas('flashSales', function ($flashSaleQuery) use ($currentDateTime) {
-            $flashSaleQuery
-                ->where('status', FlashSale::STATUS_ACTIVE)
-                // ->where('start_time', '<=', $currentDateTime)
-                // ->where('end_time', '>=', $currentDateTime)
-                ->where('flash_sale_quantity', '>', 0)
-            ;
-        });
-    }
-
-    public function isFlashSale()
-    {
-        $currentDateTime = Carbon::now();
-
-        return FlashSale::where('product_id', $this->id)
-            ->where('status', FlashSale::STATUS_ACTIVE)
-            // ->where('start_time', '<=', $currentDateTime)
-            // ->where('end_time', '>=', $currentDateTime)
-            ->where('flash_sale_quantity', '>', 0)
-            ->exists(); // Trả về true/false
-    }
-
-    public function getIsFlashSaleCartAttribute()
-    {
-        $currentDateTime = Carbon::now();
-
-        return FlashSale::where('product_id', $this->id)
-            ->where('status', FlashSale::STATUS_ACTIVE)
-            ->where('start_time', '<=', $currentDateTime)
-            ->where('end_time', '>=', $currentDateTime)
-            ->where('flash_sale_quantity', '>', 0)
-            ->exists(); // Trả về true/false
     }
 
     public function getActiveFlashSale()
