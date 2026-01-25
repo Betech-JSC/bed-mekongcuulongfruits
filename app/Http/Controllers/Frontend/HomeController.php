@@ -31,7 +31,7 @@ class HomeController extends Controller
             $certificates = Post::query()
                 ->where('type', Post::TYPE_CERTIFICATE)
                 ->active()
-                ->take(4)
+                ->take(5)
                 ->get()
                 ->map(fn($item) => $item->transform());
 

@@ -2,7 +2,7 @@
     <main>
         <SectionHeroSlider :items="slidersHero" />
         <SectionProducts :items="products" />
-        <SectionAvailability :items="charts" :certifications="certifications" />
+        <SectionAvailability :items="charts" :certifications="certificates" />
         <SectionFeedback :items="feedbacks" />
         <SectionHotNews :items="posts" />
         <section class="relative">

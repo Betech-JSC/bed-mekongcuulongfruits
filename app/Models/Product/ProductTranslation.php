@@ -18,6 +18,7 @@ class ProductTranslation extends BaseModel
         'slug',
         'locale',
         'title',
+        'title_en',
         'description',
 
         'specification',
@@ -38,6 +39,14 @@ class ProductTranslation extends BaseModel
         'product_preservation',
         'content_overview',
 
+        'image',
+        'banner',
+        'image_harvest_season',
+        'images_characteristics',
+        'images_product_process',
+        'images_package_specification',
+        'images_preservation_methods',
+
         'seo_meta_title',
         'seo_slug',
         'seo_meta_description',
@@ -49,7 +58,14 @@ class ProductTranslation extends BaseModel
     ];
 
     protected $casts = [
-        'questions' => 'array'
+        'questions' => 'array',
+        'image' => 'array',
+        'banner' => 'array',
+        'image_harvest_season' => 'array',
+        'images_characteristics' => 'array',
+        'images_product_process' => 'array',
+        'images_package_specification' => 'array',
+        'images_preservation_methods' => 'array',
     ];
 
     public function product()

@@ -45,7 +45,6 @@ class Product extends BaseModel
         'position',
         'position_flash_sale',
         'images',
-        'image',
         'video_url',
         'sku',
         'price',
@@ -65,6 +64,7 @@ class Product extends BaseModel
         'harvest_season',
         'product_process',
 
+        'image',
         'banner',
         'image_harvest_season',
         'images_characteristics',
@@ -81,6 +81,7 @@ class Product extends BaseModel
         'slug',
         'locale',
         'title',
+        'title_en',
         'content',
         'description',
         'specification',
@@ -95,6 +96,14 @@ class Product extends BaseModel
         'product_process',
         'product_preservation',
         'content_overview',
+
+        'image',
+        'banner',
+        'image_harvest_season',
+        'images_characteristics',
+        'images_product_process',
+        'images_package_specification',
+        'images_preservation_methods',
 
         'seo_meta_title',
         'seo_slug',
@@ -382,6 +391,7 @@ class Product extends BaseModel
         return  [
             'id' => $this->id,
             'title' => $this->title,
+            'title_en' => $this->title_en,
             'sku' => $this->sku,
             'description' => $this->description,
             'category' => $this->category,

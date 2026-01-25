@@ -9,6 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('product_translations', function (Blueprint $table) {
+            $table->string('title_en')->nullable();
             $table->string('title_overview')->nullable();
             $table->text('content_overview')->nullable();
 
@@ -26,6 +27,7 @@ return new class extends Migration
     {
         Schema::table('product_translations', function (Blueprint $table) {
             $table->dropColumn([
+                'title_en',
                 'title_overview',
                 'content_overview',
                 'title_characteristics',

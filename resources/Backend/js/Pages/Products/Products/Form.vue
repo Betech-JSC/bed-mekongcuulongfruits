@@ -19,6 +19,14 @@
                             label: 'Tiêu đề',
                         }"
                     />
+                    <Field
+                        v-model="form.title_en"
+                        :field="{
+                            type: 'text',
+                            name: 'title_en',
+                            label: 'Tiêu đề tiếng Anh',
+                        }"
+                    />
                 </div>
             </div>
             <div class="card">

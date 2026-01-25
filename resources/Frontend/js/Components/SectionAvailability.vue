@@ -18,8 +18,8 @@
                     <div class="flex items-center gap-4">
                         <div v-for="(itemCertificate, indexCertificate) in certifications" :key="indexCertificate"
                             class="w-auto h-[90px] xl:h-[120px]">
-                            <JPicture :src="itemCertificate.image.url"
-                                :alt="itemCertificate.image.alt || itemCertificate.title"
+                            <JPicture :src="itemCertificate.image?.url"
+                                :alt="itemCertificate.image?.alt || itemCertificate.title"
                                 class="w-full h-full object-contain" />
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     @swiper="onSwiper" @slideChange="onSlideChange" class="availability-swiper">
                     <swiper-slide v-for="(item, index) in items" :key="index">
                         <div class="">
-                            <JPicture :src="item.image.url" :alt="item.image.alt || item.title"
+                            <JPicture :src="item.image?.url" :alt="item.image?.alt || item.title"
                                 class="w-full h-full object-contain" />
                         </div>
                     </swiper-slide>

@@ -52,6 +52,7 @@ class ProductCategory extends BaseModel
         'locale',
         'menu_title',
         'title',
+        'title_en',
         'slug',
         'banner',
         'description',
