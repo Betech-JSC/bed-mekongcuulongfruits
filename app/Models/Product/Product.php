@@ -335,6 +335,7 @@ class Product extends BaseModel
             'image' => $this->image,
             'sku' => $this->sku,
             'description' => $this->description,
+            'output' => $this->output,
 
             'banner' => $this->getImageDetail($this->banner),
 
@@ -387,6 +388,7 @@ class Product extends BaseModel
             'content' => transform_richtext($this->content),
             'slug' => $this->seo_slug ?? $this->slug,
             'images' => $images,
+            'output' => $this->output,
             'price' => $this->price ?? 0,
 
             'title_overview' => $this->title_overview,

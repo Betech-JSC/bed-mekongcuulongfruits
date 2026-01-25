@@ -80,8 +80,6 @@ class ProductController extends Controller
                 ->whereSlug($slug)
                 ->firstOrFail();
 
-            dd($product->transformDetails());
-
             $data = [
                 'product' => $product->transformDetails(),
                 'seo' => $product->transformSeo(),
