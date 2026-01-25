@@ -29,10 +29,8 @@ class Product extends BaseModel
     ];
 
     public $with = [
-        'translations',
         'categories',
         'brand',
-        'flashSales'
     ];
 
     public $fillable = [
@@ -84,6 +82,7 @@ class Product extends BaseModel
         'title_en',
         'content',
         'description',
+        'output',
         'specification',
 
         'title_overview',
@@ -96,14 +95,6 @@ class Product extends BaseModel
         'product_process',
         'product_preservation',
         'content_overview',
-
-        'image',
-        'banner',
-        'image_harvest_season',
-        'images_characteristics',
-        'images_product_process',
-        'images_package_specification',
-        'images_preservation_methods',
 
         'seo_meta_title',
         'seo_slug',
@@ -351,15 +342,31 @@ class Product extends BaseModel
             'value' => $this->id,
             'slug' => $this->seo_slug ?? $this->slug,
             'category' => $this->category,
-            'image' => $this->category,
+            'image' => $this->image,
             'sku' => $this->sku,
             'description' => $this->description,
-            'is_new' => $this->is_new,
-            'is_sale' => $this->isFlashSale(),
-            'is_stock' => $this->is_stock,
-            'price' =>  $this->price,
-            'old_price' => $this->old_price,
-            'image' => $this->getImageDetail($this->image),
+
+            'banner' => collect($this->banner)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'image' => collect($this->image)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'image_harvest_season' => collect($this->image_harvest_season)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_characteristics' => collect($this->images_characteristics)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_product_process' => collect($this->images_product_process)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_package_specification' => collect($this->images_package_specification)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
+            'images_preservation_methods' => collect($this->images_preservation_methods)->map(function ($item) {
+                return $this->getImageDetail($item);
+            }),
 
         ];
 
@@ -379,13 +386,22 @@ class Product extends BaseModel
 
     public function transformDetails()
     {
-
-        $images = $variant['images'] ?? collect($this->images)
+        $images = collect($this->images)
             ->map(function ($item) {
                 return [
                     'url' => static_url($item['path']) ?? null,
                     'alt' => $item['alt'] ?? $this->title
                 ];
+            });
+
+        $banner = collect($this->banner)
+            ->map(function ($item) {
+                return $this->getImageDetail($item);
+            });
+
+        $image = collect($this->image)
+            ->map(function ($item) {
+                return $this->getImageDetail($item);
             });
 
         return  [
@@ -411,12 +427,8 @@ class Product extends BaseModel
             'product_preservation' => $this->product_preservation,
             'content_overview' => $this->content_overview,
 
-            'banner' => collect($this->banner)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),
-            'image' => collect($this->image)->map(function ($item) {
-                return $this->getImageDetail($item);
-            }),            
+            'banner' => $banner,
+            'image' => $image,
             'image_harvest_season' => collect($this->image_harvest_season)->map(function ($item) {
                 return $this->getImageDetail($item);
             }),

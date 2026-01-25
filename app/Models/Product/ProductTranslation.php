@@ -27,6 +27,7 @@ class ProductTranslation extends BaseModel
         'content',
         'ingredient',
         'promotion',
+        'output',
 
         'title_overview',
         'content_overview',

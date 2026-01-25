@@ -80,21 +80,10 @@ class ProductController extends Controller
                 ->whereSlug($slug)
                 ->firstOrFail();
 
-            $product->increment('view_count');
-
-            $relatedProducts = $product->related();
-
-            $mostViewedProducts = Product::query()
-                ->active()
-                ->orderBy('view_count', 'desc')
-                ->take(10)
-                ->get()
-                ->map(fn($item) => $item->transform());
+            dd($product->transformDetails());
 
             $data = [
                 'product' => $product->transformDetails(),
-                'related_products' => $relatedProducts,
-                'most_viewed_products' => $mostViewedProducts,
                 'seo' => $product->transformSeo(),
 
             ];

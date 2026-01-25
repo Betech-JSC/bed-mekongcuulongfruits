@@ -22,6 +22,7 @@ class Post extends BaseModel
 
     public const TYPE_SERVICE = 'SERVICE';
     public const TYPE_POST = 'POST';
+    public const TYPE_FEEDBACK = 'FEEDBACK';
     public const TYPE_CERTIFICATE = 'CERTIFICATE';
 
     public const STATUS_LIST = [

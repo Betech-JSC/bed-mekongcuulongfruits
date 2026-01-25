@@ -28,6 +28,16 @@ class HomeController extends Controller
                 ->get()
                 ->map(fn($item) => $item->transform());
 
+            $posts = Post::query()
+                ->active()
+                ->where('type', Post::TYPE_FEEDBACK)
+                ->activeCategories()
+                ->where('is_featured', 1)
+                ->orderByPosition()
+                ->take(10)
+                ->get()
+                ->map(fn($item) => $item->transform());
+
             $certificates = Post::query()
                 ->where('type', Post::TYPE_CERTIFICATE)
                 ->active()

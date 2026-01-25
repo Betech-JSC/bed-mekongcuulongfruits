@@ -48,6 +48,15 @@
         <span>{{ tt('models.table_list.certificates') }}</span>
     </Link>
     <Link
+        v-if="can('admin.feedbacks.index')"
+        :href="route('admin.feedbacks.index')"
+        :class="{ active: isUrl('admin.feedbacks.*') }"
+        class="item"
+    >
+        <ph-newspaper-clipping-light />
+        <span>{{ tt('models.table_list.feedbacks') }}</span>
+    </Link>
+    <Link
         v-if="can('admin.contacts.index')"
         :href="route('admin.contacts.index')"
         :class="{ active: isUrl('admin.contacts.*') }"

@@ -136,6 +136,21 @@
                         }"
                     />
                     <Field
+                        v-model="form.output"
+                        :field="{
+                            type: 'select_single',
+                            name: 'output',
+                            label: 'Sản lượng',
+                            labelBy: 'label',
+                            options: [
+                                { id: 'STABLE', label: 'Ổn định' },
+                                { id: 'PLENTIFUL', label: 'Có nhiều' },
+                                { id: 'FAIRLY_LITTLE', label: 'Tương đối ít' },
+                                { id: 'RARE', label: 'Hiếm' },
+                            ],
+                        }"
+                    />
+                    <Field
                         v-model="form.is_featured"
                         :field="{
                             type: 'checkbox',
@@ -144,15 +159,6 @@
                         }"
                     />
 
-                    <Field
-                        v-model="form.view_count"
-                        :disabled="true"
-                        :field="{
-                            type: 'number',
-                            name: 'view_count',
-                            label: 'Lượt xem',
-                        }"
-                    />
                     <Field
                         v-model="form.position"
                         :field="{
@@ -266,7 +272,7 @@ export default {
                 price: this.item.price ?? 0,
                 old_price: this.item.old_price ?? 0,
                 sale_price: this.item.sale_price ?? 0,
-
+                output: this.item.output ?? 'STABLE',
                 image: this.item.image ?? [],
                 banner: this.item.banner ?? [],
                 image_harvest_season: this.item.image_harvest_season ?? [],
@@ -282,29 +288,21 @@ export default {
         item() {
             this.formData = {
                 ...this.item,
+                images: this.item.images ?? [],
                 status: this.item.status ?? 'ACTIVE',
                 view_count: this.item.view_count ?? 0,
+                price: this.item.price ?? 0,
+                old_price: this.item.old_price ?? 0,
+                sale_price: this.item.sale_price ?? 0,
+                output: this.item.output ?? 'STABLE',
+                image: this.item.image ?? [],
+                banner: this.item.banner ?? [],
+                image_harvest_season: this.item.image_harvest_season ?? [],
+                images_characteristics: this.item.images_characteristics ?? [],
+                images_product_process: this.item.images_product_process ?? [],
+                images_package_specification: this.item.images_package_specification ?? [],
+                images_preservation_methods: this.item.images_preservation_methods ?? [],
             }
-        },
-    },
-
-    methods: {
-        onNodeSelect(node) {
-            this.$toast.add({ severity: 'success', summary: 'Node Selected', detail: node.label, life: 3000 })
-        },
-        onNodeUnselect(node) {
-            this.$toast.add({ severity: 'success', summary: 'Node Unselected', detail: node.label, life: 3000 })
-        },
-        getCategories() {
-            const locale = this.getCurrentLocale()
-            this.$axios
-                .post(this.route(`admin.helper.model-data`, { locale }), {
-                    model: 'App\\Models\\Product\\ProductCategory',
-                    method: 'getNested',
-                })
-                .then((res) => {
-                    this.categories = res.data
-                })
         },
     },
 }
