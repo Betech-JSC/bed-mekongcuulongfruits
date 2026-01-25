@@ -104,17 +104,22 @@ createInertiaApp({
                         const [year, month, day] = dateString.split("-");
 
                         // Define an array of months in Vietnamese
+                        // const months = [
+                        //     "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
+                        //     "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9",
+                        //     "Tháng 10", "Tháng 11", "Tháng 12"
+                        // ];
                         const months = [
-                            "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5",
-                            "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9",
-                            "Tháng 10", "Tháng 11", "Tháng 12"
+                            "1", "2", "3", "4", "5",
+                            "6", "7", "8", "9",
+                            "10", "11", "12"
                         ];
 
                         // Get the correct month from the array (index is month - 1)
                         const formattedMonth = months[parseInt(month, 10) - 1];
 
                         // Return the formatted date
-                        return `${day} ${formattedMonth}, ${year}`;
+                        return `${day}/${formattedMonth > 9 ? formattedMonth : '0' + formattedMonth}/${year}`;
                     },
                     toNumber: function (value) {
                         return new Intl.NumberFormat('vi-VN', {
