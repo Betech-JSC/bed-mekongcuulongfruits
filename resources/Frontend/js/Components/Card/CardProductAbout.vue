@@ -4,13 +4,13 @@
             slug: item.slug,
         })
             " class="aspect-w-1 aspect-h-1 block relative overflow-hidden rounded-xl">
-        <JPicture :src="item.image?.url || '/assets/images/demo/image-product.jpg'" :alt="item.title"
-            wrapperClass="picture-cover"
+        <JPicture :src="item.image?.static_url || '/assets/images/placeholder-square.png'"
+            :alt="item.image?.alt || item.title" wrapperClass="picture-cover"
             class="w-full h-full object-cover lg:group-hover:scale-95 duration-300 ease-in-out" />
         </Link>
         <div class="md:space-y-4 space-y-3 xl:space-y-6 p-3 rounded-xl">
             <div class="space-y-1">
-                <div class="body-2 text-gray-900">{{ item.subTitle }}</div>
+                <div class="body-2 text-gray-900">{{ item.title_en || 'Chưa cập nhật' }}</div>
                 <Link :href="route('products.show', {
                     slug: item.slug,
                 })

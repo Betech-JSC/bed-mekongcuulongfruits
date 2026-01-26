@@ -1,54 +1,38 @@
 <template>
-    <header 
-        class="fixed inset-x-0 top-0 z-[1000] transition-all duration-300" 
-        :class="{ 'bg-brand-300 shadow-md': isScrolled || isToggleMenu }"
-        @mouseleave="menuSelected = null"
-    >
+    <header class="fixed inset-x-0 top-0 z-[1000] transition-all duration-300" :class="{
+        'bg-brand-300 shadow-md': isScrolled || isToggleMenu || $page.props.route.name === 'vi.posts.show' || $page.props.route.name === 'vi.jobs.show'
+    }" @mouseleave="menuSelected = null">
         <div class="relative h-full">
             <div class="container flex items-center justify-between py-2">
                 <Logo />
 
                 <ul class="hidden md:flex items-center xl:space-x-7 md:space-x-5">
                     <template v-for="(menu, index) in menus" :key="index">
-                        <li
-                            v-if="menu && menu.title !== ''"
-                            @mouseover="setMenuSelected(menu)"
-                            @mouseenter="setFirstSubMenu"
-                            class="relative group"
-                        >
-                            <div
-                                v-if="menu.subMenu && menu.subMenu.length > 0"
-                                :href="menu.slug"
+                        <li v-if="menu && menu.title !== ''" @mouseover="setMenuSelected(menu)"
+                            @mouseenter="setFirstSubMenu" class="relative group">
+                            <div v-if="menu.subMenu && menu.subMenu.length > 0" :href="menu.slug"
                                 class="flex items-center gap-1 relative duration-150 ease-in-out py-1.5 px-3 rounded-[12px]"
                                 :class="fullPath.includes(menu.slug) ? 'text-brand-100' : 'text-white lg:hover:bg-primary'"
-                                @click="menuSelected = null"
-                            >
+                                @click="menuSelected = null">
                                 <div>{{ menu.title }}</div>
                             </div>
-                            <Link
-                                v-else
-                                :href="menu.slug"
+                            <Link v-else :href="menu.slug"
                                 class="flex items-center gap-1 relative duration-150 ease-in-out p-1.5 rounded-[12px]"
                                 :class="fullPath.includes(menu.slug) ? 'text-brand-100' : 'text-white lg:hover:bg-primary'"
-                                @click="menuSelected = null"
-                            >
-                                <div>{{ menu.title }}</div>
+                                @click="menuSelected = null">
+                            <div>{{ menu.title }}</div>
                             </Link>
 
                             <!-- Desktop Dropdown -->
-                            <div 
-                                v-if="menu.subMenu && menu.subMenu.length > 0"
-                                class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-max"
-                            >
+                            <div v-if="menu.subMenu && menu.subMenu.length > 0"
+                                class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-max">
                                 <ul class="bg-white rounded-[12px] overflow-hidden py-3">
                                     <li v-for="(subItem, subIndex) in menu.subMenu" :key="subIndex">
-                                        <Link 
-                                            :href="route('products.show', { slug: subItem.slug })"
+                                        <Link :href="route('products.show', { slug: subItem.slug })"
                                             class="block px-4 py-2 body-2 text-gray-900 hover:bg-brand-200 hover:text-brand-500 transition-colors duration-300 ease-in-out"
-                                            :class="{'bg-brand-50 text-brand-500': fullPath.includes(subItem.slug)}"
-                                            @click="menuSelected = null"
-                                        >
-                                            {{ subItem.title }}
+                                            :class="{ 'bg-brand-50 text-brand-500': fullPath.includes(subItem.slug) }"
+                                            @click="menuSelected = null">
+                                        {{ subItem.title }}
                                         </Link>
                                     </li>
                                 </ul>
@@ -66,53 +50,37 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div
-                class="fixed md:top-[var(--header-height-md)] top-[var(--header-height-sm)] w-full h-full z-[1000] lg:hidden"
-                :class="isToggleMenu ? 'right-0' : '-right-full'"
-                style="transition: right 0.5s"
-            >
-                <div
-                    class="w-full md:w-[50vw] h-full bg-primary-25 absolute z-30 duration-300 px-6 py-10 space-y-4"
-                    :class="isToggleMenu ? 'right-0' : '-right-full'"
-                    style="transition: right 0.5s"
-                >
+            <div class="fixed md:top-[var(--header-height-md)] top-[var(--header-height-sm)] w-full h-full z-[1000] lg:hidden"
+                :class="isToggleMenu ? 'right-0' : '-right-full'" style="transition: right 0.5s">
+                <div class="w-full md:w-[50vw] h-full bg-primary-25 absolute z-30 duration-300 px-6 py-10 space-y-4"
+                    :class="isToggleMenu ? 'right-0' : '-right-full'" style="transition: right 0.5s">
                     <ul class="space-y-4">
                         <template v-for="(menuMb, menuMbIndex) in menus" :key="menuMbIndex">
-                            <li
-                                class="flex flex-col py-2 border-b border-gray-100 last:border-0"
-                                :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'"
-                            >
+                            <li class="flex flex-col py-2 border-b border-gray-100 last:border-0"
+                                :class="fullPath.includes(menuMb.slug) ? 'text-primary-800' : 'text-primary-900'">
                                 <div class="flex items-center justify-between w-full">
                                     <Link :href="menuMb.slug" @click="closeMenu()" class="flex-1">
-                                        {{ menuMb.title }}
+                                    {{ menuMb.title }}
                                     </Link>
-                                    <button 
-                                        v-if="menuMb.subMenu && menuMb.subMenu.length > 0"
+                                    <button v-if="menuMb.subMenu && menuMb.subMenu.length > 0"
                                         @click="toggleMobileSubMenu(menuMbIndex)"
-                                        class="p-2 -mr-2 text-primary-600 hover:text-primary-800 focus:outline-none"
-                                    >
-                                        <DropdownArrow 
-                                            class="w-5 h-5 transition-transform duration-300"
-                                            :class="{ 'rotate-180': activeMobileSubMenus.includes(menuMbIndex) }"
-                                        />
+                                        class="p-2 -mr-2 text-primary-600 hover:text-primary-800 focus:outline-none">
+                                        <DropdownArrow class="w-5 h-5 transition-transform duration-300"
+                                            :class="{ 'rotate-180': activeMobileSubMenus.includes(menuMbIndex) }" />
                                     </button>
                                 </div>
 
                                 <!-- Mobile Submenu Accordion -->
-                                <div 
-                                    v-if="menuMb.subMenu && menuMb.subMenu.length > 0"
+                                <div v-if="menuMb.subMenu && menuMb.subMenu.length > 0"
                                     class="overflow-hidden transition-[max-height] duration-300 ease-in-out"
-                                    :style="{ maxHeight: activeMobileSubMenus.includes(menuMbIndex) ? '500px' : '0px' }"
-                                >
+                                    :style="{ maxHeight: activeMobileSubMenus.includes(menuMbIndex) ? '500px' : '0px' }">
                                     <ul class="pl-4 mt-2 space-y-2 border-l-2 border-primary-200 ml-1">
                                         <li v-for="(subItem, subIndex) in menuMb.subMenu" :key="subIndex">
-                                            <Link 
-                                                :href="route('products.show', { slug: subItem.slug })"
+                                            <Link :href="route('products.show', { slug: subItem.slug })"
                                                 @click="closeMenu()"
                                                 class="block py-1 text-sm text-primary-700 hover:text-primary-900"
-                                                :class="{'font-medium text-primary-900': fullPath.includes(subItem.slug)}"
-                                            >
-                                                {{ subItem.title }}
+                                                :class="{ 'font-medium text-primary-900': fullPath.includes(subItem.slug) }">
+                                            {{ subItem.title }}
                                             </Link>
                                         </li>
                                     </ul>
@@ -128,11 +96,9 @@
         </div>
 
         <!-- Background Overlay -->
-        <div
-            @mouseenter="setBackgroundHover('leave')"
+        <div @mouseenter="setBackgroundHover('leave')"
             :class="hoverBackground ? 'visible duration-100' : 'invisible duration-100'"
-            class="absolute w-screen h-screen bg-black opacity-50 z-1"
-        ></div>
+            class="absolute w-screen h-screen bg-black opacity-50 z-1"></div>
     </header>
 </template>
 
@@ -270,7 +236,7 @@ export default {
                     el.style.setProperty('display', 'none', 'important')
                     try {
                         el.parentNode?.removeChild(el)
-                    } catch {}
+                    } catch { }
                 })
 
                 const tt = document.getElementById('goog-gt-tt')
@@ -295,7 +261,7 @@ export default {
             try {
                 document.body.style.setProperty('top', '0px', 'important')
                 document.documentElement.style.setProperty('top', '0px', 'important')
-            } catch {}
+            } catch { }
         },
         injectCssHacks() {
             const css = `
@@ -317,7 +283,7 @@ export default {
                     banner.style.setProperty('display', 'none', 'important')
                     try {
                         banner.remove()
-                    } catch {}
+                    } catch { }
                 }
                 this.ensureBodyTop()
             })

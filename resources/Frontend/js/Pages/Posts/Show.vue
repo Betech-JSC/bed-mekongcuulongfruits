@@ -19,12 +19,8 @@
                     </div>
                     <div class="col-span-full lg:col-span-7">
                         <div class="aspect-w-8 aspect-h-5">
-                            <JPicture
-                                src="/assets/images/posts/banner.jpg"
-                                alt="image demo"
-                                wrapperClass="picture-cover"
-                                class="w-full h-full object-cover"
-                            />
+                            <JPicture src="/assets/images/posts/banner.jpg" alt="image demo"
+                                wrapperClass="picture-cover" class="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -34,8 +30,7 @@
             <div class="container">
                 <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
                     <div
-                        class="lg:col-span-10 lg:col-start-2 col-span-full xl:col-span-8 xl:col-start-3 pb-16 border-b border-[#F2F2F2]"
-                    >
+                        class="lg:col-span-10 lg:col-start-2 col-span-full xl:col-span-8 xl:col-start-3 pb-16 border-b border-[#F2F2F2]">
                         <div class="label-1 text-black font-semibold">
                             Vietnam’s fruit and vegetable exports reached nearly US$1.3 billion in September, a record
                             high, driven by strong shipments of durians and rising demand for processed products,
@@ -103,11 +98,8 @@
             <div class="container space-y-4 md:space-y-6 xl:space-y-10">
                 <h2 class="display-2 text-center uppercase font-bold">Related posts</h2>
                 <div class="grid md:grid-cols-3 gap-4 md:gap-6 xl:gap-12">
-                    <CardCardPost
-                        v-for="(itemPost, indexPost) in posts.data.slice(1, 4)"
-                        :key="indexPost"
-                        :item="itemPost"
-                    />
+                    <CardCardPost v-for="(itemPost, indexPost) in posts.data.slice(1, 4)" :key="indexPost"
+                        :item="itemPost" />
                 </div>
             </div>
         </section>
@@ -219,10 +211,3 @@ export default {
     },
 }
 </script>
-
-
-<style lang="scss" scoped>
-.prose-blog {
-
-}
-</style>

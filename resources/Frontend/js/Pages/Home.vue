@@ -1,8 +1,8 @@
 <template>
     <main>
-        <SectionHeroSlider :items="slidersHero" />
-        <SectionProducts :items="products" />
-        <SectionAvailability :items="charts" :certifications="certificates" />
+        <SectionHeroSlider :items="sliders" />
+        <SectionProducts :items="$page.props.data.products" />
+        <SectionAvailability :items="$page.props.data.products" :certifications="certificates" />
         <SectionFeedback :items="feedbacks" />
         <SectionHotNews :items="posts" />
         <section class="relative">
@@ -24,44 +24,9 @@ import SectionProducts from '@/Components/SectionProducts.vue'
 
 export default {
     components: { Arrow, SectionHeroSlider, SectionProducts, SectionAvailability, SectionFeedback, SectionHotNews },
-    props: ['certificates', 'products', 'posts'],
+    props: ['certificates', 'products', 'posts', 'sliders'],
     data() {
         return {
-            slidersHero: [
-                {
-                    image: {
-                        url: '/assets/images/demo/image-slider-1.jpg',
-                        alt: 'image demo',
-                    },
-                    image_mobile: {
-                        url: '/assets/images/demo/image-slider-1.jpg',
-                        alt: 'image demo',
-                    },
-                    title: 'Bringing the Essence of the Mekong Delta to the World',
-                },
-                {
-                    image: {
-                        url: '/assets/images/demo/image-slider-2.jpg',
-                        alt: 'image demo',
-                    },
-                    image_mobile: {
-                        url: '/assets/images/demo/image-slider-2.jpg',
-                        alt: 'image demo',
-                    },
-                    title: 'Bringing the Essence of the Mekong Delta to the World',
-                },
-                {
-                    image: {
-                        url: '/assets/images/demo/image-slider-3.jpg',
-                        alt: 'image demo',
-                    },
-                    image_mobile: {
-                        url: '/assets/images/demo/image-slider-3.jpg',
-                        alt: 'image demo',
-                    },
-                    title: 'Bringing the Essence of the Mekong Delta to the World',
-                },
-            ],
             charts: [
                 {
                     icon: {

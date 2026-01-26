@@ -5,7 +5,7 @@
         <Footer />
         <JamBackToTop />
         <PopupCartSuccess :open="isShowPopup" />
-        <SocialFixed />
+        <!-- <SocialFixed /> -->
     </div>
 </template>
 <script>
@@ -77,10 +77,12 @@ export default {
 .cursor-follow-leave-active {
     transition: transform 0.5s ease, opacity 0.5s ease;
 }
+
 .cursor-follow-enter {
     transform: scale(0.5) translateY(-20px);
     opacity: 0;
 }
+
 .cursor-follow-leave-to {
     transform: scale(0.5) translateY(20px);
     opacity: 0;

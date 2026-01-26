@@ -24,7 +24,7 @@
                 <swiper ref="swiperRef" :slides-per-view="4" :space-between="32" :loop="true"
                     :autoplay="{ delay: 1000, disableOnInteraction: false }" :breakpoints="breakpoints"
                     @swiper="onSwiperInit" class="swiper-product">
-                    <swiper-slide v-for="(item, index) in $page.props.data.products" :key="index">
+                    <swiper-slide v-for="(item, index) in items" :key="index">
                         <CardCardProduct :item="item" />
                     </swiper-slide>
                 </swiper>

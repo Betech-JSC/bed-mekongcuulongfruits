@@ -13,13 +13,14 @@
                                 <Location />
                                 <span>{{ itemJob.work_address }}</span>
                             </div>
+                            <Link :href="route('jobs.show', { slug: itemJob.slug })" class="block">
                             <h3 class="button-1 font-bold text-gray-900">{{ itemJob.title }}</h3>
+                            </Link>
                             <div class="flex items-center gap-3 body-1 text-gray-700">
                                 <span>Vacancies: {{ itemJob.quantity }}</span>
                                 <span>|</span>
                                 <span>Deadline: {{ formatDate(itemJob.expected_time) }}</span>
                             </div>
-
                         </div>
                     </div>
                 </div>

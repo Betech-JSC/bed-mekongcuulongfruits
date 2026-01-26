@@ -28,15 +28,15 @@
             <div class="space-y-6">
                 <div class="flex items-center justify-between">
                     <div class="headline-1 font-bold text-brand-100 uppercase">Availability season</div>
-                    <div class="flex items-center gap-8">
+                    <div class="flex items-center md:gap-6 gap-4 xl:gap-8">
                         <!-- Button Pagination -->
                         <button @click="slidePrev"
-                            class="w-12 h-12 flex items-center justify-center text-brand-100 lg:hover:text-brand-300 duration-300 ease-in-out"
+                            class="md:w-12 md:h-12 w-8 h-8 flex items-center justify-center text-brand-100 lg:hover:text-brand-300 duration-300 ease-in-out"
                             :disabled="isBeginning" :class="{ 'opacity-50 cursor-not-allowed': isBeginning }">
                             <ArrowSlider class="rotate-180" />
                         </button>
                         <button @click="slideNext"
-                            class="w-12 h-12 flex items-center justify-center text-brand-100 lg:hover:text-brand-300 duration-300 ease-in-out"
+                            class="md:w-12 md:h-12 w-8 h-8 flex items-center justify-center text-brand-100 lg:hover:text-brand-300 duration-300 ease-in-out"
                             :disabled="isEnd" :class="{ 'opacity-50 cursor-not-allowed': isEnd }">
                             <ArrowSlider />
                         </button>
@@ -54,8 +54,8 @@
                                 ">
                             <div class="w-8 h-8">
                                 <div class="aspect-w-1 aspect-h-1">
-                                    <JPicture :src="item.icon.url" :alt="item.icon.alt || item.title"
-                                        class="w-full h-full object-cover" />
+                                    <JPicture :src="item.image?.static_url || '/assets/images/placeholder-square.png'"
+                                        :alt="item.image?.alt || item.title" class="w-full h-full object-cover" />
                                 </div>
                             </div>
                             <div class="flex-1 w-max">{{ item.title }}</div>
@@ -67,9 +67,18 @@
                 <swiper :modules="modules" :slides-per-view="1" :space-between="24" :loop="false" :navigation="false"
                     @swiper="onSwiper" @slideChange="onSlideChange" class="availability-swiper">
                     <swiper-slide v-for="(item, index) in items" :key="index">
-                        <div class="">
-                            <JPicture :src="item.image?.url" :alt="item.image?.alt || item.title"
+                        <div v-if="item.image_harvest_season">
+                            <JPicture :src="item.image_harvest_season?.static_url"
+                                :alt="item.image_harvest_season?.alt || item.title"
                                 class="w-full h-full object-contain" />
+                        </div>
+                        <div v-else class=" flex flex-col items-center xl:gap-8 md:gap-6 gap-4">
+                            <div class="max-w-[150px] md:max-w-[320px] w-full">
+                                <JPicture src="/assets/images/placeholder-square.png" alt="image empty chart"
+                                    class="w-full h-full object-cover" />
+                            </div>
+                            <h3 class="headline-3 font-bold uppercase text-primary max-md:hidden">Chưa có thông tin biểu
+                                đồ</h3>
                         </div>
                     </swiper-slide>
                 </swiper>

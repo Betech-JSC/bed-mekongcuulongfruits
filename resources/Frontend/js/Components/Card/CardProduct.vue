@@ -10,7 +10,7 @@
         </Link>
         <div class="md:space-y-4 space-y-3 xl:space-y-6 bg-white p-3 rounded-xl h-full">
             <div class="space-y-1">
-                <div class="body-2 text-gray-900">{{ item.subTitle }}</div>
+                <div class="body-2 text-gray-900">{{ item.title_en || 'Chưa cập nhật' }}</div>
                 <Link :href="route('products.show', {
                     slug: item.slug,
                 })
@@ -19,7 +19,8 @@
                 {{ item.title }}
                 </Link>
             </div>
-            <div class="body-2 text-gray-900 line-clamp-3 h-[59px] overflow-hidden" v-html="item.content_overview">
+            <div class="body-2 text-gray-900 line-clamp-3 h-[57px] md:h-[59px] overflow-hidden"
+                v-html="item.content_overview">
             </div>
             <div class="flex items-center gap-1">
                 <div class="body-2 text-gray-9">Sản lượng</div>

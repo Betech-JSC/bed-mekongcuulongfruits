@@ -43,15 +43,15 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="md:space-y-6 space-y-4 xl:space-y-8">
+                    <div class="md:space-y-6 space-y-4 xl:space-y-8 max-w-[150px]">
                         <div class="label-1 font-semibold text-brown">Sản phẩm</div>
                         <ul class="md:space-y-3 space-y-2 xl:space-y-4">
-                            <li v-for="(itemProduct, indexProduct) in categories" :key="indexProduct">
-                                <Link v-if="itemProduct.slug" :href="route('products.categories', {
+                            <li v-for="(itemProduct, indexProduct) in $page.props.data.products" :key="indexProduct">
+                                <Link v-if="itemProduct.slug" :href="route('products.show', {
                                     slug: itemProduct.slug,
                                 })
                                     " class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
-                                {{ itemProduct.title }}
+                                {{ itemProduct.title_en || itemProduct.title }}
                                 </Link>
                             </li>
                         </ul>
@@ -133,14 +133,14 @@ export default {
                 },
                 {
                     title: this.tt('Products'),
-                    slug: this.route('products.index'),
+                    slug: this.route('products.show', { slug: this.$page.props.data.products[0]?.slug }),
                     type: 'products',
                     subMenu: [],
                 },
                 {
                     title: this.tt('Careers'),
-                    slug: this.route('services'),
-                    type: 'services',
+                    slug: this.route('jobs'),
+                    type: 'jobs',
                     subMenu: [],
                 },
                 {
