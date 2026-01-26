@@ -22,11 +22,13 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\RegionController;
 use App\Http\Controllers\Backend\ConfigController;
+use App\Http\Controllers\Backend\FeedbackController;
 
 Route::localized(function () {
     Route::middleware(['auth:admin'])->name('admin.')->group(function () {
         Route::module(PostController::class);
         Route::module(CertificateController::class);
+        Route::module(FeedbackController::class);
         Route::module(ProductController::class);
         Route::module(BrandController::class);
         Route::module(PostCategoryController::class);
