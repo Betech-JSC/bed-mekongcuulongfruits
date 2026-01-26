@@ -8,8 +8,8 @@
                 </div>
                 <div class="col-span-full lg:col-span-5 lg:ml-auto">
                     <Link :href="route('contact')" class="btn btn-secondary space-x-3 flex items-center justify-center">
-                        <span>{{ tt('See more') }}</span>
-                        <Arrow />
+                    <span>{{ tt('See more') }}</span>
+                    <Arrow />
                     </Link>
                 </div>
             </div>
@@ -21,17 +21,10 @@
                     <ArrowSlider />
                 </button>
                 <!-- Sliders -->
-                <swiper
-                    ref="swiperRef"
-                    :slides-per-view="4"
-                    :space-between="32"
-                    :loop="true"
-                    :autoplay="{ delay: 1000, disableOnInteraction: false }"
-                    :breakpoints="breakpoints"
-                    @swiper="onSwiperInit"
-                    class="swiper-product"
-                >
-                    <swiper-slide v-for="(item, index) in items" :key="index">
+                <swiper ref="swiperRef" :slides-per-view="4" :space-between="32" :loop="true"
+                    :autoplay="{ delay: 1000, disableOnInteraction: false }" :breakpoints="breakpoints"
+                    @swiper="onSwiperInit" class="swiper-product">
+                    <swiper-slide v-for="(item, index) in $page.props.data.products" :key="index">
                         <CardCardProduct :item="item" />
                     </swiper-slide>
                 </swiper>
@@ -112,9 +105,11 @@ export default {
 .btn-swiper {
     @apply absolute z-10 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-brand-100 rounded-full lg:hover:bg-brand-100 lg:hover:text-brand-200 hidden lg:flex items-center justify-center duration-300 ease-in-out;
 }
+
 .swiper-button-prev {
     @apply -left-4 xl:-left-16 rotate-180;
 }
+
 .swiper-button-next {
     @apply -right-4 xl:-right-16;
 }
