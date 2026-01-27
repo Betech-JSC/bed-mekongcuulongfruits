@@ -27,7 +27,7 @@ class HomeController extends Controller
                 ->get()
                 ->map(fn($item) => $item->transform());
 
-            $posts = Post::query()
+            $feedbacks = Post::query()
                 ->active()
                 ->where('type', Post::TYPE_FEEDBACK)
                 ->orderByPosition()
@@ -51,6 +51,7 @@ class HomeController extends Controller
             $data = [
                 'sliders' => $sliders,
                 'posts' => $posts,
+                'feedbacks' => $feedbacks,
                 'certificates' => $certificates,
                 'products' => $products,
             ];

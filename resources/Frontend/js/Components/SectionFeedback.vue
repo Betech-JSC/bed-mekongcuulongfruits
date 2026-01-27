@@ -20,7 +20,7 @@
                         <swiper-slide v-for="(item, index) in items" :key="index">
                             <div class="bg-white p-6 rounded-[8px] space-y-6">
                                 <ul class="flex items-center gap-1">
-                                    <li v-for="(itemStar, indexStar) in item.rating" :key="indexStar">
+                                    <li v-for="indexStar in 5" :key="indexStar">
                                         <Star />
                                     </li>
                                 </ul>
