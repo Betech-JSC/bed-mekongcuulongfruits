@@ -20,8 +20,7 @@ class HomeController extends Controller
 
             $posts = Post::query()
                 ->active()
-                // ->where('type', Post::TYPE_POST)
-                // ->activeCategories()
+                ->where('type', Post::TYPE_POST)
                 ->where('is_featured', 1)
                 ->orderByPosition()
                 ->take(10)
@@ -30,8 +29,7 @@ class HomeController extends Controller
 
             $posts = Post::query()
                 ->active()
-                // ->where('type', Post::TYPE_FEEDBACK)
-                // ->activeCategories()
+                ->where('type', Post::TYPE_FEEDBACK)
                 ->where('is_featured', 1)
                 ->orderByPosition()
                 ->take(10)

@@ -258,8 +258,7 @@ class Post extends BaseModel
             'slug' => $this->seo_slug ?? $this->slug,
             'published_at' => $this->published_at,
             'description' => $this->description,
-            'category' => $this->category,
-            'categories' => $categories,
+            'content' => transform_richtext($this->content),
             'image' => $this->getImageDetail($this->image),
             'url' => $this->current_url
         ];
