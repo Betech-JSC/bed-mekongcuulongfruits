@@ -30,7 +30,6 @@ class HomeController extends Controller
             $posts = Post::query()
                 ->active()
                 ->where('type', Post::TYPE_FEEDBACK)
-                ->where('is_featured', 1)
                 ->orderByPosition()
                 ->take(10)
                 ->get()
