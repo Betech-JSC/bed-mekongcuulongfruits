@@ -20,6 +20,14 @@
                             label: 'Mô tả',
                         }"
                     />
+                    <Field
+                        v-model="form.content"
+                        :field="{
+                            type: 'text',
+                            name: 'content',
+                            label: 'Nội dung',
+                        }"
+                    />
                 </div>
             </div>
             <SeoFields :modelValue="form" @update:modelValue="form = $event" />

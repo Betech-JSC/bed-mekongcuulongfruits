@@ -48,13 +48,13 @@
         <span>{{ tt('models.table_list.certificates') }}</span>
     </Link>
     <Link
-        v-if="can('admin.feedbacks.index')"
-        :href="route('admin.feedbacks.index')"
-        :class="{ active: isUrl('admin.feedbacks.*') }"
+        v-if="can('admin.feedback.index')"
+        :href="route('admin.feedback.index')"
+        :class="{ active: isUrl('admin.feedback.*') }"
         class="item"
     >
         <ph-newspaper-clipping-light />
-        <span>{{ tt('models.table_list.feedbacks') }}</span>
+        <span>{{ tt('models.table_list.feedback') }}</span>
     </Link>
     <Link
         v-if="can('admin.contacts.index')"
