@@ -36,7 +36,7 @@ class PostController extends Controller
                 ->orderBy('id', 'desc')
                 ->take(4)
                 ->get()
-                ->map(fn($item) => $item->transform());                
+                ->map(fn($item) => $item->transform());
 
             $data = [
                 'categories' => $categories,
@@ -59,39 +59,22 @@ class PostController extends Controller
         try {
             $post = $this->model::query()
                 ->active()
-                ->activeCategories()
                 ->whereSlug($slug)
                 ->firstOrFail();
-
-            $category = $post->categories
-                ->where('status', PostCategory::STATUS_ACTIVE)
-                ->values()
-                ->first();
 
             $post->increment('view_count');
 
             $relatedPosts = $post->related();
 
-            $topPosts = Post::query()
-                ->active()
-                ->orderByPosition()
-                ->whereHas('categories', function ($query) use ($category) {
-                    $query->where('id', $category?->id);
-                })
-                ->orderBy('id', 'desc')
-                ->take(1)
-                ->get()
-                ->map(fn($item) => $item->transform());
 
             $breadcrumbs = [
                 ['title' => 'Tin tức', 'route' => 'posts.index'],
-                ['title' => $category->title, 'route' => $category->slug],
+                ['title' => $post->title, 'route' => 'posts.show', 'params' => ['slug' => $post->slug]],
             ];
 
             $data = [
                 'post' => $post->transformDetails(),
                 'related_posts' => $relatedPosts,
-                'top_posts' => $topPosts,
                 'seo' => $post->transformSeo(),
                 'breadcrumbs' => $breadcrumbs,
             ];
