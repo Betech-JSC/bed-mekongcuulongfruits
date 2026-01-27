@@ -1,34 +1,21 @@
 <template>
-    <section v-if="items && items.length" class="relative py-12 overflow-hidden">
-        <div class="container">
+    <section v-if="items && items.length" class="bg-primary-25 py-12 md:py-20 xl:py-[112px]">
+        <div class="container space-y-4 md:space-y-6 xl:space-y-10">
+            <h2 class="display-2 text-center uppercase font-bold">Related posts</h2>
             <div class="relative">
-                <div class="flex items-center justify-between">
-                    <h2 class="display-3 text-primary uppercase">Các bài viết liên quan</h2>
-                    <div class="hidden md:flex items-center gap-4 md:gap-5 xl:gap-6">
-                        <button class="btn-swiper swiper-button-prev" @click="onPrevClick">
-                            <ArrowSlider />
-                        </button>
-                        <button class="btn-swiper swiper-button-next" @click="onNextClick">
-                            <ArrowSlider />
-                        </button>
-                    </div>
-                </div>
-
-                <div class="relative mt-6 md:mt-8 xl:mt-10 md:mb-6 mb-4 xl:mb-8">
-                    <swiper
-                        ref="swiperRef"
-                        :slides-per-view="4"
-                        :space-between="32"
-                        :loop="true"
-                        :autoplay="{ delay: 1000, disableOnInteraction: false }"
-                        :breakpoints="breakpoints"
-                        @swiper="onSwiperInit"
-                    >
-                        <swiper-slide v-for="(item, index) in items" :key="index">
-                            <CardCardPost :item="item" />
-                        </swiper-slide>
-                    </swiper>
-                </div>
+                <button class="btn-swiper swiper-button-prev" @click="onPrevClick">
+                    <ArrowSlider />
+                </button>
+                <button class="btn-swiper swiper-button-next" @click="onNextClick">
+                    <ArrowSlider />
+                </button>
+                <swiper ref="swiperRef" :slides-per-view="4" :space-between="32" :loop="true"
+                    :autoplay="{ delay: 1000, disableOnInteraction: false }" :breakpoints="breakpoints"
+                    @swiper="onSwiperInit">
+                    <swiper-slide v-for="(item, index) in items" :key="index">
+                        <CardCardPost :item="item" />
+                    </swiper-slide>
+                </swiper>
             </div>
         </div>
     </section>
@@ -52,7 +39,7 @@ export default {
             default: () => ({
                 320: { slidesPerView: 1, spaceBetween: 10 },
                 768: { slidesPerView: 2, spaceBetween: 20 },
-                1024: { slidesPerView: 2, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 48 },
             }),
         },
     },
@@ -101,9 +88,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .btn-swiper {
-    @apply relative text-primary-700 w-12 h-12 flex items-center justify-center;
+    @apply absolute z-10 top-1/2 -translate-y-1/2 text-primary-700 w-12 h-12 hidden lg:flex items-center justify-center;
 }
+
+.swiper-button-prev {
+    @apply xl:-left-16 lg:-left-6 -left-4 rotate-180;
+}
+
 .swiper-button-next {
-    @apply rotate-180;
+    @apply xl:-right-16 lg:-right-6 -right-4;
 }
 </style>

@@ -121,6 +121,19 @@ createInertiaApp({
                         // Return the formatted date
                         return `${day}/${formattedMonth > 9 ? formattedMonth : '0' + formattedMonth}/${year}`;
                     },
+                    formatDateBlog: function (dateString) {
+                        const [year, month, day] = dateString.split("-");
+
+                        const months = [
+                            "Jan", "Feb", "Mar", "Apr", "May",
+                            "Jun", "Jul", "Aug", "Sep",
+                            "Oct", "Nov", "Dec"
+                        ];
+
+                        const formattedMonth = months[parseInt(month, 10) - 1];
+
+                        return `${day} ${formattedMonth}, ${year}`;
+                    },
                     toNumber: function (value) {
                         return new Intl.NumberFormat('vi-VN', {
                             minimumFractionDigits: 1,
