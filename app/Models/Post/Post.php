@@ -364,6 +364,7 @@ class Post extends BaseModel
 
         if (count($relatedPosts) < $limit) {
             $addPosts = self::query()
+                ->where('type', self::TYPE_POST)
                 ->active()
                 ->when($this->category['id'] ?? false, function ($query) {
                     $query->whereHas('categories', function ($query) {

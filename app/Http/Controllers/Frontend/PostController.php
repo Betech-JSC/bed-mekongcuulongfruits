@@ -16,6 +16,7 @@ class PostController extends Controller
     {
         try {
             $posts = Post::query()
+                ->where('type', Post::TYPE_POST)
                 ->active()
                 ->filter(request()->all())
                 ->paginate(9)
@@ -31,6 +32,7 @@ class PostController extends Controller
                 ->map(fn($item) => $item->transform());
 
             $topPosts = Post::query()
+                ->where('type', Post::TYPE_POST)
                 ->active()
                 ->orderByPosition()
                 ->orderBy('id', 'desc')
@@ -58,6 +60,7 @@ class PostController extends Controller
     {
         try {
             $post = $this->model::query()
+                ->where('type', Post::TYPE_POST)
                 ->active()
                 ->whereSlug($slug)
                 ->firstOrFail();
@@ -93,6 +96,7 @@ class PostController extends Controller
     public function relatedPosts($postId)
     {
         $post = Post::query()
+            ->where('type', Post::TYPE_POST)
             ->setEagerLoads([])
             ->with('relatedPosts', 'categories')
             ->find($postId);
@@ -109,6 +113,7 @@ class PostController extends Controller
                 ->first();
 
             $items = Post::query()
+                ->where('type', Post::TYPE_POST)
                 ->active()
                 ->whereHas('categories', function ($query) use ($category) {
                     $query->where('post_categories.id', $category?->id);
