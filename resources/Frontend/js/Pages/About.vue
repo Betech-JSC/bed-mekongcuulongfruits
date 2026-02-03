@@ -15,7 +15,7 @@ export default {
     data() {
         return {
             banner: {
-                title: this.tt('About us'),
+                title: this.tt('Về chúng tôi'),
                 image: '/assets/images/about/banner.jpg',
 
             },

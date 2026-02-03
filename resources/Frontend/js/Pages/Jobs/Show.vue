@@ -25,36 +25,36 @@
             <div class="bg-brand-300 rounded-[16px] p-6 sticky top-24">
               <div class="space-y-4">
                 <div class="flex items-center gap-1">
-                  <span class="body-1 font-semibold text-primary">Work arrangement:</span>
+                  <span class="body-1 font-semibold text-primary">Hình thức làm việc:</span>
                   <span>
                     <div class="body-2">{{ job.working_position }}</div>
                   </span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <span class="body-1 font-semibold text-primary">Work location:</span>
+                  <span class="body-1 font-semibold text-primary">Địa điểm làm việc:</span>
                   <span>
                     <div class="body-2">{{ job.work_address }}</div>
                   </span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <span class="body-1 font-semibold text-primary">Vacancies:</span>
+                  <span class="body-1 font-semibold text-primary">Số lượng tuyển:</span>
                   <span>
                     <div class="body-2">{{ job.quantity }}</div>
                   </span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <span class="body-1 font-semibold text-primary">Posting date:</span>
+                  <span class="body-1 font-semibold text-primary">Ngày đăng:</span>
                   <span>
                     <div class="body-2">{{ formatDate(job.published_at) }}</div>
                   </span>
                 </div>
                 <div class="flex items-center gap-1">
-                  <span class="body-1 font-semibold text-primary">Deadline:</span>
+                  <span class="body-1 font-semibold text-primary">Hạn nộp hồ sơ:</span>
                   <span>
                     <div class="body-2">{{ formatDate(job.expected_time) }}</div>
                   </span>
                 </div>
-                <SocialShare title="Share this job" />
+                <SocialShare title="Chia sẻ công việc này" />
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@ export default {
     return {
       breadcrumbs: [
         {
-          title: 'Careers',
+          title: 'Tuyển dụng',
           link: this.route('jobs'),
         },
         {

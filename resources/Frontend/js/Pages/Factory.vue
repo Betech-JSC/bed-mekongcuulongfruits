@@ -7,19 +7,15 @@
         <section id="production-technology" class="py-12 md:py-16 xl:py-20 bg-[#E5C025]">
             <div class="container space-y-[32px] md:space-y-[56px] xl:space-y-[72px]">
                 <div class="max-w-[900px] w-full mx-auto text-gray-900 text-center headline-3 !font-medium">
-                    Our fruit processing factory is located in the heart of the Mekong Delta, close to local farms. This
-                    helps us keep every fruit fresh from harvest to export.
+                    Nhà máy chế biến trái cây của chúng tôi nằm ngay tại trung tâm của Đồng Bằng Sông Cửu Long, gần các
+                    trang trại địa phương.
+                    Điều này giúp chúng tôi giữ cho từng trái cây luôn tươi mới từ lúc thu hoạch đến khi xuất khẩu.
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 xl:gap-6">
-                    <JPicture
-                        v-for="indexImage in 6"
-                        :key="indexImage"
+                    <JPicture v-for="indexImage in 6" :key="indexImage"
                         wrapperClass="aspect-w-3 aspect-h-2 relative overflow-hidden rounded-2xl"
-                        class="w-full h-full object-cover lg:hover:scale-105 duration-300 ease-in-out"
-                        src="/assets/images/cover.jpg"
-                        mobileSrc="/assets/images/cover.jpg"
-                        alt="item image"
-                    />
+                        class="w-full h-full object-cover lg:hover:scale-105 duration-300 ease-in-out" src="/cover.jpg"
+                        mobileSrc="/cover.jpg" alt="item image" />
                 </div>
             </div>
         </section>
@@ -28,26 +24,21 @@
             <div class="container">
                 <div class="relative">
                     <div
-                        class="absolute inset-0 bg-[url('/assets/images/factory/bg-global-export.png')] bg-contain bg-no-repeat bg-top"
-                    ></div>
+                        class="absolute inset-0 bg-[url('/assets/images/factory/bg-global-export.png')] bg-contain bg-no-repeat bg-top">
+                    </div>
                     <div class="relative py-[48px] md:py-[64px] xl:py-[100px]">
-                        <div class="display-3 text-brand-100 text-center">Global Export</div>
+                        <div class="display-3 text-brand-100 text-center">Xuất Khẩu Toàn Cầu</div>
                         <div
-                            class="headline-3 text-center text-gray-900 max-w-[900px] w-full mx-auto md:mt-4 mt-3 xl:mt-6 mb-8 md:mb-14 xl:mb-16"
-                        >
-                            With strong capacity and strategic location near ports, we can deliver large volumes of
-                            fresh fruits to partners in Asia, Europe, and North America.
+                            class="headline-3 text-center text-gray-900 max-w-[900px] w-full mx-auto md:mt-4 mt-3 xl:mt-6 mb-8 md:mb-14 xl:mb-16">
+                            Với năng lực mạnh mẽ và vị trí chiến lược gần các cảng biển, chúng tôi có thể cung cấp khối
+                            lượng lớn
+                            trái cây tươi cho các đối tác ở Châu Á, Châu Âu và Bắc Mỹ.
                         </div>
                         <div class="grid md:grid-cols-2 md:gap-x-10 gap-4 xl:gap-x-14">
-                            <JPicture
-                                v-for="indexImage in 2"
-                                :key="indexImage"
+                            <JPicture v-for="indexImage in 2" :key="indexImage"
                                 wrapperClass="aspect-w-3 aspect-h-2 relative overflow-hidden rounded-2xl"
                                 class="w-full h-full object-cover lg:hover:scale-105 duration-300 ease-in-out"
-                                src="/assets/images/cover.jpg"
-                                mobileSrc="/assets/images/cover.jpg"
-                                alt="item image"
-                            />
+                                src="/cover.jpg" mobileSrc="/cover.jpg" alt="item image" />
                         </div>
                     </div>
                 </div>
@@ -61,14 +52,14 @@ export default {
     data() {
         return {
             banner: {
-                title: this.tt('Our Factory'),
+                title: this.tt('Nhà Máy Của Chúng Tôi'),
                 image: '/assets/images/factory/banner.jpg',
             },
             tabs: [
-                { title: this.tt('About our factory'), value: 'about-our-factory' },
-                { title: this.tt('Production & Technology'), value: 'production-technology' },
-                { title: this.tt('Certified Quality'), value: 'certified-quality' },
-                { title: this.tt('Global Export'), value: 'global-export' },
+                { title: this.tt('Về nhà máy'), value: 'about-our-factory' },
+                { title: this.tt('Công nghệ & Sản xuất'), value: 'production-technology' },
+                { title: this.tt('Chất lượng được chứng nhận'), value: 'certified-quality' },
+                { title: this.tt('Xuất khẩu toàn cầu'), value: 'global-export' },
             ],
         }
     },

@@ -3,10 +3,10 @@
         <div class="container">
             <div class="relative">
                 <div class="flex md:flex-row flex-col max-md:gap-3 items-center justify-between">
-                    <h2 class="display-3 text-brand-100 font-bold uppercase">Lastest new</h2>
+                    <h2 class="display-3 text-brand-100 font-bold uppercase">Tin tức mới nhất</h2>
                     <Link :href="route('posts')" class="btn btn-secondary space-x-3 flex items-center justify-center">
-                        <span>{{ tt('See more') }}</span>
-                        <Arrow />
+                    <span>{{ tt('Xem thêm') }}</span>
+                    <Arrow />
                     </Link>
                 </div>
 
@@ -17,15 +17,9 @@
                     <button v-if="items && items.length > 3" class="btn-swiper swiper-button-next" @click="onNextClick">
                         <ArrowSlider />
                     </button>
-                    <swiper
-                        ref="swiperRef"
-                        :slides-per-view="4"
-                        :space-between="32"
-                        :loop="true"
-                        :autoplay="{ delay: 1000, disableOnInteraction: false }"
-                        :breakpoints="breakpoints"
-                        @swiper="onSwiperInit"
-                    >
+                    <swiper ref="swiperRef" :slides-per-view="4" :space-between="32" :loop="true"
+                        :autoplay="{ delay: 1000, disableOnInteraction: false }" :breakpoints="breakpoints"
+                        @swiper="onSwiperInit">
                         <swiper-slide v-for="(item, index) in items" :key="index">
                             <CardCardPost :item="item" />
                         </swiper-slide>
@@ -105,9 +99,11 @@ export default {
 .btn-swiper {
     @apply absolute z-10 top-1/2 -translate-y-1/2 w-12 h-12 bg-white text-brand-100 rounded-full lg:hover:bg-brand-100 lg:hover:text-brand-200 flex items-center justify-center duration-300 ease-in-out;
 }
+
 .swiper-button-prev {
     @apply -left-16;
 }
+
 .swiper-button-next {
     @apply -right-16;
 }

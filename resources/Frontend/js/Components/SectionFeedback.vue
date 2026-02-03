@@ -6,7 +6,7 @@
         </div>
         <div class="relative py-[94px]">
             <div class="container space-y-8">
-                <h2 class="display-3 uppercase text-center text-primary font-bold">Client feedback</h2>
+                <h2 class="display-3 uppercase text-center text-primary font-bold">Phản hồi của khách hàng</h2>
                 <div class="relative">
                     <button v-if="items && items.length > 3" class="btn-swiper swiper-button-prev" @click="onPrevClick">
                         <ArrowSlider class="rotate-180" />

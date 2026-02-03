@@ -59,7 +59,7 @@ export default {
         return {
             breadcrumbs: [
                 {
-                    title: 'News',
+                    title: 'Tin tức',
                     link: this.route('posts'),
                 },
                 {

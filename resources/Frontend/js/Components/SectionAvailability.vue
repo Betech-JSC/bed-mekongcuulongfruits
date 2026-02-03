@@ -4,16 +4,16 @@
             <div class="flex lg:flex-row flex-col items-start md:gap-6 gap-4 xl:gap-8">
                 <div class="max-w-full lg:max-w-[320px] w-full">
                     <div class="headline-2 font-bold text-brand-100 uppercase">
-                        Certified Quality, Trusted Worldwide
+                        Chất lượng được kiểm chứng, Tin cậy toàn cầu
                     </div>
                 </div>
                 <div class="md:space-y-6 space-y-4 xl:space-y-8">
                     <div class="body-1 text-gray-900">
-                        At VietNam Farmer, quality and safety are our top priorities. We comply with international
-                        standards
-                        and hold globally recognized certifications to ensure our products meet the highest requirements
-                        of
-                        importers and consumers.
+                        Tại Vietnam Farmer, chất lượng và an toàn là ưu tiên hàng đầu của chúng tôi. Chúng tôi tuân thủ
+                        các tiêu chuẩn quốc tế
+                        và nắm giữ các chứng nhận được công nhận toàn cầu để đảm bảo sản phẩm của chúng tôi đáp ứng các
+                        yêu cầu cao nhất của
+                        nhà nhập khẩu và người tiêu dùng.
                     </div>
                     <div class="flex items-center gap-4">
                         <div v-for="(itemCertificate, indexCertificate) in certifications" :key="indexCertificate"
@@ -27,7 +27,7 @@
             </div>
             <div class="space-y-6">
                 <div class="flex items-center justify-between">
-                    <div class="headline-1 font-bold text-brand-100 uppercase">Availability season</div>
+                    <div class="headline-1 font-bold text-brand-100 uppercase">Mùa vụ</div>
                     <div class="flex items-center md:gap-6 gap-4 xl:gap-8">
                         <!-- Button Pagination -->
                         <button @click="slidePrev"

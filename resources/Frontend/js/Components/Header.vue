@@ -42,7 +42,7 @@
                 </ul>
 
                 <div class="flex items-center justify-center">
-                    <Link :href="route('contact')" class="max-lg:hidden btn btn-primary">Get in touch</Link>
+                    <Link :href="route('contact')" class="max-lg:hidden btn btn-primary">Liên hệ</Link>
                     <button @click="onToggleMenu()" class="lg:hidden">
                         <Hamburger :isToggleMenu="isToggleMenu" />
                     </button>
@@ -123,37 +123,37 @@ export default {
             isScrolled: false,
             menus: [
                 {
-                    title: this.tt('Home'),
+                    title: this.tt('Trang chủ'),
                     slug: this.route('home'),
                     type: 'home',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('About us'),
+                    title: this.tt('Về chúng tôi'),
                     slug: this.route('histories.index'),
                     type: 'histories',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Products'),
+                    title: this.tt('Sản phẩm'),
                     slug: this.route('products.index'),
                     type: 'products',
                     subMenu: this.$page.props.data.products
                 },
                 {
-                    title: this.tt('Careers'),
+                    title: this.tt('Tuyển dụng'),
                     slug: this.route('jobs'),
                     type: 'jobs',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('News'),
+                    title: this.tt('Tin tức'),
                     slug: this.route('posts'),
                     type: 'posts',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Contact'),
+                    title: this.tt('Liên hệ'),
                     slug: this.route('contact'),
                     type: 'contact',
                     subMenu: [],

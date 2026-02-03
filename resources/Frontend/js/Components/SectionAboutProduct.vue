@@ -2,20 +2,19 @@
     <section class="bg-brand-300 md:py-16 py-12 xl:py-20 relative overflow-hidden">
         <div class="container md:space-y-[56px] space-y-8 xl:space-y-20">
             <div class="space-y-8">
-                <div class="headline-1 font-bold text-gray-900 text-center">Vietnam Agricultural Products Exporter
+                <div class="headline-1 font-bold text-gray-900 text-center">Nhà Xuất Khẩu Nông Sản Việt Nam
                     <br />
-                    Fresh Fruits &
-                    Agricultural Products from Vietnam
+                    Trái Cây Tươi &
+                    Nông Sản Từ Việt Nam
                 </div>
-                <div class="body-0 text-gray-900 text-center">Vietnam Farmer Co., Ltd is a company specializing in the
-                    export of fresh fruits and agricultural products from Vietnam, serving 100% international markets.
-                    We
-                    dedicate all our resources to meet stringent quality standards and customer requirements for product
-                    control.</div>
+                <div class="body-0 text-gray-900 text-center">Vietnam Farmer Co., Ltd là công ty chuyên xuất khẩu trái
+                    cây tươi và nông sản từ Việt Nam, phục vụ 100% thị trường quốc tế.
+                    Chúng tôi dành trọn nguồn lực để đáp ứng các tiêu chuẩn chất lượng nghiêm ngặt và yêu cầu kiểm soát
+                    sản phẩm của khách hàng.</div>
             </div>
 
             <div class="md:space-y-[56px] space-y-8 xl:space-y-[72px]">
-                <h2 class="display-3 font-bold text-center text-primary">Main products</h2>
+                <h2 class="display-3 font-bold text-center text-primary">Sản phẩm chính</h2>
                 <div class="relative">
                     <button class="btn-swiper swiper-button-prev" @click="onPrevClick">
                         <ArrowSlider />
@@ -35,7 +34,7 @@
             </div>
 
             <div class="md:space-y-8 space-y-6 xl:space-y-12">
-                <h2 class="display-3 font-bold text-primary">Product origins</h2>
+                <h2 class="display-3 font-bold text-primary">Nguồn gốc nông sản</h2>
 
                 <div class="space-y-8">
                     <div class="grid grid-cols-12 md:gap-5 gap-4 xl:gap-6">
@@ -58,9 +57,10 @@
                 </div>
 
                 <div class="title-2 font-medium text-center max-w-[880px] w-full mx-auto">
-                    We do not sell products – we offer total product control. Each shipment is strictly managed from
-                    cultivation, harvesting, preliminary processing, grading, packaging, to transportation, ensuring
-                    consistent quality, traceable origins, and sustainable value for international customers.
+                    Chúng tôi không chỉ bán sản phẩm – chúng tôi cung cấp sự kiểm soát toàn diện. Mỗi lô hàng đều được
+                    quản lý chặt chẽ từ
+                    vùng trồng, thu hoạch, sơ chế, phân loại, đóng gói đến vận chuyển, đảm bảo chất lượng đồng nhất,
+                    nguồn gốc rõ ràng và giá trị bền vững cho khách hàng quốc tế.
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
 
             <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
                 <div class="col-span-full lg:col-span-5 xl:col-span-4 flex flex-col justify-center gap-3 xl:gap-6">
-                    <h2 class="display-3 font-bold text-primary uppercase">Why Choose Vietnam Farmer</h2>
+                    <h2 class="display-3 font-bold text-primary uppercase">Tại sao chọn Vietnam Farmer</h2>
                     <ul class="md:space-y-3 space-y-2 xl:space-y-4">
                         <li v-for="(itemChoose, indexChoose) in whyChooses" :key="indexChoose"
                             class="flex items-center gap-2 title-2 font-semibold">
@@ -158,13 +158,13 @@ export default {
                         url: '/assets/images/about/icon-vision.png',
                         alt: 'vision'
                     },
-                    title: 'Vision',
+                    title: 'Tầm nhìn',
                     description: `
-                        <p>To become a leading Vietnamese agricultural exporter, trusted by international customers through:</p>
+                        <p>Trở thành nhà xuất khẩu nông sản Việt Nam hàng đầu, được khách hàng quốc tế tin cậy thông qua:</p>
                         <ul>
-                            <li>Diverse sourcing from key agricultural regions.</li>
-                            <li>Comprehensive quality control and export procedures meeting international standards.</li>
-                            <li>Professional and reliable services, helping Vietnamese agricultural products reach global markets.</li>
+                            <li>Nguồn cung ứng đa dạng từ các vùng nông nghiệp trọng điểm.</li>
+                            <li>Quy trình kiểm soát chất lượng và xuất khẩu toàn diện đáp ứng tiêu chuẩn quốc tế.</li>
+                            <li>Dịch vụ chuyên nghiệp và tin cậy, giúp nông sản Việt Nam vươn xa trên thị trường toàn cầu.</li>
                         </ul>
                     `,
                 },
@@ -173,12 +173,12 @@ export default {
                         url: '/assets/images/about/icon-mission.png',
                         alt: 'mission'
                     },
-                    title: 'Mission',
+                    title: 'Sứ mệnh',
                     description: `
                         <ul>
-                            <li>Provide agricultural products that meet international export standards, ensuring food safety and traceability.</li>
-                            <li>Build a sustainable supply chain, enhance the value of Vietnamese agricultural products, and secure farmers’ benefits.</li>
-                            <li>Promote Vietnamese agricultural brands through stable quality and comprehensive product control.</li>
+                            <li>Cung cấp nông sản đạt chuẩn xuất khẩu quốc tế, đảm bảo an toàn thực phẩm và truy xuất nguồn gốc.</li>
+                            <li>Xây dựng chuỗi cung ứng bền vững, nâng cao giá trị nông sản Việt và đảm bảo lợi ích cho người nông dân.</li>
+                            <li>Quảng bá thương hiệu nông sản Việt Nam thông qua chất lượng ổn định và sự kiểm soát sản phẩm toàn diện.</li>
                         </ul>
                     `,
                 },
@@ -189,41 +189,41 @@ export default {
                         url: '/assets/images/demo/image-location-1.jpg',
                         alt: "image location 1"
                     },
-                    title: 'Mekong Delta (ĐBSCL)',
-                    description: 'Leading region for fresh fruit exports.',
+                    title: 'Đồng bằng sông Cửu Long',
+                    description: 'Vùng trọng điểm xuất khẩu trái cây tươi.',
                 },
                 {
                     image: {
                         url: '/assets/images/demo/image-location-2.jpg',
                         alt: "image location 2"
                     },
-                    title: 'Southeast Vietnam',
-                    description: 'Fruits combined with industrial processing.',
+                    title: 'Đông Nam Bộ',
+                    description: 'Trái cây kết hợp chế biến công nghiệp.',
                 },
                 {
                     image: {
                         url: '/assets/images/demo/image-location-3.jpg',
                         alt: "image location 3"
                     },
-                    title: 'Central Highlands',
-                    description: 'High-value agricultural products: coffee, pepper, cashew.',
+                    title: 'Tây Nguyên',
+                    description: 'Nông sản giá trị cao: cà phê, hồ tiêu, điều.',
                 },
                 {
                     image: {
                         url: '/assets/images/demo/image-location-4.jpg',
                         alt: "image location 4"
                     },
-                    title: 'South Central Coast',
-                    description: 'High-quality tropical agricultural products.',
+                    title: 'Duyên hải Nam Trung Bộ',
+                    description: 'Nông sản nhiệt đới chất lượng cao.',
                 },
             ],
             whyChooses: [
-                "100% Export Focus",
-                "Stable & Diverse Source",
-                "Full Traceability",
-                "International Standards",
-                "Global Expertise",
-                "Flexible Customization",
+                "100% Tập trung Xuất khẩu",
+                "Nguồn hàng Ổn định & Đa dạng",
+                "Truy xuất Nguồn gốc Đầy đủ",
+                "Tiêu chuẩn Quốc tế",
+                "Chuyên môn Toàn cầu",
+                "Tùy chỉnh Linh hoạt",
             ]
         }
     },

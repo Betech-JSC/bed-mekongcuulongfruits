@@ -10,7 +10,7 @@
                     <div class="pt-[160px] pb-[130px]">
                         <h1
                             class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-brand-300 bg-opacity-80 py-4 px-8 md:px-16 xl:px-20">
-                            Contact us
+                            Liên hệ với chúng tôi
                         </h1>
                     </div>
                     <div
@@ -20,66 +20,66 @@
                                 <div class="md:space-y-6 space-y-4 xl:space-y-8">
                                     <div>
                                         <h2 class="headline-1 font-bold text-primary mb-2">
-                                            {{ tt('Do you have any questions?') }}
+                                            {{ tt('Bạn có câu hỏi nào không?') }}
                                         </h2>
-                                        <p class="body-0 text-neutral-800">Please fill out the form below</p>
+                                        <p class="body-0 text-neutral-800">Vui lòng điền vào biểu mẫu bên dưới</p>
                                     </div>
                                     <div class="space-y-4">
                                         <JamFieldSet v-model="form.contact.data.Name" :field="{
                                             rules: rules,
                                             errors: errors,
                                             type: 'text',
-                                            placeholder: tt('Enter your name'),
-                                            name: 'Your name',
+                                            placeholder: tt('Nhập tên của bạn'),
+                                            name: 'Tên của bạn',
                                             fieldName: 'Name',
-                                            label: 'Your name',
-                                            errorText: tt('Your name is invalid'),
+                                            label: 'Tên của bạn',
+                                            errorText: tt('Tên của bạn không hợp lệ'),
                                         }" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit" :isContact="true" />
                                         <JamFieldSet v-model="form.contact.data.Company" :field="{
                                             rules: rules,
                                             errors: errors,
                                             type: 'text',
-                                            placeholder: tt('Enter your company name'),
-                                            name: 'Your company name',
+                                            placeholder: tt('Nhập tên công ty'),
+                                            name: 'Tên công ty',
                                             fieldName: 'Company',
-                                            label: 'Your company name',
-                                            errorText: tt('Your company name is invalid'),
+                                            label: 'Tên công ty',
+                                            errorText: tt('Tên công ty không hợp lệ'),
                                         }" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit" :isContact="true" />
                                         <div class="grid md:grid-cols-2 gap-4 md:gap-2">
                                             <JamFieldSet v-model="form.contact.data.Phone" :field="{
                                                 rules: rules,
                                                 errors: errors,
                                                 type: 'number',
-                                                placeholder: tt('Enter phone number'),
-                                                name: 'Your phone number',
+                                                placeholder: tt('Nhập số điện thoại'),
+                                                name: 'Số điện thoại',
                                                 fieldName: 'Phone',
-                                                label: 'Your phone number',
-                                                errorText: tt('Your phone is invalid'),
+                                                label: 'Số điện thoại',
+                                                errorText: tt('Số điện thoại không hợp lệ'),
                                             }" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit" :isContact="true" />
                                             <JamFieldSet v-model="form.contact.data.Email" :field="{
                                                 rules: rules,
                                                 errors: errors,
                                                 type: 'email',
-                                                placeholder: tt('Enter your email'),
+                                                placeholder: tt('Nhập email của bạn'),
                                                 name: 'Email',
                                                 fieldName: 'Email',
                                                 label: 'Email',
-                                                errorText: tt('Email is invalid'),
+                                                errorText: tt('Email không hợp lệ'),
                                             }" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit" :isContact="true" />
                                         </div>
                                         <JamFieldSet v-model="form.contact.data['Nội dung yêu cầu']" :field="{
                                             rules: rules,
                                             errors: errors,
                                             type: 'textarea',
-                                            placeholder: tt('Message/ notes'),
-                                            name: 'Message',
+                                            placeholder: tt('Tin nhắn/ Ghi chú'),
+                                            name: 'Tin nhắn',
                                             fieldName: 'Note',
-                                            errorText: tt('Message/ notes is invalid'),
+                                            errorText: tt('Tin nhắn/ Ghi chú không hợp lệ'),
                                         }" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit" :isContact="true" />
                                         <button
                                             class="button-1 font-bold space-x-3 bg-brand-300 text-brand-100 lg:hover:bg-brand-100 lg:hover:text-brand-200 flex items-center justify-center text-center transform transition-all py-3 px-5 w-max rounded-full"
                                             @click="contact">
-                                            <div>{{ tt('Submit now') }}</div>
+                                            <div>{{ tt('Gửi ngay') }}</div>
                                             <i class="gg-spinner" v-if="isLoading"></i>
                                             <div v-else>
                                                 <Arrow />
@@ -92,7 +92,7 @@
                         <div>
                             <div class="bg-[#FEF8E4] rounded-2xl p-4 md:p-6 xl:p-8 space-y-4">
                                 <!-- TODO: Chưa có thông tin social -->
-                                <h2 class="headline-1 font-bold text-primary">Contact information</h2>
+                                <h2 class="headline-1 font-bold text-primary">Thông tin liên hệ</h2>
                                 <div v-for="(itemInfo, indexInfo) in infos" :key="indexInfo"
                                     class="md:flex  md:space-y-0 space-y-2 items-center justify-between border-b border-neutral-200 pb-4">
                                     <div>{{ itemInfo.title }}</div>
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                                 <div class="md:flex md:space-y-0 space-y-2 items-center justify-between">
-                                    <span>Social information</span>
+                                    <span>Mạng xã hội</span>
                                     <span class="w-full max-w-[300px] flex items-center md:justify-end gap-4">
                                         <a href="" target="_blank" rel="noopener noreferrer nofollow"
                                             class="lg:hover:opacity-80 duration-300 ease-in-out">
@@ -193,7 +193,7 @@ export default {
             },
             infos: [
                 {
-                    title: 'Hotline',
+                    title: 'Điện thoại',
                     description: '0909 981 381',
                     link: 'tel:0909981381',
                     target: '_self',
@@ -205,7 +205,7 @@ export default {
                     target: '_self',
                 },
                 {
-                    title: 'Address',
+                    title: 'Địa chỉ',
                     description: 'Số 4 đường 1A, Ấp 57, Xã Tân Nhựt, Tp. Hồ Chí Minh, Việt Nam',
                     link: '',
                     target: '_blank',

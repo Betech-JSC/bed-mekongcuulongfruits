@@ -51,7 +51,7 @@
                                     slug: itemProduct.slug,
                                 })
                                     " class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
-                                {{ itemProduct.title_en || itemProduct.title }}
+                                {{ itemProduct.title }}
                                 </Link>
                             </li>
                         </ul>
@@ -126,31 +126,31 @@ export default {
             ],
             menus: [
                 {
-                    title: this.tt('About us'),
+                    title: this.tt('Về chúng tôi'),
                     slug: this.route('histories.index'),
                     type: 'histories',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Products'),
+                    title: this.tt('Sản phẩm'),
                     slug: this.route('products.show', { slug: this.$page.props.data.products[0]?.slug }),
                     type: 'products',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Careers'),
+                    title: this.tt('Tuyển dụng'),
                     slug: this.route('jobs'),
                     type: 'jobs',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('News'),
+                    title: this.tt('Tin tức'),
                     slug: this.route('posts'),
                     type: 'posts',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Contact'),
+                    title: this.tt('Liên hệ'),
                     slug: this.route('contact'),
                     type: 'contact',
                     subMenu: [],
@@ -158,11 +158,11 @@ export default {
             ],
             policies: [
                 {
-                    title: this.tt('Policy'),
+                    title: this.tt('Chính sách'),
                     slug: 'policy',
                 },
                 {
-                    title: this.tt('Trade Terms'),
+                    title: this.tt('Điều khoản thương mại'),
                     slug: 'trade-terms',
                 },
             ],
