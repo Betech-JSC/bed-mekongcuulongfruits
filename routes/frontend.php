@@ -25,6 +25,7 @@ Route::middleware(['meta_seo', 'opening'])->group(function () {
             Route::get(Lang::uri('search-v2'), 'searchV2')->name('api.search');
             Route::get(Lang::uri('/'), 'index')->name('home');
 
+            Route::get(Lang::uri('/factory'), 'factory')->name('factory.index');
         });
 
         Route::get(Lang::uri('/contact'), [AgencyController::class, 'index'])->name('contact');

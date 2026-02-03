@@ -144,4 +144,9 @@ class HomeController extends Controller
             })
             ->withQueryString();
     }
+
+    public function factory()
+    {
+        return Inertia::render('Factory', []);
+    }
 }
