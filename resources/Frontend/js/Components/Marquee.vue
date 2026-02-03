@@ -3,24 +3,15 @@
         <div class="marquee">
             <div class="marquee-element">
                 <div class="marquee-bar" v-for="(item, index) in marqueeList" :key="index">
-                    <div
-                        v-for="(card, cardIndex) in item"
-                        :key="cardIndex"
-                        class="flex items-center justify-center marquee-card"
-                    >
-                        <JPicture
-                            wrapperClass="picture-cover h-full"
-                            :src="card.image && card.image.url ? card.image.url : '/assets/images/cover.jpg'"
-                            :srcMb="
-                                card.image_mobile && card.image_mobile.url
-                                    ? card.image_mobile.url
-                                    : card.image && card.image.url
+                    <div v-for="(card, cardIndex) in item" :key="cardIndex"
+                        class="flex items-center justify-center marquee-card">
+                        <JPicture wrapperClass="picture-cover h-full"
+                            :src="card.image && card.image.url ? card.image.url : '/assets/images/cover.jpg'" :srcMb="card.image_mobile && card.image_mobile.url
+                                ? card.image_mobile.url
+                                : card.image && card.image.url
                                     ? card.image.url
                                     : '/assets/images/cover.jpg'
-                            "
-                            loading="eager"
-                            :alt="card.image && card.image.alt ? card.image.alt : card.title"
-                        />
+                                " loading="eager" :alt="card.image && card.image.alt ? card.image.alt : card.title" />
                     </div>
                 </div>
             </div>
@@ -56,10 +47,12 @@ export default {
     width: 100%;
     overflow: hidden;
 }
+
 .marquee-bar {
     width: 50%;
     @apply flex items-center w-max;
 }
+
 .marquee-element {
     position: relative;
     overflow: hidden;
@@ -69,9 +62,11 @@ export default {
     display: flex;
     width: max-content;
     animation-duration: 18s;
+
     &.normal {
         animation-direction: normal;
     }
+
     &.reverse {
         animation-direction: reverse;
     }
@@ -85,12 +80,15 @@ export default {
     -o-animation-play-state: paused;
     -ms-animation-play-state: paused;
 }
+
 @keyframes marquee {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-1036px);
+
         @screen lg {
             transform: translateX(-2072px);
         }
@@ -99,7 +97,7 @@ export default {
 
 .marquee-card {
     flex: 0 0 300px;
-    @apply w-[387px] h-[258px] xl:mx-4 md:mx-3 mx-2 duration-150;
+    @apply w-[387px] h-[200px] md:h-[258px] xl:mx-4 md:mx-3 mx-2 duration-150 rounded-[24px] relative overflow-hidden;
 }
 
 @media screen and (min-width: 1024px) {
