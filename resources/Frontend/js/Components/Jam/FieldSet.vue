@@ -1,34 +1,22 @@
 <template>
     <fieldset>
         <!-- Text, Email, Password, Textarea, Number, Select -->
-        <div
-            v-if="
-                field.type === 'text' ||
-                field.type === 'email' ||
-                field.type === 'password' ||
-                field.type === 'textarea' ||
-                field.type === 'number' ||
-                field.type === 'select_single' ||
-                field.type === 'select_administrative'
-            "
-        >
+        <div v-if="
+            field.type === 'text' ||
+            field.type === 'email' ||
+            field.type === 'password' ||
+            field.type === 'textarea' ||
+            field.type === 'number' ||
+            field.type === 'select_single' ||
+            field.type === 'select_administrative'
+        ">
             <div class="relative">
-                <JamField
-                    :field="field"
-                    :isCart="isCart"
-                    :validate="validate"
-                    :modelValue="modelValue"
-                    :rows="field.rows"
-                    :isContact="isContact"
-                    :isPopup="isPopup"
-                    @action="$emit('action')"
-                    @update:modelValue="$emit('update:modelValue', $event)"
-                />
-                <small
-                    v-if="validate !== true && validate !== undefined"
-                    class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]"
-                >
-                    {{ `${capitalizedLabel} is invalid` }}
+                <JamField :field="field" :isCart="isCart" :validate="validate" :modelValue="modelValue"
+                    :rows="field.rows" :isContact="isContact" :isPopup="isPopup" @action="$emit('action')"
+                    @update:modelValue="$emit('update:modelValue', $event)" />
+                <small v-if="validate !== true && validate !== undefined"
+                    class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]">
+                    {{ `${capitalizedLabel} không hợp lệ` }}
                 </small>
             </div>
         </div>
@@ -46,11 +34,9 @@
         <!-- Media Upload -->
         <div v-if="field.type === 'media_upload'">
             <JamField :value="value" @changeImages="changeImage" @input="(val) => (model = val)" :field="field" />
-            <small
-                v-if="validate !== true && validate !== undefined"
+            <small v-if="validate !== true && validate !== undefined"
                 :class="field.type === 'media_upload' || field.type === 'textarea' ? '' : 'mt-[6px]'"
-                class="absolute text-red-600 description"
-            >
+                class="absolute text-red-600 description">
                 {{ validate === false ? `${label} ${tt('không hợp lệ.')}` : validate }}
             </small>
         </div>
@@ -58,20 +44,16 @@
         <!-- Date Input -->
         <div v-if="field.type === 'date'">
             <JamField :field="field" :modelValue="modelValue" @update:modelValue="onDateChange" />
-            <small
-                v-if="validate !== true && validate !== undefined"
-                class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]"
-            >
+            <small v-if="validate !== true && validate !== undefined"
+                class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]">
                 {{ validate === false ? `${label} ${tt('không hợp lệ.')}` : validate }}
             </small>
         </div>
 
         <div v-if="field.type === 'datetime-local'">
             <JamField :field="field" :modelValue="modelValue" @update:modelValue="onDateChange" />
-            <small
-                v-if="validate !== true && validate !== undefined"
-                class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]"
-            >
+            <small v-if="validate !== true && validate !== undefined"
+                class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]">
                 {{ validate === false ? `${label} ${tt('không hợp lệ.')}` : validate }}
             </small>
         </div>
