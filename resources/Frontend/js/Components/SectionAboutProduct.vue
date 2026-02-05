@@ -89,7 +89,7 @@
             </div>
 
             <div class="relative">
-                <JPicture src="/assets/images/about/bg-core-value.png" alt="background core value"
+                <JPicture src="/assets/images/about/bg-corevalue.png" alt="background core value"
                     class="w-full h-full object-cover" />
             </div>
 
