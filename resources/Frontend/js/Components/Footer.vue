@@ -138,6 +138,12 @@ export default {
                     subMenu: [],
                 },
                 {
+                    title: this.tt('Nhà máy'),
+                    slug: this.route('factory.index'),
+                    type: 'factory',
+                    subMenu: [],
+                },
+                {
                     title: this.tt('Tuyển dụng'),
                     slug: this.route('jobs'),
                     type: 'jobs',

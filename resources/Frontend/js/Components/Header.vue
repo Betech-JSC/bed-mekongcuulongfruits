@@ -122,12 +122,12 @@ export default {
             inited: false,
             isScrolled: false,
             menus: [
-                {
-                    title: this.tt('Trang chủ'),
-                    slug: this.route('home'),
-                    type: 'home',
-                    subMenu: [],
-                },
+                // {
+                //     title: this.tt('Trang chủ'),
+                //     slug: this.route('home'),
+                //     type: 'home',
+                //     subMenu: [],
+                // },
                 {
                     title: this.tt('Về chúng tôi'),
                     slug: this.route('histories.index'),
@@ -139,6 +139,12 @@ export default {
                     slug: this.route('products.index'),
                     type: 'products',
                     subMenu: this.$page.props.data.products
+                },
+                {
+                    title: this.tt('Nhà máy'),
+                    slug: this.route('factory.index'),
+                    type: 'factory',
+                    subMenu: [],
                 },
                 {
                     title: this.tt('Tuyển dụng'),

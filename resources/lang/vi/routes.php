@@ -12,5 +12,6 @@ return [
     'jobs' => 'tuyen-dung',
     'policies' => 'chinh-sach',
     'search' => 'tim-kiem',
-    'track-order' => 'tra-cuu-don-hang'
+    'track-order' => 'tra-cuu-don-hang',
+    'factory' => 'nha-may',
 ];
