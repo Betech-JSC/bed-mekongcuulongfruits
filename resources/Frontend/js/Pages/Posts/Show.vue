@@ -13,7 +13,7 @@
 
                         <div class="space-y-4">
                             <div class="body-1">
-                                {{ formatDateBlog(post?.published_at) }}
+                                {{ formatDate(post?.published_at) }}
                             </div>
                             <SocialShare />
                         </div>
