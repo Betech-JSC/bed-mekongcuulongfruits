@@ -17,7 +17,7 @@
                             <h3 class="button-1 font-bold text-gray-900">{{ itemJob.title }}</h3>
                             </Link>
                             <div class="flex items-center gap-3 body-1 text-gray-700">
-                                <span>Số lượng tuyển: {{ itemJob.quantity }}</span>
+                                <span>Số lượng: {{ itemJob.quantity }}</span>
                                 <span>|</span>
                                 <span>Hạn nộp hồ sơ: {{ formatDate(itemJob.expected_time) }}</span>
                             </div>
