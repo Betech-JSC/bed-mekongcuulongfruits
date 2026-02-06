@@ -15,7 +15,7 @@
                     <Field
                         v-model="form.description"
                         :field="{
-                            type: 'text',
+                            type: 'textarea',
                             name: 'description',
                             label: 'Mô tả',
                         }"
@@ -23,7 +23,7 @@
                     <Field
                         v-model="form.content"
                         :field="{
-                            type: 'text',
+                            type: 'richtext',
                             name: 'content',
                             label: 'Nội dung',
                         }"
