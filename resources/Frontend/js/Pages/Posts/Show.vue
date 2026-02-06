@@ -20,9 +20,12 @@
                     </div>
                     <div class="col-span-full lg:col-span-7">
                         <div class="aspect-w-8 aspect-h-5">
-                            <JPicture :src="post?.image?.url || '/assets/images/posts/banner.jpg'"
-                                :alt="post?.image?.alt || post.title || 'image demo'" wrapperClass="picture-cover"
-                                class="w-full h-full object-cover" />
+                            <JPicture
+                                :src="post?.image?.url || '/assets/images/posts/banner.jpg'"
+                                :alt="post?.image?.alt || post.title || 'image demo'"
+                                wrapperClass="picture-cover"
+                                class="w-full h-full object-cover"
+                            />
                         </div>
                     </div>
                 </div>
@@ -32,14 +35,11 @@
         <section class="md:py-16 py-12 xl:py-20">
             <div class="container">
                 <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
-                    <div
-                        class="lg:col-span-10 lg:col-start-2 col-span-full xl:col-span-8 xl:col-start-3 pb-16 border-b border-[#F2F2F2]">
+                    <div class="col-span-full pb-16 border-b border-[#F2F2F2]">
                         <div class="label-1 text-black font-semibold">
                             {{ post?.description }}
                         </div>
-                        <div class="prose prose-blog mt-10 mb-16" v-html="post?.content">
-
-                        </div>
+                        <div class="prose prose-blog mt-10 mb-16" v-html="post?.content"></div>
                         <SocialShare />
                     </div>
                 </div>
