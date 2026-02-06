@@ -61,19 +61,23 @@
         <section id="production-process" class="bg-primary md:py-16 py-12 xl:py-20">
             <div class="container space-y-12">
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="grid grid-cols-2 gap-3 h-[300px]">
                         <JPicture wrapperClass="aspect-w-6 aspect-h-4 relative" class="w-full h-full object-cover" :src="product.images_product_process?.[0]?.url ||
                             '/assets/images/products/image-progress-1.jpg'
                             " :alt="product.images_product_process?.[0]?.alt || 'image progress 1'" />
                         <div class="space-y-3 flex flex-col">
-                            <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative" class="w-full h-full object-cover"
-                                :src="product.images_product_process?.[1]?.url ||
-                                    '/assets/images/products/image-progress-2.jpg'
-                                    " :alt="product.images_product_process?.[1]?.alt || 'image progress 2'" />
-                            <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative" class="w-full h-full object-cover"
-                                :src="product.images_product_process?.[2]?.url ||
-                                    '/assets/images/products/image-progress-3.jpg'
-                                    " :alt="product.images_product_process?.[2]?.alt || 'image progress 3'" />
+                            <div class="h-1/2">
+                                <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative"
+                                    class="w-full h-full object-cover" :src="product.images_product_process?.[1]?.url ||
+                                        '/assets/images/products/image-progress-2.jpg'
+                                        " :alt="product.images_product_process?.[1]?.alt || 'image progress 2'" />
+                            </div>
+                            <div class="h-1/2">
+                                <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative"
+                                    class="w-full h-full object-cover" :src="product.images_product_process?.[2]?.url ||
+                                        '/assets/images/products/image-progress-3.jpg'
+                                        " :alt="product.images_product_process?.[2]?.alt || 'image progress 3'" />
+                            </div>
                         </div>
                     </div>
                     <div>
