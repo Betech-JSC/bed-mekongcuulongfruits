@@ -1,8 +1,8 @@
 <template>
     <main>
         <SectionHeroSlider :items="sliders" />
-        <SectionProducts :items="products" />
-        <SectionAvailability :items="products" :certifications="certificates" />
+        <SectionProducts :items="$page.props.data.products" />
+        <SectionAvailability :items="$page.props.data.products" :certifications="certificates" />
         <SectionFeedback :items="feedbacks" />
         <SectionHotNews :items="posts" />
         <section class="relative">

@@ -21,7 +21,6 @@ class HandleInertiaFrontendRequests extends Middleware
         try {
             $products = Product::query()
                 ->active()
-                ->take(5)
                 ->get();
 
             $relativeUrl = str_replace(env('APP_URL'), '',  url()->current());
