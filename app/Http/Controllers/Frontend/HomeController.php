@@ -43,7 +43,6 @@ class HomeController extends Controller
                 ->map(fn($item) => $item->transform());
 
             $products = Product::query()
-                ->where('is_featured', 1)
                 ->active()
                 ->get()
                 ->map(fn($item) => $item->transform());
