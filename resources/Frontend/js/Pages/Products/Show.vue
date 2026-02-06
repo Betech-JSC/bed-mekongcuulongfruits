@@ -66,13 +66,13 @@
                             '/assets/images/products/image-progress-1.jpg'
                             " :alt="product.images_product_process?.[0]?.alt || 'image progress 1'" />
                         <div class="space-y-3 flex flex-col">
-                            <div class="h-1/2">
+                            <div class="h-1/2 grid w-full">
                                 <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative"
                                     class="w-full h-full object-cover" :src="product.images_product_process?.[1]?.url ||
                                         '/assets/images/products/image-progress-2.jpg'
                                         " :alt="product.images_product_process?.[1]?.alt || 'image progress 2'" />
                             </div>
-                            <div class="h-1/2">
+                            <div class="h-1/2 grid w-full">
                                 <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative"
                                     class="w-full h-full object-cover" :src="product.images_product_process?.[2]?.url ||
                                         '/assets/images/products/image-progress-3.jpg'
