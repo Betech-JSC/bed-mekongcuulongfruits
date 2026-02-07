@@ -6,8 +6,8 @@
                 <div class="grid md:grid-cols-2 md:gap-6 gap-4 xl:gap-12">
                     <CardCardPost :item="top_posts[0]" />
                     <div class="flex flex-col md:gap-6 gap-4 xl:gap-12">
-                        <CardCardPostRow v-for="(itemPostHot, indexPostHot) in top_posts.slice(1, 4)" :key="indexPostHot"
-                            :item="itemPostHot" />
+                        <CardCardPostRow v-for="(itemPostHot, indexPostHot) in top_posts.slice(1, 4)"
+                            :key="indexPostHot" :item="itemPostHot" />
                     </div>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-3 md:gap-6 gap-4 xl:gap-12">
@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             banner: {
-                title: this.tt('Tin tức'),
+                title: this.tt('News'),
                 image: '/assets/images/posts/banner.jpg',
             },
         }

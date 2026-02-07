@@ -3,13 +3,12 @@
         <div class="container md:space-y-[56px] space-y-8 xl:space-y-[72px]">
             <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
                 <div class="col-span-full lg:col-span-7 space-y-3">
-                    <div class="headline-3 text-brand-100 uppercase">Sản phẩm của chúng tôi</div>
-                    <h2 class="display-2 font-bold text-brand-100 uppercase">Tươi ngon từ Đồng bằng sông Cửu Long, Việt
-                        Nam</h2>
+                    <div class="headline-3 text-brand-100 uppercase">Our Products</div>
+                    <h2 class="display-2 font-bold text-brand-100 uppercase">Fresh From the Mekong Delta, Vietnam</h2>
                 </div>
                 <div class="col-span-full lg:col-span-5 lg:ml-auto">
                     <Link :href="route('contact')" class="btn btn-secondary space-x-3 flex items-center justify-center">
-                    <span>{{ tt('Xem thêm') }}</span>
+                    <span>{{ tt('See More') }}</span>
                     <Arrow />
                     </Link>
                 </div>

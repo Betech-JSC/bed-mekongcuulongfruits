@@ -16,7 +16,7 @@
                     @update:modelValue="$emit('update:modelValue', $event)" />
                 <small v-if="validate !== true && validate !== undefined"
                     class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]">
-                    {{ `${capitalizedLabel} không hợp lệ` }}
+                    {{ `${capitalizedLabel} is invalid` }}
                 </small>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <small v-if="validate !== true && validate !== undefined"
                 :class="field.type === 'media_upload' || field.type === 'textarea' ? '' : 'mt-[6px]'"
                 class="absolute text-red-600 description">
-                {{ validate === false ? `${label} ${tt('không hợp lệ.')}` : validate }}
+                {{ validate === false ? `${label} ${tt('is invalid')}` : validate }}
             </small>
         </div>
 
@@ -46,7 +46,7 @@
             <JamField :field="field" :modelValue="modelValue" @update:modelValue="onDateChange" />
             <small v-if="validate !== true && validate !== undefined"
                 class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]">
-                {{ validate === false ? `${label} ${tt('không hợp lệ.')}` : validate }}
+                {{ validate === false ? `${label} ${tt('is invalid')}` : validate }}
             </small>
         </div>
 
@@ -54,7 +54,7 @@
             <JamField :field="field" :modelValue="modelValue" @update:modelValue="onDateChange" />
             <small v-if="validate !== true && validate !== undefined"
                 class="absolute -bottom-1 text-red-600 translate-y-full leading-[100%]">
-                {{ validate === false ? `${label} ${tt('không hợp lệ.')}` : validate }}
+                {{ validate === false ? `${label} ${tt('is invalid')}` : validate }}
             </small>
         </div>
     </fieldset>

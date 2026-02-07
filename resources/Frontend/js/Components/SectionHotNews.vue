@@ -3,9 +3,9 @@
         <div class="container">
             <div class="relative">
                 <div class="flex md:flex-row flex-col max-md:gap-3 items-center justify-between">
-                    <h2 class="display-3 text-brand-100 font-bold uppercase">Tin tức mới nhất</h2>
+                    <h2 class="display-3 text-brand-100 font-bold uppercase">Latest News</h2>
                     <Link :href="route('posts')" class="btn btn-secondary space-x-3 flex items-center justify-center">
-                    <span>{{ tt('Xem thêm') }}</span>
+                    <span>{{ tt('See More') }}</span>
                     <Arrow />
                     </Link>
                 </div>

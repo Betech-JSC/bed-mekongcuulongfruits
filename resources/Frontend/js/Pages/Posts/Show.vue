@@ -20,12 +20,9 @@
                     </div>
                     <div class="col-span-full lg:col-span-7">
                         <div class="aspect-w-8 aspect-h-5">
-                            <JPicture
-                                :src="post?.image?.url || '/assets/images/posts/banner.jpg'"
-                                :alt="post?.image?.alt || post.title || 'image demo'"
-                                wrapperClass="picture-cover"
-                                class="w-full h-full object-cover"
-                            />
+                            <JPicture :src="post?.image?.url || '/assets/images/posts/banner.jpg'"
+                                :alt="post?.image?.alt || post.title || 'image demo'" wrapperClass="picture-cover"
+                                class="w-full h-full object-cover" />
                         </div>
                     </div>
                 </div>
@@ -59,7 +56,7 @@ export default {
         return {
             breadcrumbs: [
                 {
-                    title: 'Tin tức',
+                    title: 'News',
                     link: this.route('posts'),
                 },
                 {

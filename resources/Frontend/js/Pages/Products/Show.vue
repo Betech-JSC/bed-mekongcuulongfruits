@@ -16,7 +16,7 @@
                             :alt="product.image?.alt || 'item image'" />
                     </div>
                     <div class="flex-1">
-                        <div class="body-0 text-gray-900 uppercase mb-3">Tổng quan</div>
+                        <div class="body-0 text-gray-900 uppercase mb-3">Overview</div>
                         <h2 class="display-3 font-bold text-primary mb-6 md:mb-8 xl:mb-10">
                             {{ product.title_overview }}
                         </h2>
@@ -48,7 +48,7 @@
             </div>
             <div class="relative">
                 <div class="container">
-                    <h2 class="headline-1 font-bold text-primary uppercase">Mùa vụ</h2>
+                    <h2 class="headline-1 font-bold text-primary uppercase">Harvest Season</h2>
                     <div class="body-1 text-gray-900 max-w-[630px] w-full mt-2 mb-6" v-html="product.harvest_season">
                     </div>
 
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="headline-1 font-bold uppercase text-brand-300 mb-4">Quy trình sản xuất</h2>
+                        <h2 class="headline-1 font-bold uppercase text-brand-300 mb-4">Production Process</h2>
                         <div class="title-2 text-white" v-html="product.product_process"></div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="space-y-5">
                         <div class="space-y-2 text-brand-300">
-                            <h2 class="headline-1 font-bold uppercase">Quy cách đóng gói</h2>
+                            <h2 class="headline-1 font-bold uppercase">Packaging Specification</h2>
                         </div>
                         <div v-html="product.package_included"></div>
                     </div>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="headline-1 font-bold uppercase text-brand-300">Phương pháp bảo quản</h2>
+                        <h2 class="headline-1 font-bold uppercase text-brand-300">Preservation Methods</h2>
                         <div class="body-1 text-white mt-2 mb-6" v-html="product.product_preservation"></div>
                     </div>
                 </div>
@@ -126,9 +126,9 @@ export default {
                 image: this.$props.product?.banner?.url ?? '/assets/images/products/banner.jpg',
             },
             tabs: [
-                { title: this.tt('Thông tin sản phẩm'), value: 'product-information' },
-                { title: this.tt('Mùa vụ'), value: 'harvest-seasons' },
-                { title: this.tt('Quy trình sản xuất'), value: 'production-process' },
+                { title: this.tt('Product Information'), value: 'product-information' },
+                { title: this.tt('Harvest Season'), value: 'harvest-seasons' },
+                { title: this.tt('Production Process'), value: 'production-process' },
             ],
             progressList: [
                 'Harvest bananas',
