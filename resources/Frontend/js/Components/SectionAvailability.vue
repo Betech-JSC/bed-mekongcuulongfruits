@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- Custom Title Pagination -->
-                <div class="scrollbar-hide overflow-x-auto ">
+                <div class="scrollbar-custom pb-1 overflow-x-auto ">
                     <div class="flex items-center gap-3 md:gap-4 pb-2 w-full">
                         <button v-for="(item, index) in items" :key="index" @click="slideTo(index)"
                             class="label-1 font-semibold flex items-center gap-2.5 p-2 md:p-3 rounded-xl transition-all duration-300"
@@ -141,14 +141,27 @@ export default {
 </script>
 
 <style>
-/* Hide scrollbar */
-.scrollbar-hide::-webkit-scrollbar {
-    display: none;
+.scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #B61F04 #F2F4F7;
 }
 
-.scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+.scrollbar-custom::-webkit-scrollbar {
+    height: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: #E5C025;
+    border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #B61F04;
+    border-radius: 10px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #E5C025;
 }
 
 .availability-swiper {
