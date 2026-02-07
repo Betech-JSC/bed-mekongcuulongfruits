@@ -1,15 +1,12 @@
 <template>
     <section class="relative">
         <div class="absolute inset-0">
-            <JPicture
-                alt="background feedback"
-                src="/assets/images/home/bg-feedback.jpg"
-                class="w-full h-full object-cover"
-            />
+            <JPicture alt="background feedback" src="/assets/images/home/bg-feedback.jpg"
+                class="w-full h-full object-cover" />
         </div>
         <div class="relative py-[94px]">
             <div class="container space-y-8">
-                <h2 class="display-3 uppercase text-center text-primary font-bold">Phản hồi của khách hàng</h2>
+                <h2 class="display-3 uppercase text-center text-primary font-bold">Client feedback</h2>
                 <div class="relative">
                     <button v-if="items && items.length > 3" class="btn-swiper swiper-button-prev" @click="onPrevClick">
                         <ArrowSlider class="rotate-180" />
@@ -17,15 +14,9 @@
                     <button v-if="items && items.length > 3" class="btn-swiper swiper-button-next" @click="onNextClick">
                         <ArrowSlider />
                     </button>
-                    <swiper
-                        ref="swiperRef"
-                        :slides-per-view="4"
-                        :space-between="32"
-                        :loop="true"
-                        :autoplay="{ delay: 1000, disableOnInteraction: false }"
-                        :breakpoints="breakpoints"
-                        @swiper="onSwiperInit"
-                    >
+                    <swiper ref="swiperRef" :slides-per-view="4" :space-between="32" :loop="true"
+                        :autoplay="{ delay: 1000, disableOnInteraction: false }" :breakpoints="breakpoints"
+                        @swiper="onSwiperInit">
                         <swiper-slide v-for="(item, index) in items" :key="index">
                             <div class="bg-white p-6 rounded-[8px] space-y-6">
                                 <ul class="flex items-center gap-1">
@@ -36,11 +27,8 @@
                                 <div class="body-2 text-gray-900 h-[160px]" v-html="item.content"></div>
                                 <div class="flex items-start gap-3">
                                     <div class="w-[60px] h-[60px] rounded-full overflow-hidden">
-                                        <JPicture
-                                            :src="item.image?.url"
-                                            :alt="item.image?.alt || item.name"
-                                            class="w-full h-full object-cover"
-                                        />
+                                        <JPicture :src="item.image?.url" :alt="item.image?.alt || item.name"
+                                            class="w-full h-full object-cover" />
                                     </div>
                                     <div class="space-y-0.5">
                                         <div class="body-1 text-gray-900 font-bold">{{ item.title }}</div>

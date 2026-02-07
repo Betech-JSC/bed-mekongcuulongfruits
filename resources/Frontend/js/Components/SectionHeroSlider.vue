@@ -24,12 +24,12 @@
                                     </h1>
                                     <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer"
                                         class="btn btn-primary space-x-3 flex items-center justify-center">
-                                        <span>{{ tt('Xem chi tiết') }}</span>
+                                        <span>{{ tt('See more') }}</span>
                                         <Arrow />
                                     </a>
                                     <Link v-else :href="route('contact')"
                                         class="btn btn-primary space-x-3 flex items-center justify-center">
-                                    <span>{{ tt('Nhận tư vấn ngay') }}</span>
+                                    <span>{{ tt('Explore Our Products') }}</span>
                                     <Arrow />
                                     </Link>
                                 </div>
