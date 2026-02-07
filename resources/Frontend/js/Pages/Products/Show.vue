@@ -95,7 +95,7 @@
                         <div class="space-y-2 text-brand-300">
                             <h2 class="headline-1 font-bold uppercase">Packaging Specification</h2>
                         </div>
-                        <div v-html="product.package_included"></div>
+                        <div class="body-1 text-white" v-html="product.package_included"></div>
                     </div>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
