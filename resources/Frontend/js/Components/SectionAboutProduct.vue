@@ -192,7 +192,7 @@ export default {
                 },
                 {
                     image: {
-                        url: '/assets/images/demo/image-location-2.jpg',
+                        url: '/assets/images/demo/image-location-3.jpg',
                         alt: "image location 2"
                     },
                     title: 'Southeast Region',
@@ -200,7 +200,7 @@ export default {
                 },
                 {
                     image: {
-                        url: '/assets/images/demo/image-location-3.jpg',
+                        url: '/assets/images/demo/image-location-2.jpg',
                         alt: "image location 3"
                     },
                     title: 'Central Highlands',
