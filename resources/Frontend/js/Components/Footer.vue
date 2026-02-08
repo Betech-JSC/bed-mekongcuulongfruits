@@ -12,7 +12,7 @@
                 <div
                     class="col-span-full xl:col-span-8 flex md:flex-row flex-col items-start justify-between gap-8 lg:gap-16">
                     <div class="space-y-3 md:max-w-[300px] lg:max-w-[400px] xl:max-w-[307px] w-full">
-                        <div class="label-1 font-semibold text-brown uppercase">Công ty TNHH Vietnam Farmer</div>
+                        <div class="label-1 font-semibold text-brown uppercase">Vietnam Farmer Company Limited</div>
                         <div class="label-2 !font-normal space-y-3">
                             <div v-for="(itemInfo, indexInfo) in infos" :key="indexInfo">
                                 <span class="mr-1 font-bold">{{ itemInfo.title }}</span>
