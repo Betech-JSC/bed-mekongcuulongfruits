@@ -97,7 +97,7 @@
                         <div class="space-y-2 text-brand-300">
                             <h2 class="headline-1 font-bold uppercase">Packaging Specification</h2>
                         </div>
-                        <div class="body-1 text-white md:h-[250px] md:overflow-y-auto"
+                        <div class="body-1 text-white md:h-[330px] md:overflow-y-auto"
                             v-html="product.package_included">
                         </div>
                     </div>
