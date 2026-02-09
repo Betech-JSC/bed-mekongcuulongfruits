@@ -191,8 +191,8 @@ export default {
                 },
                 {
                     title: 'Email',
-                    description: 'vietnamfarmer@gmail.com',
-                    link: 'mailto:vietnamfarmer@gmail.com',
+                    description: 'info.vietnamfarmer@gmail.com',
+                    link: 'mailto:info.vietnamfarmer@gmail.com',
                     target: '_self',
                 },
                 {

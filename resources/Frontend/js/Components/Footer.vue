@@ -85,8 +85,8 @@ export default {
             infos: [
                 {
                     title: 'Email:',
-                    content: this.tt('vietnamfarmer@gmail.com'),
-                    href: `mailto:${this.tt('vietnamfarmer@gmail.com')}`,
+                    content: this.tt('info.vietnamfarmer@gmail.com'),
+                    href: `mailto:${this.tt('info.vietnamfarmer@gmail.com')}`,
                     target: '_self',
                 },
                 {
