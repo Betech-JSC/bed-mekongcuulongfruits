@@ -82,7 +82,9 @@
                     </div>
                     <div>
                         <h2 class="headline-1 font-bold uppercase text-brand-300 mb-4">Production Process</h2>
-                        <div class="title-2 text-white" v-html="product.product_process"></div>
+                        <div class="title-2 text-white md:h-[220px] md:overflow-y-auto"
+                            v-html="product.product_process">
+                        </div>
                     </div>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
@@ -95,7 +97,9 @@
                         <div class="space-y-2 text-brand-300">
                             <h2 class="headline-1 font-bold uppercase">Packaging Specification</h2>
                         </div>
-                        <div class="body-1 text-white" v-html="product.package_included"></div>
+                        <div class="body-1 text-white md:h-[250px] md:overflow-y-auto"
+                            v-html="product.package_included">
+                        </div>
                     </div>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
@@ -109,7 +113,8 @@
                     </div>
                     <div>
                         <h2 class="headline-1 font-bold uppercase text-brand-300">Preservation Methods</h2>
-                        <div class="body-1 text-white mt-2 mb-6" v-html="product.product_preservation"></div>
+                        <div class="body-1 text-white mt-2 mb-6 md:h-[220px] md:overflow-y-auto"
+                            v-html="product.product_preservation"></div>
                     </div>
                 </div>
             </div>
