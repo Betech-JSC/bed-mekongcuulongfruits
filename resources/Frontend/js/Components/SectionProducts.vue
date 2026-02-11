@@ -5,7 +5,8 @@
                 <div class="col-span-full lg:col-span-7">
                     <AnimatedAppear animate="slideleft" class="space-y-3">
                         <div class="headline-3 text-brand-100 uppercase">Our Products</div>
-                        <h2 class="display-2 font-bold text-brand-100 uppercase">Fresh From the Mekong Delta, Vietnam
+                        <h2 class="display-2 font-bold text-brand-100 uppercase">
+                            OUR PRODUCTS FRESH FROM GROWING REGIONS IN VIETNAM
                         </h2>
                     </AnimatedAppear>
                 </div>

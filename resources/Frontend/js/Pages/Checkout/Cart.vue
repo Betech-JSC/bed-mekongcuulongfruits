@@ -55,7 +55,7 @@
                                         rules: rules,
                                         errors: errors,
                                         type: 'textarea',
-                                        placeholder: tt('Lời nhắn gửi tới Vietnam Framer'),
+                                        placeholder: tt('Lời nhắn gửi tới Vietnam Farmer'),
                                         name: 'Nội dung yêu cầu',
                                         fieldName: 'note',
                                         label: 'Lời nhắn',
