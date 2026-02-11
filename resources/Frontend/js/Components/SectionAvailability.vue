@@ -3,29 +3,37 @@
         <div class="container space-y-12 md:space-y-16 xl:space-y-20">
             <div class="flex lg:flex-row flex-col items-start md:gap-6 gap-4 xl:gap-8">
                 <div class="max-w-full lg:max-w-[320px] w-full">
-                    <div class="headline-2 font-bold text-brand-100 uppercase">
-                        Certified Quality, Globally Trusted
-                    </div>
+                    <AnimatedAppear animate="slideleft">
+                        <div class="headline-2 font-bold text-brand-100 uppercase">
+                            Certified Quality, Globally Trusted
+                        </div>
+                    </AnimatedAppear>
                 </div>
                 <div class="md:space-y-6 space-y-4 xl:space-y-8">
-                    <div class="body-1 text-gray-900">
-                        At Vietnam Farmer, quality and safety are our top priorities. We comply with international
-                        standards and hold globally recognized certifications to ensure our products meet the highest
-                        requirements of importers and consumers.
-                    </div>
+                    <AnimatedAppear animate="slideright">
+                        <div class="body-1 text-gray-900">
+                            At Vietnam Farmer, quality and safety are our top priorities. We comply with international
+                            standards and hold globally recognized certifications to ensure our products meet the
+                            highest
+                            requirements of importers and consumers.
+                        </div>
+                    </AnimatedAppear>
                     <div class="flex items-center gap-4">
-                        <div v-for="(itemCertificate, indexCertificate) in certifications" :key="indexCertificate"
+                        <AnimatedAppear v-for="(itemCertificate, indexCertificate) in certifications"
+                            :key="indexCertificate" :delay="indexCertificate * 100"
                             class="w-auto h-[90px] xl:h-[120px]">
                             <JPicture :src="itemCertificate.image?.url"
                                 :alt="itemCertificate.image?.alt || itemCertificate.title"
                                 class="w-full h-full object-contain" />
-                        </div>
+                        </AnimatedAppear>
                     </div>
                 </div>
             </div>
             <div class="space-y-6">
                 <div class="flex items-center justify-between">
-                    <div class="headline-1 font-bold text-brand-100 uppercase">Harvest Season</div>
+                    <AnimatedAppear>
+                        <div class="headline-1 font-bold text-brand-100 uppercase">Harvest Season</div>
+                    </AnimatedAppear>
                     <div class="flex items-center md:gap-6 gap-4 xl:gap-8">
                         <!-- Button Pagination -->
                         <button @click="slidePrev"
@@ -65,19 +73,22 @@
                 <swiper :modules="modules" :slides-per-view="1" :space-between="24" :loop="false" :navigation="false"
                     @swiper="onSwiper" @slideChange="onSlideChange" class="availability-swiper">
                     <swiper-slide v-for="(item, index) in items" :key="index">
-                        <div v-if="item.image_harvest_season">
-                            <JPicture :src="item.image_harvest_season?.static_url"
-                                :alt="item.image_harvest_season?.alt || item.title"
-                                class="w-full h-full object-contain" />
-                        </div>
-                        <div v-else class=" flex flex-col items-center xl:gap-8 md:gap-6 gap-4">
-                            <div class="max-w-[150px] md:max-w-[320px] w-full">
-                                <JPicture src="/assets/images/placeholder-square.png" alt="image empty chart"
-                                    class="w-full h-full object-cover" />
+                        <AnimatedAppear :delay="index * 100">
+                            <div v-if="item.image_harvest_season">
+                                <JPicture :src="item.image_harvest_season?.static_url"
+                                    :alt="item.image_harvest_season?.alt || item.title"
+                                    class="w-full h-full object-contain" />
                             </div>
-                            <h3 class="headline-3 font-bold uppercase text-primary max-md:hidden">No chart information
-                                available</h3>
-                        </div>
+                            <div v-else class=" flex flex-col items-center xl:gap-8 md:gap-6 gap-4">
+                                <div class="max-w-[150px] md:max-w-[320px] w-full">
+                                    <JPicture src="/assets/images/placeholder-square.png" alt="image empty chart"
+                                        class="w-full h-full object-cover" />
+                                </div>
+                                <h3 class="headline-3 font-bold uppercase text-primary max-md:hidden">No chart
+                                    information
+                                    available</h3>
+                            </div>
+                        </AnimatedAppear>
                     </swiper-slide>
                 </swiper>
             </div>
@@ -89,6 +100,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import ArrowSlider from './Icons/ArrowSlider.vue'
+import AnimatedAppear from './AnimatedAppear.vue';
 
 export default {
     components: {

@@ -8,12 +8,14 @@
             <div class="relative">
                 <div class="container">
                     <div class="pt-[160px] pb-[130px]">
-                        <h1
-                            class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-brand-300 bg-opacity-80 py-4 px-8 md:px-16 xl:px-20">
-                            Contact Us
-                        </h1>
+                        <AnimatedAppear>
+                            <h1
+                                class="w-max mx-auto display-1 uppercase text-center font-bold text-white bg-brand-300 bg-opacity-80 py-4 px-8 md:px-16 xl:px-20">
+                                Contact Us
+                            </h1>
+                        </AnimatedAppear>
                     </div>
-                    <div
+                    <AnimatedAppear
                         class="grid lg:grid-cols-2 gap-6 xl:gap-10 bg-white border-4 xl:border-8 border-brand-200 rounded-3xl p-3 md:p-4 xl:p-6">
                         <div>
                             <div class="md:space-y-5 space-y-4 xl:space-y-6">
@@ -122,7 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </AnimatedAppear>
                 </div>
             </div>
         </section>

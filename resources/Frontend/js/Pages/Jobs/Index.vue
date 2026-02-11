@@ -3,7 +3,9 @@
         <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
         <section v-if="jobs && jobs.length" class="bg-gray-25 md:py-16 py-12 xl:py-20">
             <div class="container md:space-y-8 space-y-6 xl:space-y-12">
-                <h2 class="display-3 text-center font-bold text-brand-100">JOIN Vietnam Farmer</h2>
+                <AnimatedAppear>
+                    <h2 class="display-3 text-center font-bold text-brand-100">JOIN Vietnam Farmer</h2>
+                </AnimatedAppear>
                 <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 xl:gap-8">
                     <div v-for="(itemJob, indexJob) in jobs" :key="indexJob"
                         class="border border-gray-200 rounded-[16px] relative px-6 py-8">
@@ -37,15 +39,21 @@
             </div>
             <div class="relative">
                 <div class="container md:space-y-8 space-y-6 xl:space-y-12 text-center">
-                    <h2 class="display-3 text-center font-bold text-brand-100 uppercase">Share and Connect</h2>
-                    <div class="headline-3 text-gray-900">
-                        At Vietnam Farmer, we believe that the strength of a team comes not only from professional
-                        capabilities, but also from moments of sharing.
-                    </div>
-                    <div class="relative">
-                        <JPicture class="w-full h-full object-contain" src="/assets/images/job/image-connect.png"
-                            alt="image connect" />
-                    </div>
+                    <AnimatedAppear>
+                        <h2 class="display-3 text-center font-bold text-brand-100 uppercase">Share and Connect</h2>
+                    </AnimatedAppear>
+                    <AnimatedAppear>
+                        <div class="headline-3 text-gray-900">
+                            At Vietnam Farmer, we believe that the strength of a team comes not only from professional
+                            capabilities, but also from moments of sharing.
+                        </div>
+                    </AnimatedAppear>
+                    <AnimatedAppear>
+                        <div class="relative">
+                            <JPicture class="w-full h-full object-contain" src="/assets/images/job/image-connect.png"
+                                alt="image connect" />
+                        </div>
+                    </AnimatedAppear>
                 </div>
             </div>
         </section>
