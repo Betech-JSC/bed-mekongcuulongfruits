@@ -1,6 +1,6 @@
 <template>
     <main>
-        <BannerImage :banner="banner" classBanner="h-[320px]" />
+        <BannerImage :banner="banner" classBanner="h-[200px] md:h-[320px]" />
         <section class="py-20">
             <div class="container md:space-y-6 space-y-4 xl:space-y-12">
                 <AnimatedAppear class="grid md:grid-cols-2 md:gap-6 gap-4 xl:gap-12">

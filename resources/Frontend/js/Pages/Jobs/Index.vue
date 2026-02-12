@@ -1,6 +1,6 @@
 <template>
     <main>
-        <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
+        <BannerImage :banner="banner" classBanner="md:h-[550px] h-[200px] xl:h-[700px]" />
         <section v-if="jobs && jobs.length" class="bg-gray-25 md:py-16 py-12 xl:py-20">
             <div class="container md:space-y-8 space-y-6 xl:space-y-12">
                 <AnimatedAppear>

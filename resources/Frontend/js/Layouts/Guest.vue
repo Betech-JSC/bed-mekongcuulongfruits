@@ -5,7 +5,7 @@
         <Footer />
         <JamBackToTop />
         <PopupCartSuccess :open="isShowPopup" />
-        <!-- <SocialFixed /> -->
+        <SocialFixed />
     </div>
 </template>
 <script>

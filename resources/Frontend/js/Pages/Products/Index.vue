@@ -1,21 +1,16 @@
 <template>
     <main>
         <section class="relative">
-            <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
+            <BannerImage :banner="banner" classBanner="md:h-[550px] h-[200px] xl:h-[700px]" />
             <UITabs :tabs="tabs" />
         </section>
         <section id="product-information" class="py-12 md:py-16 xl:pt-20 xl:pb-10 bg-brand-300">
             <div class="container">
                 <div class="flex flex-col lg:flex-row items-center md:gap-12 gap-8 xl:gap-20">
                     <div
-                        class="max-w-full max-lg:mx-auto lg:max-w-[380px] xl:max-w-[480px] w-full relative overflow-hidden"
-                    >
-                        <JPicture
-                            class="w-full h-full object-contain"
-                            :src="productDemo.overview.image.src"
-                            :mobileSrc="productDemo.overview.image.src"
-                            alt="item image"
-                        />
+                        class="max-w-full max-lg:mx-auto lg:max-w-[380px] xl:max-w-[480px] w-full relative overflow-hidden">
+                        <JPicture class="w-full h-full object-contain" :src="productDemo.overview.image.src"
+                            :mobileSrc="productDemo.overview.image.src" alt="item image" />
                     </div>
                     <div class="flex-1">
                         <div class="body-0 text-gray-900 uppercase mb-3">Over view</div>
@@ -27,14 +22,9 @@
                 </div>
                 <div class="flex flex-col lg:flex-row items-center md:gap-12 gap-8 xl:gap-20">
                     <div
-                        class="max-w-full max-lg:mx-auto lg:max-w-[380px] xl:max-w-[480px] w-full relative overflow-hidden"
-                    >
-                        <JPicture
-                            class="w-full h-full object-contain"
-                            :src="productDemo.characteristics.image.src"
-                            :mobileSrc="productDemo.characteristics.image.src"
-                            alt="item image"
-                        />
+                        class="max-w-full max-lg:mx-auto lg:max-w-[380px] xl:max-w-[480px] w-full relative overflow-hidden">
+                        <JPicture class="w-full h-full object-contain" :src="productDemo.characteristics.image.src"
+                            :mobileSrc="productDemo.characteristics.image.src" alt="item image" />
                     </div>
                     <div class="flex-1">
                         <h2 class="display-3 font-bold text-primary mb-6 md:mb-8 xl:mb-10">
@@ -46,12 +36,10 @@
             </div>
         </section>
         <section id="harvest-seasons" class="md:py-16 py-12 xl:py-20 relative">
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[425px] md:h-[425px] xl:w-[625px] xl:h-[625px] opacity-20">
-                <JPicture
-                    class="w-full h-full object-contain"
-                    src="/assets/images/logo-mask.png"
-                    alt="image logo mask"
-                />
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] md:w-[425px] md:h-[425px] xl:w-[625px] xl:h-[625px] opacity-20">
+                <JPicture class="w-full h-full object-contain" src="/assets/images/logo-mask.png"
+                    alt="image logo mask" />
             </div>
             <div class="relative">
                 <div class="container">
@@ -61,11 +49,8 @@
                         October, ensuring stable volumes and reliable export supply.
                     </div>
 
-                    <JPicture
-                        class="w-full h-full object-contain"
-                        src="/assets/images/products/image-chart.png"
-                        alt="image chart"
-                    />
+                    <JPicture class="w-full h-full object-contain" src="/assets/images/products/image-chart.png"
+                        alt="image chart" />
                 </div>
             </div>
         </section>
@@ -73,46 +58,27 @@
             <div class="container space-y-12">
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
                     <div class="grid grid-cols-2 gap-3">
-                        <JPicture
-                            wrapperClass="aspect-w-6 aspect-h-4 relative"
-                            class="w-full h-full object-cover"
-                            src="/assets/images/products/image-progress-1.jpg"
-                            alt="image progress"
-                        />
+                        <JPicture wrapperClass="aspect-w-6 aspect-h-4 relative" class="w-full h-full object-cover"
+                            src="/assets/images/products/image-progress-1.jpg" alt="image progress" />
                         <div class="space-y-3 flex flex-col">
-                            <JPicture
-                                wrapperClass="aspect-w-2 aspect-h-1 relative"
-                                class="w-full h-full object-cover"
-                                src="/assets/images/products/image-progress-2.jpg"
-                                alt="image progress"
-                            />
-                            <JPicture
-                                wrapperClass="aspect-w-2 aspect-h-1 relative"
-                                class="w-full h-full object-cover"
-                                src="/assets/images/products/image-progress-3.jpg"
-                                alt="image progress"
-                            />
+                            <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative" class="w-full h-full object-cover"
+                                src="/assets/images/products/image-progress-2.jpg" alt="image progress" />
+                            <JPicture wrapperClass="aspect-w-2 aspect-h-1 relative" class="w-full h-full object-cover"
+                                src="/assets/images/products/image-progress-3.jpg" alt="image progress" />
                         </div>
                     </div>
                     <div>
                         <h2 class="headline-1 font-bold uppercase text-brand-300 mb-4">Production Process</h2>
-                        <div
-                            class="title-2 text-white"
-                            v-for="(itemProgress, indexProgress) in progressList"
-                            :key="indexProgress"
-                        >
+                        <div class="title-2 text-white" v-for="(itemProgress, indexProgress) in progressList"
+                            :key="indexProgress">
                             {{ `${indexProgress + 1}. ${itemProgress}` }}
                         </div>
                     </div>
                 </div>
                 <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
                     <div class="flex items-center justify-center">
-                        <JPicture
-                            wrapperClass="relative block"
-                            class="w-full h-full object-cover"
-                            src="/assets/images/products/image-packing.jpg"
-                            alt="image packing"
-                        />
+                        <JPicture wrapperClass="relative block" class="w-full h-full object-cover"
+                            src="/assets/images/products/image-packing.jpg" alt="image packing" />
                     </div>
                     <div class="space-y-5">
                         <div class="space-y-2 text-brand-300">
@@ -140,23 +106,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">                    
+                <div class="grid lg:grid-cols-2 gap-6 md:gap-8 xl:gap-20">
                     <div class="grid md:grid-cols-2 gap-[22px]">
-                        <div
-                            v-for="(itemMethod, indexMethod) in imagesMethod"
-                            :key="indexMethod"
-                            class="block w-full h-full aspect-w-3 aspect-h-2 relative"
-                        >
+                        <div v-for="(itemMethod, indexMethod) in imagesMethod" :key="indexMethod"
+                            class="block w-full h-full aspect-w-3 aspect-h-2 relative">
                             <JPicture class="w-full h-full object-cover" :src="itemMethod" alt="image method" />
                         </div>
                     </div>
                     <div>
                         <h2 class="headline-1 font-bold uppercase text-brand-300">Preservation methods</h2>
-                    <div class="body-1 text-white mt-2 mb-6">
-                        Cavendish bananas are stored at 13–14°C with 85–95% humidity to maintain freshness. Ethylene
-                        control and proper ventilation help regulate ripening and prevent decay during transport and
-                        storage.
-                    </div>
+                        <div class="body-1 text-white mt-2 mb-6">
+                            Cavendish bananas are stored at 13–14°C with 85–95% humidity to maintain freshness. Ethylene
+                            control and proper ventilation help regulate ripening and prevent decay during transport and
+                            storage.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -240,8 +203,10 @@ export default {
         @apply text-[18px] leading-[150%] text-gray-900;
     }
 }
+
 :deep(.prose-characteristics) {
     @apply text-gray-900;
+
     ul {
         @apply list-disc pl-6 text-[16px] leading-[150%];
     }

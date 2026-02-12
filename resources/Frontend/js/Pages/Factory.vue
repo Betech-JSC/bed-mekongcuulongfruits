@@ -1,7 +1,7 @@
 <template>
     <main>
         <section id="about-our-factory" class="relative">
-            <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
+            <BannerImage :banner="banner" classBanner="md:h-[550px] h-[200px] xl:h-[700px]" />
         </section>
         <section id="production-technology" class="py-12 md:py-16 xl:py-20 bg-[#E5C025]">
             <div class="container space-y-[32px] md:space-y-[56px] xl:space-y-[72px]">

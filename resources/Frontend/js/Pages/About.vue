@@ -1,6 +1,6 @@
 <template>
     <main>
-        <BannerImage :banner="banner" classBanner="md:h-[550px] h-[550px] xl:h-[700px]" />
+        <BannerImage :banner="banner" classBanner="md:h-[550px] h-[200px] xl:h-[700px]" />
         <SectionAboutProduct :items="$page.props.data.products" />
     </main>
 </template>
