@@ -193,7 +193,7 @@ export default {
 <style lang="scss" scoped>
 :deep(.prose-overview) {
     p {
-        @apply text-[18px] leading-[150%] text-gray-900;
+        @apply text-[16px] leading-[150%] text-gray-900;
     }
 }
 
