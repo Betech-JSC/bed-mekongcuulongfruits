@@ -1,60 +1,73 @@
 <template>
-    <footer class="relative space-y-10 py-10">
-        <div class="container">
-            <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
-                <div class="col-span-full xl:col-span-4">
-                    <div class="max-w-[200px] lg:max-w-[221px] max-h-[215px] max-xl:mx-auto">
-                        <Link :href="route('home')">
-                        <JPicture src="/assets/images/logo-footer.png" alt="logo" class="w-full h-full" />
-                        </Link>
+    <footer class="relative">
+        <div class="absolute inset-0 hidden md:block">
+            <JPicture src="/assets/images/footer/bg-footer.webp" alt="background footer"
+                class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute inset-0 md:hidden">
+            <JPicture src="/assets/images/footer/bg-footer-mobile.webp" alt="background footer"
+                class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute inset-0 bg-[#1A4728]/70 w-full h-full"></div>
+        <div class="relative py-10">
+            <div class="container">
+                <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
+                    <div class="col-span-full xl:col-span-4">
+                        <div class="max-w-[200px] lg:max-w-[221px] max-h-[215px] max-xl:mx-auto">
+                            <Link :href="route('home')">
+                            <JPicture src="/assets/images/logo-footer.png" alt="logo" class="w-full h-full" />
+                            </Link>
+                        </div>
                     </div>
-                </div>
-                <div
-                    class="col-span-full xl:col-span-8 flex md:flex-row flex-col items-start justify-between gap-8 lg:gap-16">
-                    <div class="space-y-3 md:max-w-[300px] lg:max-w-[400px] xl:max-w-[307px] w-full">
-                        <div class="label-1 font-semibold text-brown uppercase">Vietnam Farmer Company Limited</div>
-                        <div class="label-2 !font-normal space-y-3">
-                            <div v-for="(itemInfo, indexInfo) in infos" :key="indexInfo">
-                                <span class="mr-1 font-bold">{{ itemInfo.title }}</span>
-                                <span class="text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
-                                    <a :href="itemInfo.href" :target="itemInfo.target"
-                                        rel="noopener noreferrer nofollow">
-                                        {{ itemInfo.content }}
-                                    </a>
-                                </span>
+                    <div
+                        class="col-span-full xl:col-span-8 flex md:flex-row flex-col items-start justify-between gap-8 lg:gap-16">
+                        <div class="space-y-3 md:max-w-[300px] lg:max-w-[400px] xl:max-w-[307px] w-full">
+                            <div class="label-1 font-semibold text-brand-300 uppercase">Vietnam Farmer Company Limited
+                            </div>
+                            <div class="label-2 !font-normal space-y-3 text-white">
+                                <div v-for="(itemInfo, indexInfo) in infos" :key="indexInfo">
+                                    <span class="mr-1 font-bold">{{ itemInfo.title }}</span>
+                                    <span class="text-white lg:hover:text-brand-300 duration-300 ease-in-out">
+                                        <a :href="itemInfo.href" :target="itemInfo.target"
+                                            rel="noopener noreferrer nofollow">
+                                            {{ itemInfo.content }}
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <a v-for="(itemSocial, indexSocial) in socials" :key="indexSocial"
+                                    :href="itemSocial.link" target="_blank" rel="noopener noreferrer nofollow"
+                                    class="w-8 h-8 opacity-100 duration-300 ease-in-out">
+                                    <JPicture :src="itemSocial.icon" :alt="itemSocial.alt" />
+                                </a>
                             </div>
                         </div>
-                        <div class="flex items-center gap-6">
-                            <a v-for="(itemSocial, indexSocial) in socials" :key="indexSocial" :href="itemSocial.link"
-                                target="_blank" rel="noopener noreferrer nofollow"
-                                class="w-8 h-8 lg:hover:opacity-100 opacity-75 duration-300 ease-in-out">
-                                <JPicture :src="itemSocial.icon" :alt="itemSocial.alt" />
-                            </a>
+                        <div class="md:space-y-6 space-y-4 xl:space-y-8">
+                            <div class="label-1 font-semibold uppercase text-brand-300">Vietnam Farmer</div>
+                            <ul class="md:space-y-3 space-y-2 xl:space-y-4">
+                                <li v-for="(itemMenu, indexMenu) in menus" :key="indexMenu">
+                                    <Link :href="itemMenu.slug"
+                                        class="body-2 text-white lg:hover:text-brand-300 duration-300 ease-in-out">
+                                    {{ itemMenu.title }}
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="md:space-y-6 space-y-4 xl:space-y-8">
-                        <div class="label-1 font-semibold uppercase text-brown">Vietnam Farmer</div>
-                        <ul class="md:space-y-3 space-y-2 xl:space-y-4">
-                            <li v-for="(itemMenu, indexMenu) in menus" :key="indexMenu">
-                                <Link :href="itemMenu.slug"
-                                    class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
-                                {{ itemMenu.title }}
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="md:space-y-6 space-y-4 xl:space-y-8 max-w-[150px]">
-                        <div class="label-1 font-semibold text-brown">Products</div>
-                        <ul class="md:space-y-3 space-y-2 xl:space-y-4">
-                            <li v-for="(itemProduct, indexProduct) in $page.props.data.products" :key="indexProduct">
-                                <Link v-if="itemProduct.slug" :href="route('products.show', {
-                                    slug: itemProduct.slug,
-                                })
-                                    " class="body-2 text-gray-900 lg:hover:text-primary duration-300 ease-in-out">
-                                {{ itemProduct.title }}
-                                </Link>
-                            </li>
-                        </ul>
+                        <div class="md:space-y-6 space-y-4 xl:space-y-8 max-w-[150px]">
+                            <div class="label-1 font-semibold text-brand-300 uppercase">Products</div>
+                            <ul class="md:space-y-3 space-y-2 xl:space-y-4">
+                                <li v-for="(itemProduct, indexProduct) in $page.props.data.products"
+                                    :key="indexProduct">
+                                    <Link v-if="itemProduct.slug" :href="route('products.show', {
+                                        slug: itemProduct.slug,
+                                    })
+                                        " class="body-2 text-white lg:hover:text-brand-300 duration-300 ease-in-out">
+                                    {{ itemProduct.title }}
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,8 +104,8 @@ export default {
                 },
                 {
                     title: 'Phone:',
-                    content: this.tt('0909 981 381'),
-                    href: `tel:${this.tt('0909 981 381')}`,
+                    content: this.tt('+84 909 981 381'),
+                    href: `tel:${this.tt('+84909981381')}`,
                     target: '_self',
                 },
                 {
@@ -110,7 +123,7 @@ export default {
                 // },
                 {
                     link: 'https://vietnamfarmer.com.vn',
-                    icon: '/assets/images/icon-website.png',
+                    icon: '/assets/images/icon-website-footer.png',
                     alt: 'website icon',
                 },
                 {
