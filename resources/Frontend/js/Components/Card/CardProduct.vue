@@ -22,13 +22,13 @@
             <div class="body-2 text-gray-900 line-clamp-3 h-[57px] md:h-[59px] overflow-hidden"
                 v-html="item.content_overview">
             </div>
-            <div class="flex items-center gap-1">
+            <!-- <div class="flex items-center gap-1">
                 <div class="body-2 text-gray-9">Output</div>
                 <div :style="{ backgroundColor: production.color }"
                     class="text-gray-900 body-2 py-1 px-2.5 rounded-full">
                     {{ production.text }}
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
