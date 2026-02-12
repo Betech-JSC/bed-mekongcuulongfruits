@@ -31,7 +31,7 @@
             </div>
 
         </div>
-        <div class="space-y-6 px-[5rem]">
+        <div class="space-y-6 px-[0.75rem] lg:px-[2rem] xl:px-[5rem]">
             <div class="flex items-center justify-between">
                 <AnimatedAppear>
                     <div class="headline-1 font-bold text-brand-100 uppercase">Harvest Season</div>
