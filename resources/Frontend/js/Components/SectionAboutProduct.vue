@@ -127,7 +127,7 @@
                 <div class="col-span-full lg:col-span-7 xl:col-span-8">
                     <AnimatedAppear animate="flip">
                         <div class="relative rounded-[16px] overflow-hidden">
-                            <JPicture src="/assets/images/about/bg-why-choose.jpg" alt="background why choose"
+                            <JPicture src="/assets/images/about/bg-why-choose-2.jpg" alt="background why choose"
                                 class="w-full h-full object-cover" />
                         </div>
                     </AnimatedAppear>
