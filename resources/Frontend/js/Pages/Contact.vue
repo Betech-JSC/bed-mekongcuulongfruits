@@ -187,8 +187,8 @@ export default {
             infos: [
                 {
                     title: 'Phone',
-                    description: '0909 981 381',
-                    link: 'tel:0909981381',
+                    description: '+84 909 981 381',
+                    link: 'tel:+84909981381',
                     target: '_self',
                 },
                 {
