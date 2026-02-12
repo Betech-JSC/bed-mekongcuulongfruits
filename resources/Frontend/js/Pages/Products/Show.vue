@@ -20,7 +20,6 @@
                     </div>
                     <div class="flex-1">
                         <AnimatedAppear>
-                            <div class="body-0 text-gray-900 uppercase mb-3">Overview</div>
                             <h2 class="display-3 font-bold text-primary mb-6 md:mb-8 xl:mb-10">
                                 {{ product.title_overview }}
                             </h2>
@@ -98,8 +97,7 @@
 
                     <AnimatedAppear>
                         <h2 class="headline-1 font-bold uppercase text-brand-300 mb-4">Production Process</h2>
-                        <div class="title-2 text-white md:h-[220px] md:overflow-y-auto"
-                            v-html="product.product_process">
+                        <div class="body-1 text-white md:h-[220px] md:overflow-y-auto" v-html="product.product_process">
                         </div>
                     </AnimatedAppear>
                 </div>

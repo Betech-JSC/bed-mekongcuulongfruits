@@ -3,8 +3,7 @@
         <div class="container md:space-y-[56px] space-y-8 xl:space-y-[72px]">
             <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
                 <div class="col-span-full lg:col-span-7">
-                    <AnimatedAppear animate="slideleft" class="space-y-3">
-                        <div class="headline-3 text-brand-100 uppercase">Our Products</div>
+                    <AnimatedAppear animate="slideleft">
                         <h2 class="display-2 font-bold text-brand-100 uppercase">
                             OUR PRODUCTS FRESH FROM GROWING REGIONS IN VIETNAM
                         </h2>
