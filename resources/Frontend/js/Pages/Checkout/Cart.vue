@@ -7,87 +7,62 @@
                 <div class="mt-8 w-full max-md:max-w-full">
                     <div class="flex flex-col xl:flex-row gap-4 md:gap-6 xl:gap-8 items-start w-full">
                         <div
-                            class="p-4 md:p-6 bg-white rounded-[24px] max-w-full xl:max-w-[696px] w-full md:space-y-6 space-y-4 xl:space-y-8"
-                        >
+                            class="p-4 md:p-6 bg-white rounded-[24px] max-w-full xl:max-w-[696px] w-full md:space-y-6 space-y-4 xl:space-y-8">
                             <div class="space-y-4">
                                 <div class="pb-1 border-b border-gray-300">
                                     <h2 class="label-1 text-gray-900">Thông tin liên hệ</h2>
                                 </div>
                                 <div class="md:space-y-5 space-y-4 xl:space-y-6 body-1">
-                                    <JamFieldSet
-                                        v-model="form.name"
-                                        :field="{
-                                            rules: rules,
-                                            errors: errors,
-                                            type: 'text',
-                                            placeholder: tt('Họ và tên'),
-                                            name: 'Họ và tên',
-                                            fieldName: 'name',
-                                            label: 'Họ và tên',
-                                            errorText: tt('Họ tên không hợp lệ'),
-                                            validate: isSubmit,
-                                        }"
-                                        :isCart="true"
-                                        :isSubmit="isSubmit"
-                                        @setIsSubmit="setIsSubmit"
-                                        :isContact="true"
-                                    />
+                                    <JamFieldSet v-model="form.name" :field="{
+                                        rules: rules,
+                                        errors: errors,
+                                        type: 'text',
+                                        placeholder: tt('Họ và tên'),
+                                        name: 'Họ và tên',
+                                        fieldName: 'name',
+                                        label: 'Họ và tên',
+                                        errorText: tt('Họ tên không hợp lệ'),
+                                        validate: isSubmit,
+                                    }" :isCart="true" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit"
+                                        :isContact="true" />
                                     <div class="grid md:grid-cols-2 md:gap-5 gap-4 xl:gap-6">
-                                        <JamFieldSet
-                                            v-model="form.phone"
-                                            :field="{
-                                                rules: rules,
-                                                errors: errors,
-                                                type: 'number',
-                                                placeholder: tt('Số điện thoại'),
-                                                name: 'Số điện thoại',
-                                                fieldName: 'phone',
-                                                label: 'Số điện thoại',
-                                                errorText: tt('Số điện thoại không hợp lệ'),
-                                                validate: isSubmit,
-                                            }"
-                                            :isCart="true"
-                                            :isSubmit="isSubmit"
-                                            @setIsSubmit="setIsSubmit"
-                                            :isContact="true"
-                                        />
-                                        <JamFieldSet
-                                            v-model="form.email"
-                                            :field="{
-                                                rules: rules,
-                                                errors: errors,
-                                                type: 'email',
-                                                placeholder: tt('Email'),
-                                                name: 'Email',
-                                                fieldName: 'email',
-                                                label: 'Email',
-                                                errorText: tt('Email không hợp lệ'),
-                                                validate: isSubmit,
-                                            }"
-                                            :isCart="true"
-                                            :isSubmit="isSubmit"
-                                            @setIsSubmit="setIsSubmit"
-                                            :isContact="true"
-                                        />
-                                    </div>
-                                    <JamFieldSet
-                                        v-model="form.note"
-                                        :field="{
+                                        <JamFieldSet v-model="form.phone" :field="{
                                             rules: rules,
                                             errors: errors,
-                                            type: 'textarea',
-                                            placeholder: tt('Lời nhắn gửi tới Farmer Vietnam'),
-                                            name: 'Nội dung yêu cầu',
-                                            fieldName: 'note',
-                                            label: 'Lời nhắn',
-                                            errorText: tt('Lời nhắn không hợp lệ'),
+                                            type: 'number',
+                                            placeholder: tt('Số điện thoại'),
+                                            name: 'Số điện thoại',
+                                            fieldName: 'phone',
+                                            label: 'Số điện thoại',
+                                            errorText: tt('Số điện thoại không hợp lệ'),
                                             validate: isSubmit,
-                                        }"
-                                        :isCart="true"
-                                        :isSubmit="isSubmit"
-                                        @setIsSubmit="setIsSubmit"
-                                        :isContact="true"
-                                    />
+                                        }" :isCart="true" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit"
+                                            :isContact="true" />
+                                        <JamFieldSet v-model="form.email" :field="{
+                                            rules: rules,
+                                            errors: errors,
+                                            type: 'email',
+                                            placeholder: tt('Email'),
+                                            name: 'Email',
+                                            fieldName: 'email',
+                                            label: 'Email',
+                                            errorText: tt('Email không hợp lệ'),
+                                            validate: isSubmit,
+                                        }" :isCart="true" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit"
+                                            :isContact="true" />
+                                    </div>
+                                    <JamFieldSet v-model="form.note" :field="{
+                                        rules: rules,
+                                        errors: errors,
+                                        type: 'textarea',
+                                        placeholder: tt('Lời nhắn gửi tới Vietnam Farmer'),
+                                        name: 'Nội dung yêu cầu',
+                                        fieldName: 'note',
+                                        label: 'Lời nhắn',
+                                        errorText: tt('Lời nhắn không hợp lệ'),
+                                        validate: isSubmit,
+                                    }" :isCart="true" :isSubmit="isSubmit" @setIsSubmit="setIsSubmit"
+                                        :isContact="true" />
                                 </div>
                             </div>
                             <div>
@@ -96,13 +71,9 @@
                                 </div>
 
                                 <div
-                                    class="flex flex-wrap gap-6 items-start mt-6 w-full text-sm leading-snug max-md:max-w-full"
-                                >
-                                    <img
-                                        src="/assets/images/qrcode.jpg"
-                                        alt="QR Code"
-                                        class="object-contain shrink-0 w-full md:w-32 aspect-square"
-                                    />
+                                    class="flex flex-wrap gap-6 items-start mt-6 w-full text-sm leading-snug max-md:max-w-full">
+                                    <img src="/assets/images/qrcode.jpg" alt="QR Code"
+                                        class="object-contain shrink-0 w-full md:w-32 aspect-square" />
 
                                     <div class="flex-1 bg-gray-50 rounded-xl p-2 w-full space-y-3">
                                         <div class="flex md:flex-row flex-col gap-2 md:items-center">
@@ -135,18 +106,13 @@
                         </div>
 
                         <aside
-                            class="flex flex-col flex-1 p-4 md:p-6 space-y-4 md:space-y-5 xl:space-y-6 bg-white rounded-[24px]"
-                        >
+                            class="flex flex-col flex-1 p-4 md:p-6 space-y-4 md:space-y-5 xl:space-y-6 bg-white rounded-[24px]">
                             <div class="pb-1 border-b border-gray-300">
                                 <h2 class="label-1 text-gray-900">Thông tin đơn hàng</h2>
                             </div>
 
-                            <OrderProduct
-                                v-for="(cart, index) in form?.products"
-                                :key="index"
-                                :cart="cart"
-                                @deleteItem="handleOrderInfo"
-                            />
+                            <OrderProduct v-for="(cart, index) in form?.products" :key="index" :cart="cart"
+                                @deleteItem="handleOrderInfo" />
 
                             <div class="p-4 w-full bg-gray-100 rounded space-y-4">
                                 <div class="flex flex-col justify-center w-full">
@@ -166,19 +132,15 @@
 
                             <button
                                 class="button-1 space-x-[12px] bg-primary-800 lg:hover:bg-primary-900 text-primary-100 flex items-center justify-center text-center transform transition-all py-[12px] w-full rounded-full button-1"
-                                as="button"
-                                :loading="isLoading"
-                                @click="onSubmitForm()"
-                            >
+                                as="button" :loading="isLoading" @click="onSubmitForm()">
                                 <div>{{ tt('Thanh toán') }}</div>
                                 <i class="gg-spinner" v-if="isLoading"></i>
                             </button>
 
                             <p class="body-1">
                                 Nhấn đặt hàng đồng nghĩa với việc bạn đồng ý tuân theo
-                                <Link :href="route('policies.index')" class="font-bold underline"
-                                    >Chính sách đặt hàng</Link
-                                >
+                                <Link :href="route('policies.index')" class="font-bold underline">Chính sách đặt hàng
+                                </Link>
                                 của chúng tôi.
                             </p>
                         </aside>
@@ -367,8 +329,10 @@ export default {
     -ms-user-select: none;
     user-select: none;
     @apply relative;
+
     .checkmark {
         @apply absolute top-1/2 left-0 overflow-hidden -translate-y-1/2 w-[16px] h-[16px] border-gray-300 border rounded-sm;
+
         &:before {
             content: '';
             @apply block absolute w-full h-full inset-0 z-10 bg-no-repeat bg-center opacity-0;
@@ -376,21 +340,26 @@ export default {
             background-size: cover;
         }
     }
+
     .label-check {
         @apply text-gray-700 font-medium cursor-pointer pl-[26px] relative z-10;
     }
+
     input:checked {
-        ~ .checkmark {
+        ~.checkmark {
             @apply border-primary-600;
+
             &:before {
                 @apply opacity-100;
             }
         }
     }
 }
+
 .button-linear {
     background: linear-gradient(81deg, #1da89f 8.3%, #025e33 103.63%);
 }
+
 .button-linear:hover {
     background: #101828;
 }
@@ -431,6 +400,7 @@ export default {
     0% {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(359deg);
     }

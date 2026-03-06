@@ -42,7 +42,7 @@ export default {
     props: {
         title: {
             type: String,
-            default: 'Chia sẻ bài viết này',
+            default: 'Share this article',
         },
     },
     data() {

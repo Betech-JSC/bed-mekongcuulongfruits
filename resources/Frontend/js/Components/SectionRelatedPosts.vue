@@ -1,7 +1,7 @@
 <template>
     <section v-if="items && items.length" class="bg-primary-25 py-12 md:py-20 xl:py-[112px]">
         <div class="container space-y-4 md:space-y-6 xl:space-y-10">
-            <h2 class="display-2 text-center uppercase font-bold">Related posts</h2>
+            <h2 class="display-2 text-center uppercase font-bold">Related articles</h2>
             <div class="relative">
                 <button class="btn-swiper swiper-button-prev" @click="onPrevClick">
                     <ArrowSlider />

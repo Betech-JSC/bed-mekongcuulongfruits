@@ -12,27 +12,14 @@
                     <!-- Dynamic Title -->
                     <h1 class="text-white display-3 inline-block" v-html="title"></h1>
                     <div class="group">
-                        <Link
-                            :href="contactLink"
-                            class="inline-flex justify-center items-center button-1 text-white gap-x-2 uppercase font-bold"
-                        >
-                            <div>Liên hệ ngay</div>
-                            <svg
-                                class="transform group-hover:translate-x-[3px] transition-all"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                            >
-                                <path
-                                    d="M2 9.99996H18.5M18.5 9.99996L11.5 4.16663M18.5 9.99996L11.5 15.8333"
-                                    stroke="white"
-                                    stroke-width="3"
-                                    stroke-linecap="square"
-                                    stroke-linejoin="bevel"
-                                />
-                            </svg>
+                        <Link :href="contactLink"
+                            class="inline-flex justify-center items-center button-1 text-white gap-x-2 uppercase font-bold">
+                        <div>Contact Now</div>
+                        <svg class="transform group-hover:translate-x-[3px] transition-all"
+                            xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M2 9.99996H18.5M18.5 9.99996L11.5 4.16663M18.5 9.99996L11.5 15.8333" stroke="white"
+                                stroke-width="3" stroke-linecap="square" stroke-linejoin="bevel" />
+                        </svg>
                         </Link>
                     </div>
                 </div>

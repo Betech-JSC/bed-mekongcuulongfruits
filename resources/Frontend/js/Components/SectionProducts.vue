@@ -2,16 +2,21 @@
     <section class="bg-brand-300 md:py-16 py-12 xl:py-20 relative overflow-hidden">
         <div class="container md:space-y-[56px] space-y-8 xl:space-y-[72px]">
             <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
-                <div class="col-span-full lg:col-span-7 space-y-3">
-                    <div class="headline-3 text-brand-100 uppercase">Sản phẩm của chúng tôi</div>
-                    <h2 class="display-2 font-bold text-brand-100 uppercase">Tươi ngon từ Đồng bằng sông Cửu Long, Việt
-                        Nam</h2>
+                <div class="col-span-full lg:col-span-7">
+                    <AnimatedAppear animate="slideleft">
+                        <h2 class="display-2 font-bold text-brand-100 uppercase">
+                            OUR PRODUCTS FRESH FROM GROWING REGIONS IN VIETNAM
+                        </h2>
+                    </AnimatedAppear>
                 </div>
                 <div class="col-span-full lg:col-span-5 lg:ml-auto">
-                    <Link :href="route('contact')" class="btn btn-secondary space-x-3 flex items-center justify-center">
-                    <span>{{ tt('Xem thêm') }}</span>
-                    <Arrow />
-                    </Link>
+                    <AnimatedAppear animate="slideright">
+                        <Link :href="route('contact')"
+                            class="btn btn-secondary space-x-3 flex items-center justify-center">
+                        <span>{{ tt('See More') }}</span>
+                        <Arrow />
+                        </Link>
+                    </AnimatedAppear>
                 </div>
             </div>
             <div class="relative">
@@ -26,7 +31,9 @@
                     :autoplay="{ delay: 1000, disableOnInteraction: false }" :breakpoints="breakpoints"
                     @swiper="onSwiperInit" class="swiper-product">
                     <swiper-slide v-for="(item, index) in items" :key="index">
-                        <CardCardProduct :item="item" />
+                        <AnimatedAppear :delay="index * 300">
+                            <CardCardProduct :item="item" />
+                        </AnimatedAppear>
                     </swiper-slide>
                 </swiper>
             </div>

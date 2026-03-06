@@ -3,7 +3,7 @@
         <swiper ref="swiperRef" :modules="[Autoplay, Pagination]" :slides-per-view="1" :space-between="0" :loop="true"
             :autoplay="{ delay: 2000, disableOnInteraction: false, pauseOnMouseEnter: true }" :breakpoints="breakpoints"
             :pagination="{ clickable: true, el: '.hero-pagination' }" @swiper="onSwiperInit"
-            class="h-[550px] md:h-[620px] xl:h-[800px] max-h-screen overflow-hidden relative">
+            class="h-[400px] md:h-[620px] xl:h-[800px] max-h-screen overflow-hidden relative">
             <swiper-slide v-for="(item, index) in items" :key="index">
                 <div class="absolute inset-0">
                     <JPicture :src="item.image.url || '/assets/images/home/bg-hero.webp'"
@@ -19,17 +19,17 @@
                             <div class="col-span-full md:col-span-8 lg:col-span-7 flex items-center h-full">
                                 <div
                                     class="space-y-5 md:space-y-[24px] xl:space-y-[30px] max-w-[500px] xl:max-w-[600px] w-full">
-                                    <h1 class="display-2 font-bold uppercase text-brand-200">
+                                    <h1 class="display-2 max-md:text-[28px] font-bold uppercase text-brand-200">
                                         {{ item.title || '' }}
                                     </h1>
                                     <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer"
                                         class="btn btn-primary space-x-3 flex items-center justify-center">
-                                        <span>{{ tt('Xem chi tiết') }}</span>
+                                        <span>{{ tt('See more') }}</span>
                                         <Arrow />
                                     </a>
                                     <Link v-else :href="route('contact')"
                                         class="btn btn-primary space-x-3 flex items-center justify-center">
-                                    <span>{{ tt('Nhận tư vấn ngay') }}</span>
+                                    <span>{{ tt('Explore Our Products') }}</span>
                                     <Arrow />
                                     </Link>
                                 </div>

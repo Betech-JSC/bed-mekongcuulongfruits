@@ -1,38 +1,28 @@
 <template>
-    <div
-        class="fixed top-0 bottom-0 right-0 z-50 overflow-hidden bg-white"
-        v-show="show"
-        :class="embed ? 'left-0 overflow-auto' : 'left-from-sidebar'"
-    >
-        <input
-            type="file"
-            class="hidden"
-            accept="image/png, image/gif, image/jpeg, image/svg+xml, application/pdf ,image/webp"
-            multiple="true"
-            ref="file"
-            @change="fileChange"
-        />
+    <div class="fixed top-0 bottom-0 right-0 z-50 overflow-hidden bg-white" v-show="show"
+        :class="embed ? 'left-0 overflow-auto' : 'left-from-sidebar'">
+        <input type="file" class="hidden"
+            accept="image/png, image/gif, image/jpeg, image/svg+xml, application/pdf ,image/webp" multiple="true"
+            ref="file" @change="fileChange" />
         <div class="topbar" v-if="!embed">
             <h1 class="flex items-center font-semibold text-gray-700">
-                <div
-                    class="p-4 -ml-4 cursor-pointer hover:text-gray-900"
-                    @click="$emit('update:show', false)"
-                    v-if="selectable"
-                >
+                <div class="p-4 -ml-4 cursor-pointer hover:text-gray-900" @click="$emit('update:show', false)"
+                    v-if="selectable">
                     <ph-caret-left />
                 </div>
                 {{ tt('models.files.file_manager') }}
             </h1>
             <div class="flex ml-auto space-x-3">
-                <input
-                    type="text"
-                    :placeholder="tt('models.files.input_file')"
+                <input type="text" :placeholder="tt('models.files.input_file')"
                     class="flex-inline w-[400px] py-[0.5rem] px-[1rem] border border-gray-300 focus:border-solid focus:outline-none focus:ring-0 rounded hover:border-gray-400 focus:border-gray-500"
-                    @input="onChange"
-                />
+                    @input="onChange" />
                 <Button @click.prevent="showFolderModal = true" class="space-x-2 btn-outline-primary">
                     <ph-plus-circle-light />
                     <span> {{ tt('models.files.add_folder') }} </span>
+                </Button>
+                <Button @click="deleteFolder" class="space-x-2 btn-outline-primary">
+                    <carbon:subtract-alt />
+                    <span> {{ tt('models.files.delete_folder') }} </span>
                 </Button>
                 <Button @click.prevent="browse" class="space-x-2 btn-primary">
                     <ph:upload-simple />
@@ -41,16 +31,12 @@
             </div>
         </div>
         <div class="flex items-stretch flex-1 h-full overflow-hidden" @dragover.prevent="isDragging = true">
-            <div
-                class="fixed inset-0 overflow-hidden border-4 border-dashed before:absolute before:bg-green-300 before:bg-opacity-25 before:inset-0 before:z-10 left-from-sidebar"
-                :class="
-                    isDragging
+            <div class="fixed inset-0 overflow-hidden border-4 border-dashed before:absolute before:bg-green-300 before:bg-opacity-25 before:inset-0 before:z-10 left-from-sidebar"
+                :class="isDragging
                         ? 'z-10 border-green-300 before:visible visible'
                         : 'z-0 border-transparent before:invisible invisible'
-                "
-                @dragleave.prevent="isDragging = false"
-                @drop.prevent=";(isDragging = false), (dragCounter = 0), drop($event)"
-            ></div>
+                    " @dragleave.prevent="isDragging = false"
+                @drop.prevent="; (isDragging = false), (dragCounter = 0), drop($event)"></div>
 
             <!-- Details sidebar -->
             <aside class="hidden p-8 pb-16 overflow-y-auto bg-white border-l border-r border-gray-200 w-80 lg:block">
@@ -61,26 +47,21 @@
                     </Button>
                     <hr class="my-2" />
                 </template>
-                <Field
-                    v-if="tree && tree.length"
-                    :field="{
-                        key: 'FileManager',
-                        label: false,
-                        type: 'tree',
-                        maxLevel: 10,
-                        expandDefaultLevel: 2,
-                        keyBy: 'slug',
-                        labelBy: 'name',
-                        childrenBy: 'children',
-                        options: tree,
-                        draggable: false,
-                    }"
-                />
+                <Field v-if="tree && tree.length" :field="{
+                    key: 'FileManager',
+                    label: false,
+                    type: 'tree',
+                    maxLevel: 10,
+                    expandDefaultLevel: 2,
+                    keyBy: 'slug',
+                    labelBy: 'name',
+                    childrenBy: 'children',
+                    options: tree,
+                    draggable: false,
+                }" />
             </aside>
-            <main
-                class="overflow-y-auto grow group-image-admin"
-                :class="canDeleteFolder ? 'flex items-center flex-col justify-center' : 'flex-1'"
-            >
+            <main class="overflow-y-auto grow group-image-admin"
+                :class="canDeleteFolder ? 'flex items-center flex-col justify-center' : 'flex-1'">
                 <div v-if="canDeleteFolder">
                     <h1 v-if="canDeleteFolder" class="text-xl">
                         {{ tt('models.files.drop') }}
@@ -94,17 +75,13 @@
                         <span> {{ tt('models.files.delete_folder') }} </span>
                     </Button>
                 </div>
-                <div
-                    v-if="Object.keys(searchFiles).length"
-                    class="px-4 pt-8 pb-16 mx-auto space-y-4 max-w-7xl sm:px-6 lg:px-8"
-                >
+                <div v-if="Object.keys(searchFiles).length"
+                    class="px-4 pt-8 pb-16 mx-auto space-y-4 max-w-7xl sm:px-6 lg:px-8">
                     <ul role="list" class="grid grid-cols-3 gap-4 lg:grid-cols-4 2xl:grid-cols-6">
                         <li class="relative" v-if="data" v-for="(file, index) in searchFiles" :key="file.static_url">
-                            <div
-                                class="group w-full rounded bg-gray-100 overflow-hidden aspect-[1/1] flex cursor-pointer justify-center items-center border border-transparent hover:border-gray-400 relative outline outline-offset-2 outline-2"
+                            <div class="group w-full rounded bg-gray-100 overflow-hidden aspect-[1/1] flex cursor-pointer justify-center items-center border border-transparent hover:border-gray-400 relative outline outline-offset-2 outline-2"
                                 :class="selectedFiles.includes(file) ? 'outline-black' : 'outline-transparent'"
-                                @click="onSelect(file)"
-                            >
+                                @click="onSelect(file)">
                                 <Thumbnail :file="file" @remove="onRemove(file)" />
                             </div>
                             <p class="block mt-2 text-sm font-medium text-gray-900 truncate pointer-events-none">
@@ -140,31 +117,18 @@
             </Button>
             <Button v-if="selectable || selectMultiple" class="btn-primary" @click="submitFileSelect()"> {{ tt('models.files.select') }} ({{ selectedFiles.length }}) </Button>
         </div>
-        <Dialog
-            header="Folder"
-            v-model:visible="showFolderModal"
-            :breakpoints="{
-                '960px': '75vw',
-                '640px': '90vw',
-            }"
-            :style="{ width: '50vw' }"
-            :draggable="false"
-        >
-            <Field
-                v-model="folderForm.name"
-                :field="{
-                    rules: 'required',
-                    name: 'name',
-                }"
-            />
+        <Dialog header="Folder" v-model:visible="showFolderModal" :breakpoints="{
+            '960px': '75vw',
+            '640px': '90vw',
+        }" :style="{ width: '50vw' }" :draggable="false">
+            <Field v-model="folderForm.name" :field="{
+                rules: 'required',
+                name: 'name',
+            }" />
             <template #footer>
                 <Button variant="white" @click="showFolderModal = false" :label="tt('models.files.cancel')" />
-                <Button
-                    type="button"
-                    class="ml-2"
-                    @click="createFolder(folderForm.name), (showFolderModal = false)"
-                    :label="tt('models.files.save')"
-                />
+                <Button type="button" class="ml-2" @click="createFolder(folderForm.name), (showFolderModal = false)"
+                    :label="tt('models.files.save')" />
             </template>
         </Dialog>
 
@@ -355,6 +319,13 @@ export default {
                         let files = isFirstPage ? {} : this.data.files
                         let new_files = res.data.files ? res.data.files : {}
 
+                        this.data.tree = res.data.tree
+                        this.data.directories = res.data.directories
+
+                        if (!this.tree || loadTree) {
+                            this.tree = res.data.tree
+                        }
+
                         if (Object.keys(new_files).length == 0) {
                             if (requestParams.page > 1) {
                                 this.fetchData = false
@@ -368,15 +339,7 @@ export default {
                             } else {
                                 files = { ...files, ...new_files }
                             }
-                            this.data = {
-                                tree: res.data.tree,
-                                directories: res.data.directories,
-                                files: files,
-                            }
-
-                            if (!this.tree || loadTree) {
-                                this.tree = res.data.tree
-                            }
+                            this.data.files = files
                         }
                     })
             }
@@ -384,7 +347,7 @@ export default {
         async copyUrl(file) {
             try {
                 await navigator.clipboard.writeText(this.staticUrl(file.static_url))
-            } catch ($e) {}
+            } catch ($e) { }
         },
         submitToParentIframe() {
             let htmlImages = ''
@@ -464,9 +427,9 @@ export default {
                 if (!fileCheck.valid) {
                     alert(
                         this.tt('models.files.maximum_size') +
-                            ' ' +
-                            fileCheck.maxSize +
-                            this.tt('models.files.try_again')
+                        ' ' +
+                        fileCheck.maxSize +
+                        this.tt('models.files.try_again')
                     )
                     this.$refs.file.value = ''
                     this.loading = false
@@ -615,12 +578,13 @@ export default {
 .left-from-sidebar {
     left: var(--sidebar-width);
 }
+
 .topbar {
     @apply absolute flex items-center flex-shrink-0 w-full px-4 bg-white border-b sm:px-10 md:px-12;
     height: var(--topbar-height);
 }
 
-.topbar + div {
+.topbar+div {
     @apply fixed right-0;
     top: var(--topbar-height);
     height: calc(100% - var(--topbar-height));

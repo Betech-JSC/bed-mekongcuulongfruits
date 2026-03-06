@@ -5,7 +5,7 @@
         <Footer />
         <JamBackToTop />
         <PopupCartSuccess :open="isShowPopup" />
-        <!-- <SocialFixed /> -->
+        <SocialFixed />
     </div>
 </template>
 <script>
@@ -22,10 +22,10 @@ export default {
             const seo = this.$page.props?.seo
             const global = this.$page.props?.global
 
-            let seo_meta_title = seo?.seo_meta_title ?? global?.seo_meta_title ?? 'Farmer Vietnam'
-            let seo_meta_description = seo?.seo_meta_description ?? global?.seo_meta_description ?? 'Farmer Vietnam'
+            let seo_meta_title = seo?.seo_meta_title ?? global?.seo_meta_title ?? 'Vietnam Farmer'
+            let seo_meta_description = seo?.seo_meta_description ?? global?.seo_meta_description ?? 'Vietnam Farmer'
             let seo_meta_robots = seo?.seo_meta_robots ?? global?.seo_meta_robots ?? 'robots.txt'
-            let seo_meta_keywords = seo?.seo_meta_keywords ?? global?.seo_meta_keywords ?? 'Farmer Vietnam'
+            let seo_meta_keywords = seo?.seo_meta_keywords ?? global?.seo_meta_keywords ?? 'Vietnam Farmer'
             let seo_image = seo?.seo_image ?? global?.seo_image ?? '/cover.jpg'
 
             document.querySelector('title').innerHTML = seo_meta_title

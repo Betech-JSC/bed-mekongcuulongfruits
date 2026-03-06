@@ -13,7 +13,7 @@
 
                         <div class="space-y-4">
                             <div class="body-1">
-                                {{ formatDateBlog(post?.published_at) }}
+                                {{ formatDate(post?.published_at) }}
                             </div>
                             <SocialShare />
                         </div>
@@ -32,14 +32,11 @@
         <section class="md:py-16 py-12 xl:py-20">
             <div class="container">
                 <div class="grid grid-cols-12 md:gap-6 gap-4 xl:gap-8">
-                    <div
-                        class="lg:col-span-10 lg:col-start-2 col-span-full xl:col-span-8 xl:col-start-3 pb-16 border-b border-[#F2F2F2]">
+                    <div class="col-span-full pb-16 border-b border-[#F2F2F2]">
                         <div class="label-1 text-black font-semibold">
                             {{ post?.description }}
                         </div>
-                        <div class="prose prose-blog mt-10 mb-16" v-html="post?.content">
-
-                        </div>
+                        <div class="prose prose-blog mt-10 mb-16" v-html="post?.content"></div>
                         <SocialShare />
                     </div>
                 </div>
@@ -59,7 +56,7 @@ export default {
         return {
             breadcrumbs: [
                 {
-                    title: 'Tin tức',
+                    title: 'News',
                     link: this.route('posts'),
                 },
                 {

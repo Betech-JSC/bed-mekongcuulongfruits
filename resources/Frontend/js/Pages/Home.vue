@@ -8,8 +8,12 @@
         <section class="relative">
             <div class="absolute z-10 inset-0 bg-linear-white"></div>
             <div class="aspect-w-13 aspect-h-5">
-                <JPicture src="/assets/images/home/image-art-farmer.jpg" alt="item art farmer"
-                    wrapperClass="picture-cover" class="w-full h-full object-cover" />
+                <JPicture
+                    src="/assets/images/home/image-art-farmer.jpg"
+                    alt="item art farmer"
+                    wrapperClass="picture-cover"
+                    class="w-full h-full object-cover"
+                />
             </div>
         </section>
     </main>

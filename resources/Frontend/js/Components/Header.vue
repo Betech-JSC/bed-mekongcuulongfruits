@@ -6,7 +6,7 @@
             <div class="container flex items-center justify-between py-2">
                 <Logo />
 
-                <ul class="hidden md:flex items-center xl:space-x-7 md:space-x-5">
+                <ul class="hidden md:flex items-center md:space-x-5">
                     <template v-for="(menu, index) in menus" :key="index">
                         <li v-if="menu && menu.title !== ''" @mouseover="setMenuSelected(menu)"
                             @mouseenter="setFirstSubMenu" class="relative group">
@@ -42,7 +42,7 @@
                 </ul>
 
                 <div class="flex items-center justify-center">
-                    <Link :href="route('contact')" class="max-lg:hidden btn btn-primary">Liên hệ</Link>
+                    <Link :href="route('contact')" class="max-lg:hidden btn btn-primary">Get in touch</Link>
                     <button @click="onToggleMenu()" class="lg:hidden">
                         <Hamburger :isToggleMenu="isToggleMenu" />
                     </button>
@@ -123,37 +123,43 @@ export default {
             isScrolled: false,
             menus: [
                 {
-                    title: this.tt('Trang chủ'),
+                    title: this.tt('Home'),
                     slug: this.route('home'),
                     type: 'home',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Về chúng tôi'),
+                    title: this.tt('About Us'),
                     slug: this.route('histories.index'),
                     type: 'histories',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Sản phẩm'),
+                    title: this.tt('Products'),
                     slug: this.route('products.index'),
                     type: 'products',
                     subMenu: this.$page.props.data.products
                 },
                 {
-                    title: this.tt('Tuyển dụng'),
+                    title: this.tt('Factory'),
+                    slug: this.route('factory.index'),
+                    type: 'factory',
+                    subMenu: [],
+                },
+                {
+                    title: this.tt('Careers'),
                     slug: this.route('jobs'),
                     type: 'jobs',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Tin tức'),
+                    title: this.tt('News'),
                     slug: this.route('posts'),
                     type: 'posts',
                     subMenu: [],
                 },
                 {
-                    title: this.tt('Liên hệ'),
+                    title: this.tt('Contact'),
                     slug: this.route('contact'),
                     type: 'contact',
                     subMenu: [],
