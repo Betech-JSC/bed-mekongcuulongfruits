@@ -50,6 +50,7 @@
         "@tailwindcss/typography": "^0.5.7",
         "@tinymce/tinymce-vue": "^5.0.1-rc.20221019005726591.sha6dc048a",
         "aos": "^2.3.4",
+        "chart.js": "^3.0.0",
         "ckeditor5": "file:./resources/Backend/js/ckeditor5",
         "dayjs": "^1.11.6",
         "gsap": "^3.7.1",

@@ -1,8 +1,6 @@
 <template>
     <section class="relative md:min-h-[400px] lg:min-h-[550px] xl:min-h-[720px] bg-black">
-        <!-- Gradient Overlay -->
-        <div class="absolute z-10 inset-0 bg-linear-video pointer-events-none"></div>
-
+        
         <!-- Video Container -->
         <div
             class="relative h-full w-full overflow-hidden"

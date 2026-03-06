@@ -161,11 +161,47 @@ class File
             $fileName = $file->getClientOriginalName();
 
             if ($this->fileValidation($file)) {
-                $filePath = $this->storage->putFileAs(
-                    $this->path,
-                    $file,
-                    $fileName
-                );
+                $mimeType = $file->getMimeType();
+                $isImage = str_contains($mimeType, 'image/') && !str_contains($mimeType, 'svg') && !str_contains($mimeType, 'gif');
+
+                if ($isImage) {
+                    try {
+                        $image = Image::make($file->path());
+
+                        if ($image->width() > 2000) {
+                            $image->resize(2000, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                                $constraint->upsize();
+                            });
+                        }
+
+                        $quality = 80;
+                        $encoded = (string) $image->encode('webp', $quality);
+
+                        while (strlen($encoded) > 300 * 1024 && $quality > 10) {
+                            $quality -= 10;
+                            $encoded = (string) $image->encode('webp', $quality);
+                        }
+
+                        $fileName = pathinfo($fileName, PATHINFO_FILENAME) . '.webp';
+                        $targetPath = ($this->path == '/' ? '' : rtrim($this->path, '/') . '/') . $fileName;
+
+                        $filePath = $this->storage->put($targetPath, $encoded) ? $targetPath : false;
+                    } catch (\Exception $e) {
+                        logger()->error('Image processing failed: ' . $e->getMessage());
+                        $filePath = $this->storage->putFileAs(
+                            $this->path,
+                            $file,
+                            $fileName
+                        );
+                    }
+                } else {
+                    $filePath = $this->storage->putFileAs(
+                        $this->path,
+                        $file,
+                        $fileName
+                    );
+                }
                 $successFiles[] = static_url($filePath, [], false);
 
                 if (!$filePath) {

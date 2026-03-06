@@ -242,6 +242,7 @@ declare module '@vue/runtime-core' {
     Pagination: typeof import('./resources/Backend/js/Components/Pagination.vue')['default']
     Password: typeof import('primevue/password')['default']
     'Ph:arrowSquareUpRight': typeof import('~icons/ph/arrow-square-up-right')['default']
+    'Ph:briefcaseLight': typeof import('~icons/ph/briefcase-light')['default']
     'Ph:caretDownFill': typeof import('~icons/ph/caret-down-fill')['default']
     'Ph:caretRightFill': typeof import('~icons/ph/caret-right-fill')['default']
     'Ph:chartBarLight': typeof import('~icons/ph/chart-bar-light')['default']

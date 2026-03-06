@@ -127,11 +127,18 @@
             </main>
         </div>
         <div
-            v-if="canSelectMultiple && selectedFiles.length > 0"
-            class="absolute bottom-0 left-0 right-0 flex items-center justify-center w-full h-16 space-x-2 bg-white border-t"
+            v-if="selectedFiles.length > 0"
+            class="absolute bottom-0 left-0 right-0 flex items-center justify-center w-full h-16 space-x-2 bg-white border-t border-gray-200 shadow-lg"
         >
-            <Button @click="selectedFiles = []"> {{ tt('models.files.unchecked') }} </Button>
-            <Button class="btn-primary" @click="submitFileSelect()"> {{ tt('models.files.select') }} ({{ selectedFiles.length }}) </Button>
+            <span class="mr-4 text-sm font-medium text-gray-700">
+                {{ selectedFiles.length }} {{ tt('models.table_list.files').toLowerCase() }} Đã chọn
+            </span>
+            <Button @click="selectedFiles = []" class="btn-outline-secondary"> {{ tt('models.files.unchecked') }} </Button>
+            <Button class="btn-danger" @click="deleteSelected()">
+                <ph:trash-light class="mr-1" />
+                {{ tt('models.files.delete') }}
+            </Button>
+            <Button v-if="selectable || selectMultiple" class="btn-primary" @click="submitFileSelect()"> {{ tt('models.files.select') }} ({{ selectedFiles.length }}) </Button>
         </div>
         <Dialog
             header="Folder"
@@ -160,6 +167,16 @@
                 />
             </template>
         </Dialog>
+
+        <div v-show="loading" class="fixed inset-0 z-[9999] flex items-center justify-center bg-white bg-opacity-70" :class="embed ? '' : 'left-from-sidebar'">
+            <div class="flex flex-col items-center">
+                <svg class="w-12 h-12 text-blue-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="mt-4 font-medium text-gray-700">{{ tt('models.table.loading') }}</span>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -229,6 +246,7 @@ export default {
             limit: 50,
             page: 1,
             fetchData: true,
+            loading: false,
         }
     },
 
@@ -311,30 +329,41 @@ export default {
             this.currentPath = item.path
             this.data.files = []
             this.search = null
-            this.getFiles()
             this.page = 1
             this.fetchData = true
+            this.getFiles()
         },
         getFiles(params = {}, loadTree = false) {
-            if (this.fetchData) {
-                this.$axios
-                    .get(
-                        this.route('admin.files.index', {
-                            page: 1,
-                            limit: this.limit,
-                            search: null,
-                            path: this.currentPath,
-                            ...params,
-                        })
-                    )
-                    .then((res) => {
-                        let files = this.data.files
-                        let new_files = res.data.files ? res.data.files : null
+            const isFirstPage = !params.page || params.page === 1
+            if (isFirstPage) {
+                this.page = 1
+                this.fetchData = true
+            }
 
-                        if (Array.isArray(new_files) && new_files.length == 0) {
-                            this.fetchData = false
+            if (this.fetchData) {
+                const requestParams = {
+                    page: this.page,
+                    limit: this.limit,
+                    search: null,
+                    path: this.currentPath,
+                    ...params,
+                }
+
+                this.$axios
+                    .get(this.route('admin.files.index', requestParams))
+                    .then((res) => {
+                        let files = isFirstPage ? {} : this.data.files
+                        let new_files = res.data.files ? res.data.files : {}
+
+                        if (Object.keys(new_files).length == 0) {
+                            if (requestParams.page > 1) {
+                                this.fetchData = false
+                            } else {
+                                this.data.files = {}
+                                this.fetchData = false
+                            }
                         } else {
-                            if (this.page == 1) {
+                            if (requestParams.page == 1) {
                                 files = new_files
                             } else {
                                 files = { ...files, ...new_files }
@@ -386,7 +415,10 @@ export default {
                 return
             }
 
-            if (!this.selectable) return
+            if (!this.selectable) {
+                this.toggleFileSelect(file)
+                return
+            }
 
             if (!this.canSelectMultiple) {
                 this.selectedFiles[0] = file
@@ -424,7 +456,8 @@ export default {
             this.uploadFiles(this.$refs.file.files)
         },
         uploadFiles(images) {
-            if (images.length === 0) return
+            if (images.length === 0 || this.loading) return
+            this.loading = true
 
             for (const image of images) {
                 const fileCheck = this.fileCheck(image)
@@ -436,6 +469,7 @@ export default {
                             this.tt('models.files.try_again')
                     )
                     this.$refs.file.value = ''
+                    this.loading = false
                     return false
                 }
             }
@@ -467,22 +501,69 @@ export default {
             this.postFiles(formData)
         },
         postFiles(formData) {
-            this.$axios.post(this.route('admin.files.store'), formData).then((response) => {
-                if (response.status === 200) {
-                    this.getFiles()
-                }
-            })
+            this.loading = true
+            this.$axios
+                .post(this.route('admin.files.store'), formData)
+                .then((response) => {
+                    if (response.status === 200) {
+                        this.uploadingFiles = []
+                        this.getFiles({ page: 1 })
+                        this.$toast.add({
+                            severity: 'success',
+                            summary: this.tt('models.admins.success'),
+                            detail: this.tt('models.has_crud_action.store'),
+                            life: 3000,
+                        })
+                    }
+                })
+                .finally(() => {
+                    this.loading = false
+                })
         },
         onRemove(file) {
+            this.loading = true
             this.$axios
                 .post(this.route('admin.files.destroy', { id: 0 }), {
                     files: [file],
                 })
                 .then((response) => {
                     if (response.status === 200) {
-                        this.getFiles()
+                        this.getFiles({ page: 1 })
+                        this.$toast.add({
+                            severity: 'success',
+                            summary: this.tt('models.admins.success'),
+                            detail: this.tt('models.has_crud_action.destroy'),
+                            life: 3000,
+                        })
                     }
                 })
+                .finally(() => {
+                    this.loading = false
+                })
+        },
+        deleteSelected() {
+            if (confirm(this.tt('models.files.confirm_delete') || 'Bạn thực sự muốn xoá?')) {
+                this.loading = true
+                this.$axios
+                    .post(this.route('admin.files.destroy', { id: 0 }), {
+                        files: this.selectedFiles,
+                    })
+                    .then((response) => {
+                        if (response.status === 200) {
+                            this.selectedFiles = []
+                            this.getFiles({ page: 1 })
+                            this.$toast.add({
+                                severity: 'success',
+                                summary: this.tt('models.admins.success'),
+                                detail: this.tt('models.has_crud_action.destroy'),
+                                life: 3000,
+                            })
+                        }
+                    })
+                    .finally(() => {
+                        this.loading = false
+                    })
+            }
         },
         fileCheck(file) {
             const maxSize = this.isImage(file.name) ? MAX_SIZE_OF_IMAGE : MAX_SIZE_OF_VIDEO
