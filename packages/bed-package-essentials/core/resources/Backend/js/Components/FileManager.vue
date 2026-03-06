@@ -39,7 +39,7 @@
                 @drop.prevent="; (isDragging = false), (dragCounter = 0), drop($event)"></div>
 
             <!-- Details sidebar -->
-            <aside class="hidden p-8 pb-16 overflow-y-auto bg-white border-l border-r border-gray-200 w-80 lg:block">
+            <aside class="hidden p-8 pb-16 overflow-y-auto bg-white border-l border-r border-gray-200 w-80 md:block">
                 <template v-if="embed">
                     <Button @click.prevent="browse" class="w-full space-x-2 btn-primary">
                         <ph:upload-simple />
@@ -47,7 +47,7 @@
                     </Button>
                     <hr class="my-2" />
                 </template>
-                <Field v-if="tree && tree.length" :field="{
+                <Field v-if="tree && Object.keys(tree).length > 0" :field="{
                     key: 'FileManager',
                     label: false,
                     type: 'tree',
@@ -61,20 +61,34 @@
                 }" />
             </aside>
             <main class="overflow-y-auto grow group-image-admin"
-                :class="canDeleteFolder ? 'flex items-center flex-col justify-center' : 'flex-1'">
-                <div v-if="canDeleteFolder">
-                    <h1 v-if="canDeleteFolder" class="text-xl">
-                        {{ tt('models.files.drop') }}
-                        <a @click="browse" class="link">{{ tt('models.files.click_here').toLowerCase() }}</a>
-                        {{ tt('models.files.select_files').toLowerCase() }}
-                    </h1>
+                :class="!Object.keys(searchFiles).length ? 'flex items-center flex-col justify-center' : 'flex-1'">
+                
+                <!-- Trạng thái trống (No Data) -->
+                <div v-if="!Object.keys(searchFiles).length && !loading" class="flex flex-col items-center justify-center p-12 text-center">
+                    <div class="p-6 mb-4 bg-gray-50 rounded-full">
+                        <ph:folder-open-light class="w-16 h-16 text-gray-300" />
+                    </div>
+                    <h3 class="text-xl font-medium text-gray-900">
+                        {{ tt('models.files.no_data') || 'Thư mục này hiện không có dữ liệu' }}
+                    </h3>
+                    <p class="mt-2 text-sm text-gray-500 max-w-xs">
+                        {{ tt('models.files.empty_hint') || 'Hãy kéo thả file vào trình duyệt hoặc bấm nút "Chọn file" để bắt đầu tải dữ liệu lên.' }}
+                    </p>
+                    
+                    <div class="mt-8 flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                        <Button @click.prevent="browse" class="space-x-2 btn-primary">
+                            <ph:upload-simple />
+                            <span> {{ tt('models.files.select_file') }} </span>
+                        </Button>
+                        
+                        <Button v-if="canDeleteFolder" @click="deleteFolder" class="space-x-2 btn-outline-danger">
+                            <carbon:subtract-alt />
+                            <span> {{ tt('models.files.delete_folder') }} </span>
+                        </Button>
+                    </div>
                 </div>
-                <div v-if="canDeleteFolder" class="mt-6">
-                    <Button @click="deleteFolder" class="space-x-2 btn-outline-primary">
-                        <carbon:subtract-alt />
-                        <span> {{ tt('models.files.delete_folder') }} </span>
-                    </Button>
-                </div>
+
+                <!-- Danh sách file -->
                 <div v-if="Object.keys(searchFiles).length"
                     class="px-4 pt-8 pb-16 mx-auto space-y-4 max-w-7xl sm:px-6 lg:px-8">
                     <ul role="list" class="grid grid-cols-3 gap-4 lg:grid-cols-4 2xl:grid-cols-6">
@@ -194,11 +208,11 @@ export default {
             timer: null,
             timerScoll: null,
             data: {
-                tree: null,
+                tree: [],
                 directories: [],
                 files: [],
             },
-            tree: null,
+            tree: [],
             currentPath: '/',
             showFolderModal: null,
             folderForm: {
@@ -251,7 +265,7 @@ export default {
 
     watch: {
         show(value) {
-            if (value && this.data === null) {
+            if (value && (!this.tree || !this.tree.length)) {
                 this.getFiles()
             }
         },
@@ -259,25 +273,15 @@ export default {
 
     computed: {
         searchFiles() {
-            if (!this.data || !this.data.files) {
-                if (!this.search) {
-                    this.getFiles()
-                    return this.data.files
-                }
-                return []
-            }
-            if (!this.search) return this.data.files
-
-            this.getFiles({ keyword: this.search })
-
-            this.fetchData = false
-
+            if (!this.data || !this.data.files) return []
             return this.data.files
         },
         canDeleteFolder() {
             if (!this.data) return false
+            const fileCount = Array.isArray(this.data.files) ? this.data.files.length : Object.keys(this.data.files || {}).length
+            const dirCount = Array.isArray(this.data.directories) ? this.data.directories.length : Object.keys(this.data.directories || {}).length
 
-            return this.data.files.length === 0 && this.data.directories.length === 0
+            return fileCount === 0 && dirCount === 0 && this.currentPath !== '/'
         },
         canSelectMultiple() {
             return this.multiple || this.selectMultiple
@@ -308,7 +312,7 @@ export default {
                 const requestParams = {
                     page: this.page,
                     limit: this.limit,
-                    search: null,
+                    search: this.search,
                     path: this.currentPath,
                     ...params,
                 }
@@ -316,30 +320,27 @@ export default {
                 this.$axios
                     .get(this.route('admin.files.index', requestParams))
                     .then((res) => {
-                        let files = isFirstPage ? {} : this.data.files
-                        let new_files = res.data.files ? res.data.files : {}
+                        this.data.tree = res.data.tree || []
+                        this.data.directories = res.data.directories || []
 
-                        this.data.tree = res.data.tree
-                        this.data.directories = res.data.directories
-
-                        if (!this.tree || loadTree) {
-                            this.tree = res.data.tree
+                        if (!this.tree || this.tree.length === 0 || loadTree) {
+                            this.tree = res.data.tree || []
                         }
 
-                        if (Object.keys(new_files).length == 0) {
-                            if (requestParams.page > 1) {
-                                this.fetchData = false
-                            } else {
-                                this.data.files = {}
-                                this.fetchData = false
-                            }
+                        let new_files = res.data.files || []
+                        if (isFirstPage) {
+                            this.data.files = new_files
                         } else {
-                            if (requestParams.page == 1) {
-                                files = new_files
+                            if (new_files.length === 0) {
+                                this.fetchData = false
                             } else {
-                                files = { ...files, ...new_files }
+                                // If it's an object or array, handle merge
+                                if (Array.isArray(new_files)) {
+                                    this.data.files = [...this.data.files, ...new_files]
+                                } else {
+                                    this.data.files = { ...this.data.files, ...new_files }
+                                }
                             }
-                            this.data.files = files
                         }
                     })
             }
@@ -542,8 +543,7 @@ export default {
 
             this.timer = setTimeout(() => {
                 this.search = event.target.value
-                this.page = 1
-                this.fetchData = true
+                this.getFiles({ page: 1 })
             }, 500)
         },
         createFolder(name) {
