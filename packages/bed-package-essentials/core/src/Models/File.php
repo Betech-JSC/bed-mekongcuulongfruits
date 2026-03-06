@@ -299,6 +299,24 @@ class File
         return (bool) $this->storage->deleteDirectory($this->path);
     }
 
+    public function folderRename($newName)
+    {
+        $oldPath = rtrim($this->path, '/');
+        $parentPath = dirname($oldPath);
+        $newPath = ($parentPath === '.' ? '' : $parentPath . '/') . ltrim($newName, '/');
+
+        if ($this->storage->exists($newPath)) {
+            return false;
+        }
+
+        if ($this->storage->move($oldPath, $newPath)) {
+            // Success
+            return true;
+        }
+
+        return false;
+    }
+
     protected function responsePdf()
     {
         $filePath = $this->getFullPath();

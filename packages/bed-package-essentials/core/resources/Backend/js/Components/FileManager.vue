@@ -16,7 +16,11 @@
                 <input type="text" :placeholder="tt('models.files.input_file')"
                     class="flex-inline w-[400px] py-[0.5rem] px-[1rem] border border-gray-300 focus:border-solid focus:outline-none focus:ring-0 rounded hover:border-gray-400 focus:border-gray-500"
                     @input="onChange" />
-                <Button @click.prevent="showFolderModal = true" class="space-x-2 btn-outline-primary">
+                <Button v-if="currentPath !== '/'" @click.prevent="openFolderModal('rename')" class="space-x-2 btn-outline-primary">
+                    <ph-pencil-simple-line-light />
+                    <span> {{ tt('models.files.rename_folder') || 'Đổi tên' }} </span>
+                </Button>
+                <Button @click.prevent="openFolderModal('create')" class="space-x-2 btn-outline-primary">
                     <ph-plus-circle-light />
                     <span> {{ tt('models.files.add_folder') }} </span>
                 </Button>
@@ -80,6 +84,11 @@
                             <ph:upload-simple />
                             <span> {{ tt('models.files.select_file') }} </span>
                         </Button>
+
+                        <Button v-if="canDeleteFolder" @click.prevent="openFolderModal('rename')" class="space-x-2 btn-outline-primary">
+                            <ph-pencil-simple-line-light />
+                            <span> {{ tt('models.files.rename_folder') || 'Đổi tên' }} </span>
+                        </Button>
                         
                         <Button v-if="canDeleteFolder" @click="deleteFolder" class="space-x-2 btn-outline-danger">
                             <carbon:subtract-alt />
@@ -131,17 +140,18 @@
             </Button>
             <Button v-if="selectable || selectMultiple" class="btn-primary" @click="submitFileSelect()"> {{ tt('models.files.select') }} ({{ selectedFiles.length }}) </Button>
         </div>
-        <Dialog header="Folder" v-model:visible="showFolderModal" :breakpoints="{
+        <Dialog :header="folderModalMode === 'create' ? tt('models.files.add_folder') : tt('models.files.rename_folder')" v-model:visible="showFolderModal" :breakpoints="{
             '960px': '75vw',
             '640px': '90vw',
         }" :style="{ width: '50vw' }" :draggable="false">
             <Field v-model="folderForm.name" :field="{
                 rules: 'required',
                 name: 'name',
+                label: tt('models.files.folder_name')
             }" />
             <template #footer>
                 <Button variant="white" @click="showFolderModal = false" :label="tt('models.files.cancel')" />
-                <Button type="button" class="ml-2" @click="createFolder(folderForm.name), (showFolderModal = false)"
+                <Button type="button" class="ml-2" @click="submitFolderForm"
                     :label="tt('models.files.save')" />
             </template>
         </Dialog>
@@ -214,7 +224,8 @@ export default {
             },
             tree: [],
             currentPath: '/',
-            showFolderModal: null,
+            showFolderModal: false,
+            folderModalMode: 'create', // create or rename
             folderForm: {
                 name: null,
             },
@@ -546,6 +557,23 @@ export default {
                 this.getFiles({ page: 1 })
             }, 500)
         },
+        openFolderModal(mode) {
+            this.folderModalMode = mode
+            if (mode === 'rename') {
+                this.folderForm.name = this.currentPath.split('/').pop()
+            } else {
+                this.folderForm.name = ''
+            }
+            this.showFolderModal = true
+        },
+        submitFolderForm() {
+            if (this.folderModalMode === 'create') {
+                this.createFolder(this.folderForm.name)
+            } else {
+                this.renameFolder(this.folderForm.name)
+            }
+            this.showFolderModal = false
+        },
         createFolder(name) {
             this.$axios
                 .post(this.route('admin.files.folders.create'), {
@@ -555,6 +583,37 @@ export default {
                 .then((res) => {
                     this.getFiles({}, true)
                     this.folderForm.name = null
+                    this.$toast.add({
+                        severity: 'success',
+                        summary: this.tt('models.admins.success'),
+                        detail: this.tt('models.has_crud_action.store'),
+                        life: 3000,
+                    })
+                })
+        },
+        renameFolder(name) {
+            if (!name) return
+            this.loading = true
+            this.$axios
+                .post(this.route('admin.files.folders.rename'), {
+                    name: name,
+                    path: this.currentPath,
+                })
+                .then((res) => {
+                    if (res.data) {
+                        const parentPath = this.currentPath.split('/').slice(0, -1).join('/') || '/'
+                        this.currentPath = (parentPath === '/' ? '' : parentPath) + '/' + name
+                        this.getFiles({}, true)
+                        this.$toast.add({
+                            severity: 'success',
+                            summary: this.tt('models.admins.success'),
+                            detail: this.tt('models.has_crud_action.update'),
+                            life: 3000,
+                        })
+                    }
+                })
+                .finally(() => {
+                    this.loading = false
                 })
         },
         deleteFolder() {
@@ -568,6 +627,12 @@ export default {
                     .then((res) => {
                         this.currentPath = '/'
                         this.getFiles({}, true)
+                        this.$toast.add({
+                            severity: 'success',
+                            summary: this.tt('models.admins.success'),
+                            detail: this.tt('models.has_crud_action.destroy'),
+                            life: 3000,
+                        })
                     })
             }
         },

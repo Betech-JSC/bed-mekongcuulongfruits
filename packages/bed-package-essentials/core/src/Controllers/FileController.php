@@ -55,4 +55,10 @@ class FileController extends Controller
         $file = new File($request->input('path', '/'));
         return $file->folderDelete();
     }
+
+    public function folderRename(Request $request)
+    {
+        $file = new File($request->input('path', '/'));
+        return $file->folderRename($request->input('name'));
+    }
 }
