@@ -1,72 +1,46 @@
 <template>
     <section class="relative md:min-h-[400px] lg:min-h-[550px] xl:min-h-[720px] bg-black">
-        
+        <!-- Gradient Overlay -->
+        <div class="absolute z-10 inset-0 bg-linear-video pointer-events-none"></div>
+
         <!-- Video Container -->
-        <div
-            class="relative h-full w-full overflow-hidden"
-            @mouseenter="showControls = true"
-            @mousemove="handleMouseMove"
-            @mouseleave="hideControlsDelayed"
-        >
+        <div class="relative h-full w-full overflow-hidden" @mouseenter="showControls = true"
+            @mousemove="handleMouseMove" @mouseleave="hideControlsDelayed">
             <!-- Video Element -->
-            <video
-                ref="videoPlayer"
-                src="/assets/video/video.mp4"
-                @loadedmetadata="onVideoLoaded"
-                @timeupdate="onTimeUpdate"
-                @play="isPlaying = true"
-                @pause="isPlaying = false"
-                @ended="onVideoEnded"
-                @click="toggleVideo"
-                muted
-                loop
-                class="w-full h-full object-cover cursor-pointer"
-            ></video>
+            <video ref="videoPlayer" src="/assets/video/video.mp4" @loadedmetadata="onVideoLoaded"
+                @timeupdate="onTimeUpdate" @play="isPlaying = true" @pause="isPlaying = false" @ended="onVideoEnded"
+                @click="toggleVideo" muted loop class="w-full h-full object-cover cursor-pointer"></video>
 
             <!-- Center Play/Pause Button -->
-            <button
-                v-if="!isPlaying"
-                @click="toggleVideo"
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-20 md:h-20 bg-white/50 rounded-full flex items-center justify-center hover:bg-opacity-100 hover:scale-110 transition-all duration-300 z-20 shadow-xl"
-            >
+            <button v-if="!isPlaying" @click="toggleVideo"
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 md:w-20 md:h-20 bg-white/50 rounded-full flex items-center justify-center hover:bg-opacity-100 hover:scale-110 transition-all duration-300 z-20 shadow-xl">
                 <!-- Play Icon -->
-                <svg class="md:w-12 md:h-12 w-6 h-6" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="md:w-12 md:h-12 w-6 h-6" width="48" height="48" viewBox="0 0 48 48" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M13 9.97902C13 8.0367 13 7.06553 13.405 6.53019C13.7578 6.06381 14.297 5.77521 14.8808 5.74036C15.5509 5.70035 16.3589 6.23905 17.975 7.31646L39.0062 21.3372C40.3415 22.2275 41.0092 22.6726 41.2419 23.2336C41.4453 23.7241 41.4453 24.2754 41.2419 24.7659C41.0092 25.327 40.3415 25.7721 39.0062 26.6623L17.975 40.6831C16.3589 41.7605 15.5509 42.2992 14.8808 42.2592C14.297 42.2243 13.7578 41.9357 13.405 41.4693C13 40.934 13 39.9628 13 38.0205V9.97902Z"
-                        fill="#E5C025"
-                    />
+                        fill="#E5C025" />
                 </svg>
             </button>
 
             <!-- Bottom Controls Bar -->
-            <div
-                v-if="isPlaying"
-                class="absolute bottom-0 left-0 right-0 z-30 bg-gradient-to-t from-black/80 to-transparent px-6 pb-2 md:pb-6 pt-12 md:block hidden"
-            >
+            <div v-if="isPlaying"
+                class="absolute bottom-0 left-0 right-0 z-30 bg-gradient-to-t from-black/80 to-transparent px-6 pb-2 md:pb-6 pt-12 md:block hidden">
                 <!-- Progress Bar -->
                 <div class="mb-4">
-                    <div
-                        class="relative h-1 bg-white/30 rounded-full cursor-pointer group"
-                        @click="seek"
-                        ref="progressBar"
-                    >
+                    <div class="relative h-1 bg-white/30 rounded-full cursor-pointer group" @click="seek"
+                        ref="progressBar">
                         <!-- Progress -->
-                        <div
-                            class="absolute top-0 left-0 h-full bg-yellow-400 rounded-full transition-all"
-                            :style="{ width: `${progress}%` }"
-                        ></div>
+                        <div class="absolute top-0 left-0 h-full bg-yellow-400 rounded-full transition-all"
+                            :style="{ width: `${progress}%` }"></div>
 
                         <!-- Hover Preview -->
-                        <div
-                            class="absolute top-0 h-full bg-white/20 rounded-full transition-all opacity-0 group-hover:opacity-100"
-                            :style="{ width: `${hoverProgress}%` }"
-                        ></div>
+                        <div class="absolute top-0 h-full bg-white/20 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                            :style="{ width: `${hoverProgress}%` }"></div>
 
                         <!-- Thumb -->
-                        <div
-                            class="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full transition-all opacity-0 group-hover:opacity-100"
-                            :style="{ left: `${progress}%`, transform: 'translate(-50%, -50%)' }"
-                        ></div>
+                        <div class="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-yellow-400 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                            :style="{ left: `${progress}%`, transform: 'translate(-50%, -50%)' }"></div>
                     </div>
 
                     <!-- Time Display -->
@@ -93,36 +67,23 @@
                         <!-- Volume -->
                         <div class="flex items-center gap-2 group">
                             <button @click="toggleMute" class="text-white hover:text-yellow-400 transition-colors">
-                                <svg
-                                    v-if="isMuted || volume === 0"
-                                    class="w-6 h-6"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
+                                <svg v-if="isMuted || volume === 0" class="w-6 h-6" viewBox="0 0 24 24"
+                                    fill="currentColor">
                                     <path
-                                        d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"
-                                    />
+                                        d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
                                 </svg>
                                 <svg v-else-if="volume < 0.5" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M7 9v6h4l5 5V4l-5 5H7z" />
                                 </svg>
                                 <svg v-else class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                     <path
-                                        d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"
-                                    />
+                                        d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
                                 </svg>
                             </button>
 
                             <!-- Volume Slider -->
-                            <input
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.01"
-                                v-model="volume"
-                                @input="changeVolume"
-                                class="w-0 group-hover:w-20 transition-all duration-300 accent-yellow-400"
-                            />
+                            <input type="range" min="0" max="1" step="0.01" v-model="volume" @input="changeVolume"
+                                class="w-0 group-hover:w-20 transition-all duration-300 accent-yellow-400" />
                         </div>
                     </div>
 
@@ -130,26 +91,19 @@
                     <div class="flex items-center gap-4">
                         <!-- Speed Control -->
                         <div class="relative" ref="speedMenu">
-                            <button
-                                @click="showSpeedMenu = !showSpeedMenu"
-                                class="text-white hover:text-yellow-400 transition-colors text-sm font-medium"
-                            >
+                            <button @click="showSpeedMenu = !showSpeedMenu"
+                                class="text-white hover:text-yellow-400 transition-colors text-sm font-medium">
                                 {{ playbackRate }}x
                             </button>
 
                             <!-- Speed Menu -->
                             <transition name="fade">
-                                <div
-                                    v-show="showSpeedMenu"
-                                    class="absolute bottom-full right-0 mb-2 bg-black/95 rounded-lg overflow-hidden shadow-xl"
-                                >
-                                    <button
-                                        v-for="rate in [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]"
-                                        :key="rate"
+                                <div v-show="showSpeedMenu"
+                                    class="absolute bottom-full right-0 mb-2 bg-black/95 rounded-lg overflow-hidden shadow-xl">
+                                    <button v-for="rate in [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]" :key="rate"
                                         @click="changeSpeed(rate)"
                                         class="block w-full px-4 py-2 text-sm text-white hover:bg-yellow-400/20 transition-colors text-left"
-                                        :class="{ 'bg-yellow-400/30': playbackRate === rate }"
-                                    >
+                                        :class="{ 'bg-yellow-400/30': playbackRate === rate }">
                                         {{ rate }}x
                                     </button>
                                 </div>
@@ -160,13 +114,11 @@
                         <button @click="toggleFullscreen" class="text-white hover:text-yellow-400 transition-colors">
                             <svg v-if="!isFullscreen" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                 <path
-                                    d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"
-                                />
+                                    d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
                             </svg>
                             <svg v-else class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                 <path
-                                    d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"
-                                />
+                                    d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
                             </svg>
                         </button>
                     </div>
