@@ -12,6 +12,7 @@
                 :src="item.image.url || '/cover.jpg'"
                 :alt="item.image.alt || item.title || 'image card post'"
                 wrapperClass="picture-cover"
+                width="500" mobile-width="300"
                 class="w-full h-full object-cover lg:group-hover:scale-105 duration-300 ease-in-out"
             />
         </Link>

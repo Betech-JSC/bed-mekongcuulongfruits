@@ -7,8 +7,11 @@
             <swiper-slide v-for="(item, index) in items" :key="index">
                 <div class="absolute inset-0">
                     <JPicture :src="item.image.url || '/assets/images/home/bg-hero.webp'"
-                        :srcMb="item.image_mobile.url || item.image.url || '/assets/images/home/bg-hero.webp'"
+                        :mobileSrc="item.image_mobile?.url || item.image.url || '/assets/images/home/bg-hero.webp'"
                         :alt="item.image.alt || item.title || 'image hero'" wrapperClass="picture-cover"
+                        width="1920" mobile-width="768"
+                        :loading="index === 0 ? 'eager' : 'lazy'"
+                        :fetchpriority="index === 0 ? 'high' : 'auto'"
                         class="w-full h-full object-cover" />
                 </div>
                 <div class="absolute inset-0 bg-black/40 w-full h-full"></div>
