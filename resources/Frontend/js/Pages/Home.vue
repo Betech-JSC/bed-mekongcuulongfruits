@@ -12,6 +12,8 @@
                     src="/assets/images/home/image-art-farmer.jpg"
                     alt="item art farmer"
                     wrapperClass="picture-cover"
+                    width="1920"
+                    mobile-width="768"
                     class="w-full h-full object-cover"
                 />
             </div>
