@@ -24,6 +24,7 @@
                             class="w-auto h-[90px] xl:h-[120px]">
                             <JPicture :src="itemCertificate.image?.url"
                                 :alt="itemCertificate.image?.alt || itemCertificate.title"
+                                width="200" mobile-width="150" loading="lazy"
                                 class="w-full h-full object-contain" />
                         </AnimatedAppear>
                     </div>
@@ -80,7 +81,9 @@
                         <div class="w-8 h-8">
                             <div class="aspect-w-1 aspect-h-1">
                                 <JPicture :src="item.image?.static_url || '/assets/images/placeholder-square.png'"
-                                    :alt="item.image?.alt || item.title" class="w-full h-full object-cover" />
+                                    :alt="item.image?.alt || item.title" 
+                                    width="100" mobile-width="50" loading="lazy"
+                                    class="w-full h-full object-cover" />
                             </div>
                         </div>
                         <div class="flex-1 w-max">{{ item.title }}</div>
@@ -96,11 +99,13 @@
                         <div v-if="item.image_harvest_season">
                             <JPicture :src="item.image_harvest_season?.static_url"
                                 :alt="item.image_harvest_season?.alt || item.title"
+                                width="1200" mobile-width="600" loading="lazy"
                                 class="w-full h-full object-contain" />
                         </div>
                         <div v-else class=" flex flex-col items-center xl:gap-8 md:gap-6 gap-4">
                             <div class="max-w-[150px] md:max-w-[320px] w-full">
                                 <JPicture src="/assets/images/placeholder-square.png" alt="image empty chart"
+                                    width="400" mobile-width="300" loading="lazy"
                                     class="w-full h-full object-cover" />
                             </div>
                             <h3 class="headline-3 font-bold uppercase text-primary max-md:hidden">No chart

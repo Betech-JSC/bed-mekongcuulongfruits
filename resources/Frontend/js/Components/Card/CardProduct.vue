@@ -6,6 +6,7 @@
             " class="aspect-w-1 aspect-h-1 block relative overflow-hidden rounded-xl">
         <JPicture :src="item.image?.static_url || '/assets/images/placeholder-square.png'"
             :alt="item.image?.alt || item.title" wrapperClass="picture-cover"
+            width="500" mobile-width="300"
             class="w-full h-full object-cover lg:group-hover:scale-95 duration-300 ease-in-out" />
         </Link>
         <div class="md:space-y-4 space-y-3 xl:space-y-6 bg-white p-3 rounded-xl h-full">
