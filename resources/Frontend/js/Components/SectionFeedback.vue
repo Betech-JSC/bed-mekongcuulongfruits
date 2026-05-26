@@ -2,6 +2,7 @@
     <section class="relative">
         <div class="absolute inset-0">
             <JPicture alt="background feedback" src="/assets/images/home/bg-feedback.jpg"
+                width="1920" mobile-width="768" loading="lazy"
                 class="w-full h-full object-cover" />
         </div>
         <div class="relative py-[94px]">
@@ -31,6 +32,7 @@
                                     <div class="flex items-start gap-3">
                                         <div class="w-[60px] h-[60px] rounded-full overflow-hidden">
                                             <JPicture :src="item.image?.url" :alt="item.image?.alt || item.name"
+                                                width="100" mobile-width="100" loading="lazy"
                                                 class="w-full h-full object-cover" />
                                         </div>
                                         <div class="space-y-0.5">
